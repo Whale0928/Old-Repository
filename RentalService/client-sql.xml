@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+<comment>Client Service SQL</comment>
+	
+		<entry key = "duplicateCheck">
+		SELECT COUNT(*) FROM CLIENT 
+		WHERE CLIENT_ID = ? AND SECESSION_FL = 'N'</entry>
+	
+		<entry key = "signUp">
+		INSERT INTO CLIENT VALUES(SEQ_CLIENT_NO.NEXTVAL, ? , ? , ? , ? , DEFAULT)
+		</entry>
+	
+		<entry key = "login">
+		SELECT CLIENT_NO,CLIENT_ID,CLIENT_PW,CLIENT_NM,PHONE
+		FROM CLIENT 
+		WHERE CLIENT_ID = ? AND 
+		CLIENT_PW = ? AND 
+		SECESSION_FL = 'N'
+		</entry>	
+			
+		<entry key = "usely">
+		SELECT CLIENT_NM ,RES_DATE
+		FROM CLIENT 
+		JOIN RESERVATION USING(CLIENT_NO)
+		JOIN PLACE USING(PLACE_NO)
+		WHERE PLACE_NO =? <!-- 장소 번호 -->
+		AND END_USE='N'
+		</entry>
+
+		<entry key="select">
+		SELECT PLACE_NO,PLACE_NM,PLACE_ARD FROM PLACE
+		</entry>
+		
+		<entry key="selectRes">
+		SELECT RES_DATE FROM RESERVATION WHERE PLACE_NO=? AND END_USE ='N'
+		</entry>
+
+		<entry key="resUpdate">
+		INSERT INTO RESERVATION VALUES(?,?,?,DEFAULT)
+		</entry>
+
+<entry key="selectMy">
+SELECT CLIENT_NM,PLACE_NM,RES_DATE
+FROM RESERVATION
+JOIN PLACE USING(PLACE_NO)
+JOIN CLIENT USING(CLIENT_NO)
+WHERE CLIENT_NO=?
+AND END_USE='N'
+</entry>
+		
+		
+</properties>

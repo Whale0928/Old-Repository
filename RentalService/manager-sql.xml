@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+	<comment>Manager Service SQL</comment>
+
+		<entry key = "login">
+		SELECT MANAGER_NO,MANAGER_ID,MANAGER_PW,PHONE,PLACE_NM
+		FROM MANAGER
+		JOIN PLACE USING(MANAGER_NO)
+		WHERE 
+		MANAGER_ID =? AND
+		MANAGER_PW = ?
+		</entry>	
+	
+		<entry key ="selectShop">
+		SELECT PLACE_NO,PLACE_NM,PLACE_ARD
+		FROM PLACE
+		WHERE MANAGER_NO = ?
+		</entry>
+		
+		<entry key ="selectClient">
+		SELECT CLIENT_NO,CLIENT_NM,RES_DATE,PLACE_NM
+		FROM CLIENT
+		JOIN RESERVATION USING(CLIENT_NO)
+		JOIN PLACE USING(PLACE_NO)
+		WHERE PLACE_NO IN(
+		    SELECT PLACE_NO
+		    FROM MANAGER
+		    WHERE MANAGER_NO=?
+		)
+		AND END_USE='N'
+		</entry>	
+		
+		<entry key = "endSet">
+		UPDATE RESERVATION SET 
+		END_USE = 'Y'
+		WHERE PLACE_NO=?
+		</entry>	
+</properties>
