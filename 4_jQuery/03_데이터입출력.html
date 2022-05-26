@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터입출력</title>
+    <link rel="stylesheet" href="1.css">
+</head>
+<body>
+    <h1>데이터 입출력</h1>
+    <pre>
+요소의 내용을 입/출력
+[JS] 
+- 요소 . innerText : 요소 가져오기 (태그 X) 
+- 요소 . innerText = "내용" : 요소 내용 출력  (태그는 해석 X)
+
+- 요소 . innerHTML : 요소 가져오기 (태그 포함) 
+- 요소 . innerHTML = "내용" : 요소 내용 출력  (태그는 해석 O)
+
+-input요소.value : input요소에 작성된 값 얻어오기.
+-input요소.value = "값": input요소에 값 출력하기.ㅍ.
+-
+
+[jQuery]
+-$("단일 선택자.").text() : 요소 내용 얻어오기 ( 태그 X)
+-$("단일 선택자.").text("내용") : 요소 내용 출력하기 ( 태그 해석 X)
+
+-$("단일 선택자.").html() : 요소 내용 얻어오기 ( 태그 포함)
+-$("단일 선택자.").html("내용") : 요소 내용 출력하기 ( 태그 해석 O)
+
+-$("input요소 선택자").val(): input요소에 작성된 값 얻어오기
+-$("input요소 선택자").val("값"): input요소에 값 출력하기
+    </pre>
+
+    <hr>
+
+    <h1>순회(탐색)메서드</h1>
+    <pre>
+[js]
+-요소.parentElement            : 요소의 부모요소
+-요소.children                 : 요소의 모든 자식(배열)
+
+-요소.previousElementSibling   : 요소 이전 형제요소
+-요소.nextElementSibling       : 요소 이후 형제요소
+
+
+[jQuery]
+-$("단일 선택자").parent( )    : 요소의 부모요소 선택
+
+-$("단일 선택자").children()            : 요소의 모든 자식요소 선택
+-$("단일 선택자").children("css선택자") : 요소의 모든 자식요소 중 css 선택자가 일치하는 요소만 선택
+
+-$("단일 선택자").prev()        : 요소 이전 형제요소
+-$("단일 선택자").next()        : 요소 이후 형제요소
+
+parents()           : 모든 부모 (모든 상위 요소)
+parentUntil(선택자) : 현재 요소부터 선택자 요소까지 모든 상위 요소 
+find(선택자)        : 후손 중 선택자가 일치하는 모든 후손
+siblings()          : 모든 형제 요소
+prevAll()   : 이전 모든 요소 // nextAll()     : 다음 모든 요소
+prevUntil(선택자) : 이전 모든 형제 요소중 선택자가 일치하는 요소전 까지의
+nextUntil(선택자) : 다음 모든 형제 요소중 선택자가 일치하는 요소 전까지 
+
+
+    </pre>
+
+
+    <hr>
+
+    <h3>1단계</h3>
+    <div class="area" id="div1"></div>
+    <input type="text" class="input-color"><br>
+    <button class="change-btn" id="btn1">색 변경</button>
+    <hr>
+
+
+
+    <h3>2단계</h3> 
+    
+    <div class="box">
+        <div class="area div2"></div> 
+        <input type="text" class="input-color input2">
+    </div>
+    
+    <div class="box">
+        <div class="area div2"></div> 
+        <input type="text" class="input-color input2">
+    </div>
+    
+    <div class="box">
+        <div class="area div2"></div> 
+        <input type="text" class="input-color input2">
+    </div>
+    
+    <div class="box">
+        <div class="area div2"></div> 
+        <input type="text" class="input-color input2">
+    </div>
+    
+    <div class="box">
+        <div class="area div2"></div> 
+        <input type="text" class="input-color input2">
+    </div>
+    
+    <div class="box">
+        <div class="area div2"></div> 
+        <input type="text" class="input-color input2">
+    </div>
+    
+    <br>
+    <button class="change-btn" id="btn2">색 변경</button>
+  
+    <hr>
+
+    <h3>3단계</h3> 
+    
+    <div class="box">
+        <div class="area div3"></div> 
+        <input type="text" class="input-color input3">
+    </div>
+    <div class="box">
+        <div class="area div3"></div> 
+        <input type="text" class="input-color input3">
+    </div>
+    <div class="box">
+        <div class="area div3"></div> 
+        <input type="text" class="input-color input3">
+    </div>
+    <div class="box">
+        <div class="area div3"></div> 
+        <input type="text" class="input-color input3">
+    </div>
+    <div class="box">
+        <div class="area div3"></div> 
+        <input type="text" class="input-color input3">
+    </div>
+    <div class="box">
+        <div class="area div3"></div> 
+        <input type="text" class="input-color input3">
+    </div>
+
+
+    
+  
+    <hr>
+
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/03_데이터입출력.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* 5순위 : 태그 선택자 */
+
+div{
+    width:200px;
+    height:200px !important;
+    background-color: red ;
+    
+}
+
+.cls1{
+    background-color: green;
+    /* 배경색이 green이 되지면 이전에 지정된 곂치지 않는건 그대로 반영 */
+}
+
+
+.cls1{
+    background-color: aqua;
+}
+
+#test1{
+    height: 100px;
+    background-color: black;
+    color: white;
+}
+

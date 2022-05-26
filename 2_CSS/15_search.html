@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15_search</title>
+    
+    <style>
+        #header2{
+            width: 800px;
+            height: 200px;
+            border: none;
+        }
+
+        *{box-sizing: border-box;}
+        div{border: 1px solid black;}
+
+        /* 검색 스타일  */
+        .search-area{   width: 500px; border: none;} 
+        .search-area fieldset{
+            padding: 2px;
+            margin: none;
+            border: 2px solid #455ba8;
+            border-radius: 5px;
+
+            display:flex;
+        }
+        
+        #query{
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            /* border: 0px */
+        
+            /* outline : input 태그에 focus가 맞쳐졌을 때 
+                    이를 표현하기 위한 바깥선 (테두리보다 바깥에 존재)*/
+            outline: 0; 
+            /* outline: 0;  */
+            
+            width: 92%;
+        }
+
+        #search-bth{
+            width: 8%;
+            cursor: pointer; /* 커서를 손가락 모양으로 바꿈 */
+
+            font-size: 1.2em;/* 16px * 1.2 배 */
+            color: #455ba8;
+            background-color: white;
+            border: none;
+        }
+    </style>
+
+    <script src="https://kit.fontawesome.com/ea629e8085.js" 
+                                    crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!-- header 의 두번째 자식 div라고 가정() -->
+    <div id="header2">
+        <!-- 검색영역 -->
+        <div class="search-area">
+            <!-- 내부 input 태그 값을 서버 또는 페이지로 전달. -->
+            <form action="#" name="search-form">
+                <!-- form 내부에서 input을 묶는 용도로 주로 사용 -->
+                <fieldset>
+                    <input type="search" id="query" name="query" 
+                    autocomplete="off" placeholder="검색어를 입력해주세요">
+
+                    <button type="submit" id="search-bth" class="fa-solid fa-magnifying-glass">
+
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

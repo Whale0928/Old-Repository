@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 개요</title>
+    <style>
+        *{
+            font-family: d2Coding;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery란</h1>
+    <pre>
+        기존에 복잡했던 클라이언트 측 HTML 스크립팅(JS)을
+        간소화 하기 위해 고안된 JavaScript Library
+
+        jQuery는 JS보다 적은양의 코드로 다양하고 풍부한 기능을 제공함
+
+    * 단점 - jQuery 라이브러리를 다운로드받아서 사용 - > 로딩속도가 상대적으로 느림. 
+        </pre>
+
+
+    <hr>
+
+    <h1>jQuery 라이브러리 연결 방법</h1>
+    <pre>
+        jQuery 라이브러리는 .js 확장자로 작성되어 있어
+        script 태그를 이용하여 연결할 수 있다.
+
+        1) jQuery 라이브러리를 다운로드 받아서 직접 연결
+        - 장점 : 서버 컴퓨터에 라이브러리가 존재하기 때문에 연결 속도가 빠름
+        - 단점 : 폴더 구조 변경 시 경로가 꼬이게되는 문제가 발생할 수 있다.
+
+        - jQuery 공식 홈페이지 : https://jquery.com/
+        - jQuery CDN 코드 제공 페이지 : https://code.jquery.com/
+
+        2) CDN(Content Delivery Network)을 이용한 연결 방법
+        - 장점 : 언제 어디서든 jQuery를 이용할 수 있다.
+        - 단점 : 온라인 환경에서 이용 가능. 인터넷 속도에 따라 지연이 될수 있다.
+    </pre>
+
+
+    <hr>
+
+    <h1>JS 와 jQuery 차이점</h1>
+    <button id="jsBtn">JS 버튼</button>
+    <button id="jQueryBtn">jQuery 버튼</button>
+    
+    <hr>
+
+    <h1>HTML 문서의 해석 순서와 window.onload / ready()의 차이점 </h1>
+    <pre>
+        HTML 문서는 기본적으로 위 -> 아래 순서대로 해석된다.
+        -> 아랫쪽에 작성되어 미해석된 코드는 위쪽 코드에서 호출할 수 없다.
+
+
+        * window.onload / ready() 공통점
+          [js]          [jQuery]
+
+
+        -> 위쪽에 코드가 작성되어도 제일 마지막에 해석된다( 문서의 로딩이 끈나는 시점. )
+            -> 코드가 미해석되서 오류가 발생할 경우가 없다 (모든 요소들이 로딩된 상태임으로.)        
+            -> 먼저 해석되는 코드의 양이 너무 크면 수행시간이 뒤쳐질 수 있다.
+
+
+
+* window.onload / ready() 차이점
+
+-window.onload.는 페이지 내에서 딱 한번만 작성할 수 있다
+(중복 작성 시 마지막 내용이 적용된다)
+
+-ready()는 여러번 작성 가능
+
+
+*** ready() 작성 방법 3가지 ***
+
+1) jQuery(document).ready(function(){ 코드; });
+
+2) $(document).ready(function(){ 코드; });
+( '$' 기호는 jQuery를 의미한다. )
+
+3) $(function(){ 코드; });
+        </pre>
+
+
+
+
+    <!-- 1. 라이브러리를 다운로드 받아서 직접 연결      -->
+    <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
+
+    <!-- 2. CDN 방식 연결(인터넷으로 직접 연결.) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="  crossorigin="anonymous"></script>
+
+    <!-- 이 내부 파일에서 Jquery를 사용하려면 jQuery 라이브러리를 먼저 로딩해야 한다. -->
+    <script src="js/01_jQuery개요.js"></script>
+
+
+
+
+    <!-- ready 함수 확인용. -->
+    <h1 id="readyTest">123123</h1>
+</body>
+</html>

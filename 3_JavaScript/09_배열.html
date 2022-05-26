@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_배열</title>
+</head>
+<body>
+    <h1>배열(Array)</h1>
+    <pre>
+    배열: 변수를 묶음으로 다루는 것(변수가 연속적으로 나열됨.)
+
+    * JS변수 : 값이 저장되기 전까지 자료형이 지정되지 않는다.
+
+    JS배열 특장
+    1. 자료형 제한 X
+    2. 길이 제한 X
+    = (자바 Collection List와 비슷.)
+    </pre>
+    
+    <button id="btn1">배열 확인1</button>
+
+    <hr>
+
+    <h3> 배열 관련 함수 </h3>
+
+    <pre>
+        (Stack 구조 관련 함수)
+push(): 배열 마지막 요소로 추가하기
+pop() : 배열 마지막 요소를 꺼내옴
+
+배열.indexOf("값") : 일치하는 값을 가진 요소의 index를 반환
+            : 없으면 -1 반환
+
+정렬
+배열.sort([정렬기준 함수]) : 배열 내 요소를 오름차순 정렬(문자열)
+                    단,[배열기준 함수]에 따라서 결과가 달라진다.
+
+
+배열.toString() : 배열 요소를 하나의 문자열로 출력
+            -> 요소 사이에 , 기호 포함 출력
+배열.join("구분자") : 배열 요소를 하나의 문자열로 출력
+            -> 요소 사이에 "구분자"로 구별해 출력
+    </pre>
+    
+    <button id="btn2">배열 확인2</button>
+
+
+
+
+    <script src="js/09_배열.js"></script>
+</body>
+</html>

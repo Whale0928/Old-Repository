@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_CSS개요, 기본선택자1</title>
+
+    
+    <style>
+    /* style 태그 : css코드만 작성할 수 있는 영역을 제공  */
+    /* CSS 주석 */
+
+    /* 태그 선택자(태그명)*/
+    div{
+        border:3px solid red;/* 3px두깨의 빨간 실선 */
+    }
+    strong{
+        background-color: yellow;
+    }
+    span{
+        background-color: pink;
+    }
+
+    /* 아이디 선택자 (#) */
+    #li-1{ background-color:red;  color: white;}
+    #li-2{ background-color:orangered; }
+    #li-3{ background-color:yellow; }
+    #li-4{ background-color:green; }
+    #li-5{ background-color:blue; }
+
+    /* 콤마( , )를 이용한 여러 선택자 동시 작성 */
+    #li-1,#li-1,#li-2,#li-3,#li-4,#li-5{
+        color: white;
+    }
+
+    /* 클래스 선택자( . ) */
+    .test-1{color: red;}
+    .test-2{color: white;
+            background-color: black;}
+
+    /* 미리 클래스 선택자를 이용한 CSS코드를 작성하고
+        이후에 html코드에 클래스 지정하기 */
+    .aaa{font-weight:bold;}
+
+    
+    /* 모든 요소 선택자 ( * ) */
+    @font-face {/* 웹 폰트 추가 */
+            font-family: 'CookieRun-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+    *{
+        font-size: 20px; 
+        font-family: 'CookieRun-Regular';
+    }
+
+    </style>
+</head>
+<body>
+    <h1>CSS( Cascading Style Sheets )</h1>
+    <pre>
+        마크업 언어(HTML)가 실제로 화면에 표시되는 방법(모양, 색상, 크기, 스타일)을 기술하는 언어.
+        (HTML 코드가 화면에 어떤 스타일로 보여지실 원하는지 지정하는 언어)
+         
+        W3C(웹 표준 지정 기관)에서 CSS를 표준으로 지정함
+    </pre>
+
+    <hr>
+
+    <h1>CSS Selector(선택자)</h1>
+    <pre>
+        Selector란?
+        -현재 HTML문서 내에서 특정한 요소를 선택하는 문자.
+
+        스타일을 적용하고자 하는 요소를 선택하는 방법.
+    </pre>
+
+    <hr>
+    <h3>태그 선택자</h3>
+    <pre>
+        현재 HTML문서 내에 같은 태그를 선택하는 선택자.
+
+        [작성법]   
+        태그명 { CSS 코드; }
+    </pre>
+
+    <div>
+        <Strong>Strong 태그에 작성된 내용입니다.</Strong>
+        <br>
+        <span>Strong 태그에 작성된 내용입니다.</span>
+
+        <ul>
+            <li>                
+                <Strong>Strong 태그에 작성된 내용입니다.</Strong>
+            </li>
+            <li>
+                <span>Strong 태그에 작성된 내용입니다.</span>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h3>id선택자(#id 속성값)</h3>
+    <pre>
+        html문서 내에서 id 속성 값이 일치하는 요소를 선택하는 선택자.
+        (중요!!) id속성값은 페이지 내에서 유일 해야 한다.
+                -중복되는 id 속성값이 있으면 안된다!
+
+            [작성법]
+            #id 속성값{css코드;}
+
+            #==id
+    </pre>
+
+    <!-- HTML:
+        하이픈 표기법 / 
+        단 id는 카멜 표기법 -->
+    <ol>
+        <li id="li-1">id선택자 테스트1</li>
+        <li id="li-2">id선택자 테스트2</li>
+        <li id="li-3">id선택자 테스트3</li>
+        <li id="li-4">id선택자 테스트4</li>
+        <li id="li-5">id선택자 테스트5</li>
+    </ol>
+
+    <hr>
+    <h3>class 선택자(.클래스 속성 값)</h3>
+    <pre>
+        HTML 문서 내에서 같은 Class 속성 값을 가지는 태그를
+        모두 선택하는 선택자.
+
+        [작성법]
+        .class속성값 {CSS코드}
+        .  == class를 의미
+    </pre>
+
+    <ul>
+        <li class="test-1">클래스 선택자 테스트1</li>
+        <li class="test-2">클래스 선택자 테스트2</li>
+        <li class="test-3">클래스 선택자 테스트3</li>
+        <li class="test-4">클래스 선택자 테스트4</li>
+        <li class="test-5">클래스 선택자 테스트5</li>
+        
+        <li class="aaa">클래스 선택자 테스트6</li>
+        <!-- 여러 클래스 적용 -->
+        <li class="aaa test-1">클래스 선택자 테스트7</li>
+        <li class="test-2 aaa">클래스 선택자 테스트8</li>
+
+        <li class="aaa test-1">클래스 선택자 테스트7</li>
+        <li class="aaa test-3">클래스 선택자 테스트8</li>
+
+    </ul>
+
+    <hr>
+
+    <h3>모든 요소 선택자 ( * )</h3>
+    <pre>
+        단독 또는 다른 선택자와 함께 사용 가능한 선택자로 
+
+        모든 요소를 선택하는 선택자.
+
+    </pre>
+
+</body>
+</html>

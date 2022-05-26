@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_문자열,숫자,형변환,연산자</title>
+</head>
+<body>
+    <h2>문자열(String 내장 객체)</h2>
+    <pre>
+        javascript에는 문자열을 나타내는 객체 String이 존재하며
+        문자열과 관련된 기본적인 함수를 제공해준다.
+    </pre>
+
+    <button id="btn1">문자열 관련 함수</button>
+    <div></div>
+    
+    <hr>
+
+    <h2>숫자(Math 내장 객체)</h2>
+    <pre>
+        숫자(number) 타입 리터럴 표기법 
+         ㄴ :  12(정수) , 3.14(실수) , Infinity(무한) , NaN(Not a Number)
+         
+         Math : 숫자 관련 함수를 제공하는 JS 내장 객체.
+         ex) Math.random() , 
+    </pre>
+
+    <button id="btn2">숫자 관련 객체</button>
+
+    <hr>
+
+    <h2>문자열 to 숫자 형변환</h2>
+    <pre>
+
+        parseInt(문자열): 정수형태로만 변환 (3.14 -> 3)
+        
+        parseFloot(문자열): 실수형태로 변환 ("정수"->정수 , "실수"->실수)
+        
+        Number(문자열): floot랑 같은데 더 편하게 쓸수 있다.
+    </pre>
+    <button id="btn3">문자to숫자 형변환</button>
+
+    <h2>동등 / 동일 비교 연산자</h2>
+    <pre>
+        동등 비교 연산자( == , != )
+        -> 같이 같으면 true
+        -> 자료형이 관계없다
+
+        ex1) "1"==1==true 3개 모두 같다.
+
+        동일 비교 연산자(=== , !===)
+        -> 값과 자료형 모두 같이야지 True반환
+    </pre>
+    <script src="js/08_문자열,숫자,형변환,연산자.js"></script>
+</body>
+</html>

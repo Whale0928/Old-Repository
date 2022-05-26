@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+    <script src="./js/05_간이계산기v1.js"></script>
+</head>
+<body>
+    <h1>간이 계산기</h1>
+    첫번째 값 : <input type="number" id="num1"  value="10"><br>
+    두번째 값 : <input type="number" id="num2" value="5"><br>
+
+    <button id="plus" onclick="plus()">+</button>
+    <button id="minus" onclick="minus()">-</button>
+    <button id="multip" onclick="multip()">*</button>
+    <button id="division" onclick="division()">/</button>
+    <button id="remainder" onclick="mod()">%</button>
+    <br><br>
+    계산결과: <span id="resultBox"></span>
+
+<!--     <script>
+    console.log(Number(num1.value)+Number(num2.value))
+    </script>
+ -->
+<hr><hr>
+
+ <h1>간이 계산기 스위치로 가져오기</h1>
+ 첫번째 값 : <input type="number" id="num3" ><br>
+ 두번째 값 : <input type="number" id="num4" ><br>
+ <button  onclick="sum('+')">+</button>
+ <button  onclick="sum('-')">-</button>
+ <button  onclick="sum('*')">*</button>
+ <button  onclick="sum('/')">/</button>
+ <button  onclick="sum('%')">%</button>
+ <br><br>
+ 계산결과: <span id="resultBox2"></span>
+
+
+<!-- 함수 호출시 매개변수 this 
+-       -> 이벤트가 발생한 요소 자체를 의미.
+
+
+ <button  onclick="sum(this)">+</button>
+ <button  onclick="sum(this)">-</button>
+
+ const op = btn.innerText; (내부에 작성된 값만 적용)
+     -->
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_요소추가제거</title>
+    
+    <style>
+        .row{margin: 5px 0;}/* 한줄 */
+        .in{width: 100px;} /* input 태그 */
+        .remove{/* 삭제 X 버튼 */
+            display: inline-block;
+            border: 1px solid black;
+            margin-left: 5px;
+            width: 20px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 20%;
+            cursor: pointer;
+        } 
+        body{
+            display: flex;
+        }
+        .btn{
+            height: 200px;
+            width: 80px;
+            margin: 5px;
+        }
+        
+
+    </style>
+
+</head>
+<body>
+    <button class="btn" id="add">추가하기</buttonㅊ>
+        <button class="btn" id="calc">계산</button>
+
+    <div id="container">
+
+        <div class="row">
+            <input type="number" class="in">
+        </div>
+
+    </div>
+
+
+
+<script src="js/13_요소추가제거.js"></script>    
+</body>
+</html>

@@ -1,0 +1,135 @@
+img{
+    width: 250px;
+    height: auto;
+    /* 이미지는 원래 자신만의 너비 / 높이를 가지고 있어 
+        한 방향의 크기만 지정해도 남은 방향은 자동적으로 비율에 맞쳐 지정된다*/
+
+}
+
+/* transform : 변형과 관련된 속성 */
+
+/* CSS 속성 작성 시 크로스 브라우저(브라우저가 달라지는 경우 ) 처리 방법 
+    -ms- : microsoft (엣지)
+    -webkit- : 크롬 , 사파리.
+    -o : 오페라 
+    -mox : 파이어폭스
+*/
+
+.trans-x-2d:hover{
+    -ms-transform:translateX(100px);
+    -webkit-transform:translateX(100px);
+    transform: translateX(100px); 
+    /*  x cnrdmfh qkRnek.*/
+}
+.trans-y-2d:hover{
+    -ms-transform: translateY(100px);
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+}
+.trans-d-2d:hover{
+    -ms-transform: translate(100px,100px);
+    -webkit-transform: translate(100px,100px);
+    transform: translate(100px,100px);
+                        /*x축  y축*/
+}
+
+/* scale : 비율 */
+/* 가로 방향 확대/축소 */
+.trans-x-scale-2d:hover{
+    transform:scaleX(2);
+    margin-left:200px;
+}
+/* 세로 방향 확대/축소 */
+.trans-y-scale-2d:hover{
+    transform:scaley(2);
+    margin:100px auto;
+}
+
+/* 요소 확대/축소 */
+.trans-scale-2d:hover{
+    transform:scale(2, 2);
+    margin: 150px 150px;
+        /*  세로    가로 */
+}
+
+/* 요소를 회전할 때 사용 */
+/*  rotate(각도 deg) */
+.trans-rotate:hover{
+    transform: rotate(80deg);
+}
+
+
+/* x,y,z 축 움직이기. */
+.trans-3d:hover{
+    /* transform:perspective(300px) translateZ(100px); */
+    transform:perspective(300px) translate3d(50px,50px,100px);
+}
+
+
+/* x축 회전  */
+.trans-rotate-x-3d{
+    transform:perspective(300px)  rotateX(45deg);
+}
+/* y축 회전  */
+.trans-rotate-y-3d{
+    transform:perspective(300px)  rotateY(45deg);
+}
+/* z축 회전  */
+.trans-rotate-z-3d{
+    transform:perspective(300px)  rotateZ(45deg);
+}
+/* x,y,z축 회전  */
+.trans-rotate-3d{
+    transform:perspective(300px)  rotate3d(0.5,0.5,0.5, 45deg);
+    /* roatae3d ( x ,y ,z 회전각도);
+        x/ y / z 는 0~ 1 사이 숫자 */
+}
+
+
+/* transition  */
+.box{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    background-color: forestgreen;
+
+    transition-duration: 1s;
+}
+
+.test1:hover{
+    background-color: yellow;
+}
+
+.test2{
+    transition-duration: 5s;
+    border-radius:5% ; 
+}   
+
+.test2:hover{
+    transform:rotate(3600deg);
+    background-color: red;
+    border-radius:50%;
+}
+
+
+
+/*  linear | ease | ease-in | ease-out | ease-in-out | cublic-bezier(n,n,n,n) */
+/* transition-timing-function: cubic-bezier(0.3, 0.3, 1, 0.5);   */
+
+.test3{
+    transition-duration: 3s;
+    transition-timing-function:ease-in-out;    
+}
+
+.test3:hover{
+    background-color: springgreen;
+    transform: rotate(3600deg);
+}
+
+.test4{
+    transition-delay: 1s;
+}
+.test4:hover{
+    transform:translateX(100px);
+    background-color: lime;
+}

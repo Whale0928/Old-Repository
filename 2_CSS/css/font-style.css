@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+
+
+#size-test>li:nth-child(1){font-size: 24px;}
+#size-test>li:nth-child(2){font-size: 18pt;}
+#size-test>li:nth-child(3){font-size: 150%;}
+/* 크롬 브라우저 기준
+    기본 글꼴 크기 : 16px */   
+#size-test>li:nth-child(4){font-size: 1em;}
+
+
+/* font-family */
+.cls>li{font-size:24px;}
+
+#family-test1>li:nth-child(1){
+    font-family:'궁서체';
+}
+#family-test1>li:nth-child(2){
+    font-family:'배달의민족체';/* 없는 폰트인 경우 기본 폰트로 설정됨 */
+}
+#family-test1>li:nth-child(3){
+    font-family:'배달의민족체','d2coding';
+}
+
+
+#family-test2>li:nth-child(1){
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* import는 css파일 제일 상단에 작성해야 한다. */
+#family-test2>li:nth-child(2){
+    font-family: 'Noto Serif KR', serif;
+}
+
+@font-face {
+    font-family: 'Yeongdo-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#family-test2>li:nth-child(3){
+    font-family: 'Yeongdo-Rg';
+}
+
+

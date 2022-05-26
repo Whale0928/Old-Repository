@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lotto</title>
+    <style>
+        *{
+            border: 1px solid green;
+        }
+        #container{
+            width: 400px;
+
+            display: flex;
+            justify-content: space-around;
+
+            margin: 100px auto 50px;
+            border: 1px solid red;
+        }
+        #container > div{
+            width: 50px;
+            height: 50px;
+
+            border: 1px solid black;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #createLotto{
+            width: 300px;
+            height: 30px;
+
+            display: block;
+            margin:auto;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <button id="createLotto">로또 번호 생성</button>
+
+
+    <script>
+        document.getElementById("createLotto").addEventListener("click",function(){
+            
+            //#container 자식 div선택
+            const numbers = document.querySelectorAll("#container > div");
+
+            //로또 번호를 저장한 배열 선언
+            const lotto = [];
+
+            while(lotto.length<6){//lotto배열에 저장된 값이 6개가 안되면 반복
+
+                //1~45 난수 생성
+                const ran=Math.floor(Math.random()*45+1);
+
+                //생성된 난수가 배열에 있는지 검사
+                if(lotto.indexOf(ran)==-1){
+                    
+                    //배열에 난수 추가
+                    lotto.push(ran);
+                }
+            }
+            
+            //로또에 저장된 난수 오름차순 정렬
+            lotto.sort(function(a,b){return a-b});
+
+            //numbers에 인덱스 별로 lotto 인덱스에서 pop
+            for(let i =0; i<lotto.length; i++){
+                numbers[i].innerText = lotto[i];
+            }
+
+            
+            
+        })
+    </script>
+</body>
+</html>

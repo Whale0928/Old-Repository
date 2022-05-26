@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_변수와 자료형</title>
+    <!-- external 방식 -->
+    <script src="/3_JavaScript/js/04_변수와자료형.js"></script>
+    <style>
+        #typeBox{
+            border: 3px solid black;
+            width: 550px;
+            height: 450px;
+            font-size: 18px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>변수 선언 위치에 따른 구분</h1>
+
+    <h4>Java</h4>
+    <pre>
+        public class Student{
+            
+            //필드 (멤버 변수)
+            private String name; //인스턴스 변수 
+            pubilc statice String schoolName;  //클래스 변수 , static 변수
+
+
+            /메소드
+            public setName(String name){
+             int num=10; //이 메소드안에서만 사는 "지역변수"
+             this.name = name;
+
+             if(){
+                int a = 20; //if의 지역변수
+             }
+        }
+    </pre>
+
+
+    <hr>
+
+    <h4>Javascript</h4>"JS 코드를 함수 내부가 아닌 JS파일 또는 script태그 밑에 바로 작성하면 HTML 랜더링시 바로 실행된다."
+    <pre>
+        (js파일이라고 전제)
+
+        var num1 ;  // 전역변수(선언된 후 같은 문서내에 어디에서든지 사용 가능.)
+
+        num2;       // 전역변수(먼 근본 없는 놈이야,  변수명 앞에 아무런 키워드가 없으면 전역변수가 된다.)
+
+        function test(){
+        var num3; // 이 test함수 내에서만 사용 가능하다.
+
+        num4      // 전역변수( 변수 앞에 아무런 키워드가 없으면 전역변수가 된다.)
+
+        if(조건){
+            var num5;// 사용된 function 지역변수. ( 진짜 근본없는 언어네)
+
+            num6     // 전역변수( 변수 앞에 아무런 키워드가 없으면 전역변수가 된다.)
+        }
+}
+    </pre>
+
+    <Script>
+    console.log("[script 태그 내부]")    
+    console.log("num1:"+num1);
+    console.log("num2:"+num2);
+    </Script>
+
+
+    <hr>
+
+    <h1>변수 선언 방식</h1>
+    <pre>
+        var  : 변수, 변수명 중복이 가능(중복일때는 먼저 선언된 변수를 덮어쓰기),함수레벨 scope
+        let  : 변수, 변수명 중복 X , 블럭{} 레벨 scope
+        const: 상수, 변수명 중복 X , 블럭{} 레벨 scope
+
+        1순위 : const
+            - js 는 특정 요소를 선택해 사용하는 경우가 많아서 변수에 고정 시켜 둔다.
+
+        2순위 : let
+
+        3순위 : var (ES6 이후부터 사용빈도가 줄어듬.)
+    </pre>
+
+
+    <hr>
+
+    <h1>JS의 자료형</h1>
+
+    <pre>
+        자바스크립트는 변수 선언시 별도의 자료형을 지정하지 않는다.
+        ->변수에 대입되는 값(리터럴)에 의해서 자료형이 결정됨(자동?)
+
+        -String (문자열)
+        -number (숫자) ->정수 / 실수 모두 포함.
+        -boolean(t/f)
+        -object (객체) -> 배열(Array) 
+        -JS객체{K:V , k:v} 
+        -function (함수) 
+        -undifined(정의되지 않은 변수) -> 변수가 선언만 되고 값이 대입되지 않은 상태.
+
+        (참고 , 타입이라고 하기에는 애매함 값(리터럴)의 개념)
+        -null (참조하는게 없다.) -> document.getElementById("오타입력") : 해당요소를 선택 못할 경우
+    </pre>
+
+    <button onclick="typeTest()">자료형 호출</button>
+    <div id="typeBox">
+
+    </div>
+</body>
+</html>

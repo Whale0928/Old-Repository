@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12_글꼴관련스타일</title>
+    <link rel="stylesheet" href="/2_CSS/css/font-style.css">
+</head>
+<body>
+    <h1>글꼴(폰트) 관련 스타일</h1>
+
+    <h3>font-size:글골의 크기를 지정하는 속성</h3>
+    <pre>
+        px : 픽셀(화면 해상도)
+        pt : 포인트(1pt = 0.72인치 = 1.83cm)
+
+        %  : 상위 요소 크기에 대한 백분율(여기서는 body를 기준)
+        em : 1em == 100%
+    </pre>
+    <ul id="size-test">
+        <li>픽셀 px</li>
+        <li>포인트 pt</li>
+        <li>퍼센트 %</li>
+        <li>em</li>
+    </ul>
+
+    <hr>
+    <h3>font - weight: 글꼴의 굵기(두깨) 를 지정하는 속성.</h3>
+    <pre>
+        숫자   : 100~ 900 (커질수록 두꺼워짐)
+        nomarl : 폰트에 지정된 기본 두깨(400) 
+        bold : 굵게 (700)
+        bolder : 상속받은 두깨보다 더 굵게
+        lighter : 상속받은 두깨보다 더 얇게
+    </pre>
+
+    <pre>
+        font-style : 글꼴을 지정하는 속성
+        italic     : 폰트에서 제공하는 비슷한 글자 (제공하면 이거 쓰면됨)
+        oblique   : 강제로 글자를 비스듬하게 변경 (혹시 폰트가 제공안하면 강제로)
+    </pre>
+
+    <hr>
+    
+    <h3>font-family : 글꼴을 지정하는 속성.</h3>
+
+    <ul id="family-test1" class="cls">
+        <li>가나다라,김현기 , abcd, ABCD ,1234 , !@#$</li>
+        <li>가나다라,김현기 , abcd, ABCD ,1234 , !@#$</li>
+        <li>가나다라,김현기 , abcd, ABCD ,1234 , !@#$</li>
+    </ul>
+
+    <h3>웹 폰트 사용</h3>
+    <p>웹 폰트 제공 사이트1 : <a href="https://fonts.google.com" target="_blank">구글 웹폰트 사이트로</a> </p>
+    <p>웹 폰트 제공 사이트2 : <a href="https://noonnu.cc/" target="_blank">눈누 상업용 무료 한글폰트 사이트로</a>  </p>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&display=swap" rel="stylesheet">
+
+    <ul id="family-test2" class="cls">
+        <li>가나다라,김현기 , abcd, ABCD ,1234 , !@#$</li>
+        <li>가나다라,김현기 , abcd, ABCD ,1234 , !@#$</li>
+        <li>가나다라,김현기 , abcd, ABCD ,1234 , !@#$</li>
+    </ul>
+</body>
+</html>

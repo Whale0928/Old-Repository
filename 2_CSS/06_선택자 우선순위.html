@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_선택자 우선순위</title>
+    <link rel="stylesheet" href="./css/seletor6.css">
+</head>
+<body>
+    <h1>CSS선택자의 우선순위</h1>
+
+    <pre>
+        ### 1 : css속성 : 속성값 !important;
+        ### 2 : inline-style 속성 (요소에 직접 작성되는 style속성) 
+        ### 3 : 아이디 선택자( #아이디 속성명)
+        ### 4 : 클래스 선택자(.Class 속성명)
+        ### 5 : 태그 선택자( 태그명 )
+    </pre>
+
+    <!-- 2순위 : inline-style -->
+    <div class="cls1" id="test1" style="background-color:brown" >우선순위 테스트</div>
+
+</body>
+</html>
