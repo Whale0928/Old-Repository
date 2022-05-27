@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL</title>
+</head>
+<body>
+    <h1>EL (Expression Language)</h1>
+
+    <pre>
+        JSP의 표현식 (Expression)
+        조금 더 효율적이고 간단하게 작성할 수 있도록 고안된 언어.
+
+        화면에 표현하고자 하는 '자바코드'를 
+        ${value} 형식
+
+        [value 작성법이 여러가지 존재]
+    </pre>
+    
+    <pre>
+    절대경로 : /JSPProject/EL/reuslt
+    상대 경로 : EL/reuslt
+
+    -작성법 : EL/result
+    </pre>  
+
+    <form action="EL/result" method="POST">
+        이름 : <input type="text" name="inputName"><br>
+        나이 : <input type="number" name="inputAge"><br>
+        주소 : <input type="text" name="inputAddress"><br>
+
+        <!-- 
+            http://localhost:10005/JSPProject/EL.html
+            http://localhost:10005/JSPProject/EL/result
+         -->
+
+        <button>제출하기</button>
+    </form>
+
+</body>
+</html>

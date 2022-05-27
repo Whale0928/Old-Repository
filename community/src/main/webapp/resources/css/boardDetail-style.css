@@ -1,0 +1,118 @@
+/* 상세조회 전체 영역 */
+.board-detail{
+    width: 1000px;
+    min-height: 700px;
+    border: 1px solid #ccc;
+    margin: 50px auto;
+    padding: 20px;
+}
+.board-title{
+    margin: 0;
+    padding: 20px 0;
+    font-size: 2em; /* 두배 */
+
+    border-bottom: 3px solid #ccc;
+}
+.board-title > span{
+    font-size: 16px;
+}
+.board-header{
+    padding: 20px 0;
+    border-bottom: 3px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 작성자영역 */
+.board-writer{
+    display: flex;
+    align-items: center;
+
+}
+.board-writer>img{
+    height: 40px;
+}
+.board-writer>span{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.board-info{
+    width: 320px;
+    font-size: 0.8em;
+}
+.board-info>p{
+    margin: 0;
+}
+.board-info span{
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+.img-box{
+    display: flex;
+    justify-content: space-between;
+}
+/* 이미지를 감싸는 div */
+.boardImg{
+    width: 230px;
+    height: 230px;
+    display: inline-block;
+    text-align: center;
+}
+.boardImg img{
+    max-width: 90%;
+    max-height: 90%;
+}
+/* 섬네일만 이미지 크게 */
+.thumbnail{
+    width:300px;
+    height: 300px;
+}
+
+/* 다운로드 a태그 */
+.boardImg a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    letter-spacing: -2px;
+    margin-top: 5px;
+}
+.boardImg a:hover{
+    color:#458b;
+}
+
+/* 내용영역 */
+.board-content{
+    padding: 30px 0;
+    margin: 30px 0;
+    border-top: 3px solid grey;
+    border-bottom: 3px solid grey;
+}
+
+/* 버튼영역 */
+.board-btn-area{
+    text-align: right;
+}
+.board-btn-area button{
+    width: 80px;
+    height: 30px;
+
+    font-weight: bold;
+
+    border: 0;
+    border-radius: 3px;
+
+    background-color: #455ba8;
+    color: white;
+    cursor: pointer;
+}
+.board-btn-area button:hover{
+    background-color: white;
+    color: #455ba8;
+    border: 2px solid #455ba8;
+
+}

@@ -1,0 +1,12 @@
+package edu.kh.community.board.model.vo;
+
+import lombok./*
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+public class BoardImage {
+
+		
+}

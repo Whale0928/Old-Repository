@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSP Project</title>
+</head>
+<body>
+    
+    <ul>
+        <li>
+            <!-- 상대 경로 작성 법 -->
+            <a href="EL.html">1.El(Expression Language)</a>
+        </li>
+        <li>
+            <!-- 상대 경로 작성 법 -->
+            <a href="scope.html">2.Servlet/JSP 내장 객체와 범위(Scope)</a>
+        </li>
+        <li>
+            <!-- 상대 경로 작성 법 -->
+            <a href="jstl_1.jsp">3.JSTL - 1 </a>
+        </li>
+        <li>
+            <!-- 상대 경로 작성 법 -->
+            <a href="jstl_2.jsp">4.JSTL - 2 </a>
+        </li>
+        <li>
+            <h2> <a href="member.html">5. 통합 테스트.</a> </h2>
+        </li>
+    </ul>
+<!--<a href="/JSPProject/test/test1.html">test1</a>
+    <a href="test/test1.html">test1-상대경로</a> -->
+    <hr>
+    <hr>
+    <hr>
+
+
+    <h3>Get 방식 요청</h3>
+
+    <form action="/JSPProject/login" method="get">
+        <!--     
+            주소 : /JSPProject/login
+            데이터 전달 방식 : get(주소 뒤에 데이터가 추가되서 전달됨)
+         -->
+        ID : <input type="text" name="inputId"><br>
+        PASSWORD : <input type="password" name="inputPw">
+        <button type="submit">로그인</button>
+    </form>
+
+    <hr>
+
+    <h3>JSP 테스트</h3>
+    <form action="/JSPProject/pizzaOrder" method="get">
+        피자선택(10,000원) :
+        <select name="pizza">
+            <option >치즈 피자</option>
+            <option >고구마 피자</option>
+            <option >포테이토 피자</option>
+            <option >시카고 피자</option>
+            <option >콤비네이션 피자</option>
+        </select>
+
+        <br>
+        <br>
+
+        사이즈(L = 2000원 추가):
+        <label for="R">R <input type="radio" name="size" value="R" id="R"></label>
+        <label for="L">L <input type="radio" name="size" value="L" id="L"></label>
+
+        <br>
+        <br>
+        수량 : <input type="number" name="amount" min="1" max="10" value="1">판
+        
+        <br>
+        <br>
+
+        <button>주문하기</button>
+    </form>
+
+    <hr><hr>
+
+    <h3>회원가입</h3>
+    
+    <form action="/JSPProject/signUp" method="post">
+        <fieldset>
+        <table>
+            <tr>
+                <th>아이디 : </th>
+                <td><input type="text" name="memberId"></td>
+            </tr>
+            <tr>
+                <th>비밀번호 : </th>
+                <td><input type="password" name="memberPw"></td>
+            </tr>
+            <tr>
+                <th>이름. : </th>
+                <td><input type="text" name="memberName"></td>
+            </tr>
+            <tr>
+                <th>자기소개 : </th>
+                <td><textarea name="intro" cols="30" rows="3"></textarea></td>
+            </tr>
+        </table>
+       
+        <button>가입하기</button> 
+        <button type="reset">초기화</button>
+    </fieldset>
+    </form>
+
+</body>
+</html>

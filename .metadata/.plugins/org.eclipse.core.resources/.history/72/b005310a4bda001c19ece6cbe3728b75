@@ -1,0 +1,9 @@
+package edu.kh.community.board.controller;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/board/notion")
+public class BoardListServlet extends HttpServlet{
+
+}

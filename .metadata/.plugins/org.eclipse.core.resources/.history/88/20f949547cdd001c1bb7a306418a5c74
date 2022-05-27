@@ -1,0 +1,8 @@
+package edu.kh.community.board.model.service;
+import static edu.kh.community.common.JDBCTemplate.*;
+
+import edu.kh.community.board.model.dao.ReplyDAO;
+
+public class ReplyService {
+	ReplyDAO dao = new ReplyDAO(); 
+}

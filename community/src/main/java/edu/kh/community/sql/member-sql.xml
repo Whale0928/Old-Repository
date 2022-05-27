@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+<comment>member-sql.xml</comment>
+
+	<!-- 로그인 -->
+	<entry key="login">
+	SELECT MEMBER_NO,MEMBER_EMAIL,MEMBER_NICK,MEMBER_TEL,MEMBER_ADDR,PROFILE_IMG,
+	TO_CHAR(ENROLL_DT,'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DT
+	FROM MEMBER 
+	WHERE 
+	MEMBER_EMAIL=? AND
+	MEMBER_PW=? AND
+	SECESSION_FL='N'
+	</entry>
+	
+	
+	<!-- 회원 가입 -->
+	<entry key="signUp">
+	INSERT INTO MEMBER VALUES(SEQ_MEMBER_NO.NEXTVAL,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT)
+	</entry>
+	
+	<!-- 회원정보 수정 -->
+	<entry key="updateMember">
+		UPDATE MEMBER SET
+		MEMBER_NICK=?,
+		MEMBER_TEL=?,
+		MEMBER_ADDR=?
+		
+		WHERE MEMBER_NO=?
+	</entry>
+	
+	<!-- 비밀번호 수정 -->
+	<entry key="changePw">
+		UPDATE MEMBER SET
+		MEMBER_PW = ?
+		WHERE MEMBER_NO = ?
+		AND MEMBER_PW = ?
+	</entry>
+
+	<!-- 비밀번호 수정 -->
+	<entry key="secession">
+		UPDATE MEMBER SET
+		SECESSION_FL='Y'
+		WHERE MEMBER_NO = ?
+		AND MEMBER_PW = ?
+	</entry>
+	
+	<!-- 이메일 중복 검사 -->
+	<entry key="emailDupCheck">
+	SELECT count(*) FROM MEMBER 
+	WHERE MEMBER_EMAIL =?
+	AND SECESSION_FL='N'
+	</entry>
+	
+	
+	<entry key="nicknameDupCheck">
+	SELECT COUNT(*) FROM MEMBER 
+	WHERE MEMBER_NICK = ? AND SECESSION_FL = 'N'
+	</entry>
+	
+	<entry key="selectOne">
+	SELECT MEMBER_EMAIL,MEMBER_NICK,MEMBER_TEL,MEMBER_ADDR,TO_CHAR(ENROLL_DT,'YYYY"년"MM"월"DD"일"')AS ENROLL_DT
+	FROM MEMBER
+	WHERE MEMBER_EMAIL = ?
+	AND SECESSION_FL='N'
+	</entry>
+	
+	<entry key="selectAll">
+	SELECT MEMBER_NO,MEMBER_EMAIL,MEMBER_NICK
+	FROM MEMBER
+	WHERE SECESSION_FL='N'
+	ORDER BY MEMBER_NO
+	</entry>
+	
+</properties>

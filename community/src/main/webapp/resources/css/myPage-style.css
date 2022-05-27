@@ -1,0 +1,166 @@
+
+/* 마이페이지 영역 */
+.myPage-content{
+    width: 1000px;
+    height: 800px;
+    margin: 50px auto;
+    
+    display: flex;
+}
+
+/* 왼쪽 사이드 부분 */
+.left-side{
+    width: 25%;
+    /* border: 2px solid gray; */
+}
+
+.list-group{
+    width: 100%;
+    padding: 0 20px 0 0 ;
+}
+
+.list-group > li{
+    list-style: none;
+    height: 50px;
+    font-size: 18px;
+}
+
+.list-group > li > a{
+    text-decoration: none;
+    color: black;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 2px solid #ddd;
+
+}
+
+.list-group > li:hover{
+    background-color: #f2f2f2;
+}
+
+
+/* 마이 페이지 공통 부분 */
+
+.myPage-main{
+    width: 70%;
+    padding: 0 50px;
+}
+
+.myPage-title{
+    margin: 0 0 10px 0;
+    font-size: 30px;
+}
+.myPage-explanation{
+    display: block;
+    margin-bottom: 30px;
+    font-size: 14px;
+    letter-spacing: -1px;
+}
+
+.myPage-row{
+    width: 600px;
+    height: 50px;
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 2px solid #ddd;
+}
+
+.myPage-row > *{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.myPage-row > label{
+    width: 40%;
+   	color: #455ba8;
+}
+
+.myPage-row > span{
+    width: 60%;
+}
+
+
+.myPage-row > input{
+    width: 100%;
+    height: 100%;
+    outline: 0;
+    border: 0;
+    font-weight: normal;
+}
+
+
+.myPage-row:focus-within{
+    border-bottom: 2px solid #455ba8;
+
+}
+
+form[name="myPage-form"]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 내 정보 */
+
+.info-title{
+    color: #455ba8;
+    border: 0;
+}
+
+.info-address{
+    margin: 0;
+}
+
+/* 검색 버튼 */
+#info-address-btn{
+    width: 30%;
+    height: 70%;
+
+    font-size: 14px;    
+    font-weight: normal;
+
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+    cursor: pointer;
+    
+}
+
+#info-update-btn {
+    width: 100%;
+    padding: 10px;
+    margin: 50px 0;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #455ba8;
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* 비밀번호 변경 */
+.myPage-row > input[type="password"]{
+    width: 70%;
+}
+
+#secession-terms{
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+    font-size: 16px;
+
+    /* 내용이 지정한 사이즈를 초과한 경우에 대한 속성. */
+    overflow:auto;/* 초과한 방향을 scroll을 자동 생성!! */
+}

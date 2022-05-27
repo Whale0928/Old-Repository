@@ -1,0 +1,10 @@
+package edu.kh.community.board.model.vo;
+
+public class Board {
+
+	private int boardNo;
+	private String boardTitle;
+	private String memberNickname;
+	private String createDate;
+	private int readCount;		
+}

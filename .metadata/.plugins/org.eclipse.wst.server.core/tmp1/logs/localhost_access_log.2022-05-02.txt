@@ -1,0 +1,8 @@
+127.0.0.1 - - [02/May/2022:09:00:52 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [02/May/2022:09:00:53 +0900] "GET /JSPProject/ HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [02/May/2022:09:00:53 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [02/May/2022:09:00:54 +0900] "GET /JSPProject/member.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [02/May/2022:09:00:57 +0900] "GET /JSPProject/member/selectName?userName=%EA%B3%A0%EB%9E%98%EA%B3%A0%EA%B8%B0 HTTP/1.1" 200 582
+0:0:0:0:0:0:0:1 - - [02/May/2022:09:00:59 +0900] "GET /JSPProject/member/selectAll HTTP/1.1" 200 11394
+127.0.0.1 - - [02/May/2022:09:03:12 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [02/May/2022:09:03:17 +0900] "GET /JSPProject/member/selectName?userName=%EA%B3%A0%EB%9E%98%EA%B3%A0%EA%B8%B0 HTTP/1.1" 200 582

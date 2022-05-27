@@ -1,0 +1,46 @@
+package edu.kh.community.board.model.dao;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import edu.kh.community.board.model.vo.Reply;
+
+public class ReplyDAO {
+	private Statement stmt;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	
+	private Properties prop;
+	
+	public ReplyDAO(){
+		try {
+			
+			prop = new Properties();
+			String filePath = ReplyDAO.class.getResource("/edu/kh/community/sql/reply-sql.xml").getPath();
+			prop.loadFromXML(new FileInputStream(filePath));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	public List<Reply> selectReplyList(Connection conn, int boardNo)throws Exception{
+		List<Reply> rList = new ArrayList<Reply>();
+		
+		try {
+			String sql = prop.getProperty("selectReplyLis");
+			
+		}finally{
+			
+		}
+		return rList;
+	}
+	
+	
+	
+}

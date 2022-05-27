@@ -1,0 +1,11 @@
+package edu.kh.community.board.controller;
+
+import edu.kh.community.board.model.service.ReplyService;
+
+
+
+// Controller : 요청에 따라 알맞은 서비스를 호출하고 
+//요청 처리 결과를 응답할 (View)를 선택
+public class ReplyController {
+	ReplyService service = new ReplyService();
+}

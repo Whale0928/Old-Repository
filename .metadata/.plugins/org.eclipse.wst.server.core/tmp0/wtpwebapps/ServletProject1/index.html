@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servlet Test Project</title>
+     <!--    <style>
+        tr>*{border:1px solid black};
+        </style> -->
+</head>
+<body>  
+    <pre>
+        
+        요청 주소(action) : /ServletProject1/example3.do
+
+        데이터 전달 방식(method) : GET 
+
+        * 비밀번호가 일치하지 않으면
+          응답화면에 h1태그로 "비밀번호가 일치하지 않습니다";
+
+          일치하면 가입된 회원 정보 출력
+
+        * 좋아하는 색을 체크하지 않으면 "없습니다" 출력
+
+        (참고) 
+        - 서버로 제출된 input 태그 값은 모두 [String] 입니다.
+
+        - input type="password" 는 화면에서만 안보이지 
+          서버로 제출된 경우 입력된 값이 그대로 보입니다.
+    </pre>
+
+
+    <form action="/ServletProject1/example3.do" method="GET">
+        <fieldset>
+            <legend>좋아하는 색</legend>
+        <table >
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" name="inputId"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="inputPw"></td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인</th>
+                <td><input type="password" name="inputPw2"></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td> <input type="text" name="inputNM"></td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td><input type="email" name="Email" placeholder="abc@gmail.com"></td>
+            </tr>
+            <tr><th>좋아하는 색</th></tr> 
+        </table>
+            <label for="Red"><input type="checkbox" name="color" value="빨강" >빨강</label>
+            <label for="Yellow"><input type="checkbox" name="color" value="노랑" >노랑</label>
+            <label for="Blue"><input type="checkbox" name="color" value="파랑" >파랑</label><br>
+
+            <label for="Green"><input type="checkbox" name="color" value="초록" >초록</label>
+            <label for="Pink"><input type="checkbox" name="color" value="분홍" >분홍</label>
+            <label for="Black"><input type="checkbox" name="color" value="검정" >검정</label>
+            
+            <br>
+            <button>회원 정보 제출</button>
+        </fieldset>
+    </form>
+
+</body>
+</html>
+
