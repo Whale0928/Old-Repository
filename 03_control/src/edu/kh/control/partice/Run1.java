@@ -1,0 +1,19 @@
+package edu.kh.control.partice;
+
+public class Run1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+			ConditionParctice cp= new ConditionParctice();
+			
+			
+			//cp.practce1();  정상 실행.
+			//cp.practce2(); // 정상 실행.
+			//cp.practce3If(); // 정상 실행.
+			//cp.practce3Switch();
+			//cp.practce4();
+			cp.practce5();
+	}
+
+}
