@@ -1,0 +1,17 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:Dummy,org.eclipse.launchbar.core.descriptorType.default\:JDBCExample1,org.eclipse.launchbar.core.descriptorType.default\:JDBCExample2,org.eclipse.launchbar.core.descriptorType.default\:UpDownRun,org.eclipse.launchbar.core.descriptorType.default\:ReservationRun,org.eclipse.launchbar.core.descriptorType.default\:LoadXML,org.eclipse.launchbar.core.descriptorType.default\:CreateXML (1),org.eclipse.launchbar.core.descriptorType.default\:Place,org.eclipse.launchbar.core.descriptorType.default\:CreateXML (2),org.eclipse.launchbar.core.descriptorType.default\:CreateXML,org.eclipse.launchbar.core.descriptorType.default\:ProjectRun,org.eclipse.launchbar.core.descriptorType.default\:EmployeeRun,org.eclipse.launchbar.core.descriptorType.default\:ProjectRun (1)
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:CreateXML\ (1)/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:CreateXML\ (1)/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:CreateXML/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:CreateXML/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:Dummy/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Dummy/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:EmployeeRun/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:EmployeeRun/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:JDBCExample1/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:JDBCExample1/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:ProjectRun\ (1)/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:ProjectRun/activeLaunchMode=run

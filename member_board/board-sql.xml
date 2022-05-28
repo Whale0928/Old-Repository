@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+	
+	<properties>
+		<comment>board Service SQL</comment>
+			
+		<!-- 게시글 목록조회 + 댓글 개수-->
+		<entry key="selectAll">
+		SELECT BOARD_NO,BOARD_TITLE,CREATE_DATE,READ_COUNT,MEMBER_NM,
+		(SELECT COUNT(*) FROM REPLY R
+		WHERE R.BOARD_NO =B.BOARD_NO ) REPLY_COUNT
+		FROM BOARD B
+		JOIN MEMBER USING(MEMBER_NO)
+		ORDER BY BOARD_NO DESC
+		</entry>
+			
+		<entry key="selectOne">
+		SELECT B.* ,MEMBER_NM
+		FROM BOARD B
+		JOIN MEMBER M ON(B.MEMBER_NO = M.MEMBER_NO)
+		WHERE BOARD_NO = ?
+		</entry>
+		
+		<entry key="selectReplyList">
+		SELECT R.*,MEMBER_NM 
+		FROM REPLY R
+		JOIN MEMBER M ON(R.MEMBER_NO =M.MEMBER_NO)	
+		WHERE BOARD_NO=?
+		ORDER BY REPLY_NO
+		</entry>
+		
+		<entry key ="increaseReadCount">
+		UPDATE BOARD 
+		SET READ_COUNT = READ_COUNT+1 
+		WHERE BOARD_NO =?
+		</entry>
+		
+		<entry key = "deleteBoard">
+		DELETE FROM BOARD 
+		WHERE BOARD_NO = ?
+		</entry>
+		
+		<entry key = "updateBoard">
+		UPDATE BOARD
+		SET
+		BOARD_TITLE = ?,
+		BOARD_CONTENT = ?
+		WHERE BOARD_NO =?
+		</entry>
+		
+		<entry key ="insertReply">
+		INSERT INTO REPLY
+		VALUES(SEQ_REPLY_NO.nextval,?,DEFAULT,?,?)
+		</entry>
+		
+		<entry key ="updateReply">
+		UPDATE REPLY SET REPLY_CONTENT=? WHERE REPLY_NO=?
+		</entry>
+		
+		<entry key ="deleteReply">
+		DELETE FROM REPLY WHERE REPLY_NO = ?
+		</entry>
+		
+		<entry key="insertBoard">
+		INSERT INTO BOARD
+		VALUES(SEQ_BOARD_NO.nextval,?,?,DEFAULT,DEFAULT,?)
+		</entry>
+		
+		<entry key="searchBoard1">
+		SELECT BOARD_NO, BOARD_TITLE, CREATE_DATE, READ_COUNT, MEMBER_NM,
+		(SELECT COUNT(*) FROM REPLY R
+		WHERE R.BOARD_NO = B.BOARD_NO) REPLY_COUNT
+		FROM BOARD B
+		JOIN MEMBER USING(MEMBER_NO)
+		</entry>
+		
+		<entry key="searchBoard2">
+		ORDER BY BOARD_NO DESC
+		</entry>
+		
+		<!-- 검색 조건 1 -->
+		<entry key ="condition1">WHERE BOARD_TITLE LIKE '%'||?||'%'</entry>
+		<!-- 검색 조건 2 -->
+		<entry key ="condition2">WHERE BOARD_CONTENT LIKE '%'||?||'%'</entry>
+		<!-- 검색 조건 3 -->
+		<entry key ="condition3">WHERE BOARD_TITLE LIKE '%'||?||'%' OR BOARD_TITLE LIKE '%'||?||'%'</entry>
+		<!-- 검색 조건 4 -->
+		<entry key ="condition4">WHERE MEMBER_NM LIKE '%'||?||'%'</entry>
+
+	</properties>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<!-- 마크업 언어 주석 -->
+
+<properties>
+	<!-- comment : properties XML 파일 설명 -->
+	<comment>DB Connection Data</comment>
+	
+	<!-- entry : Map의 Key , Value를 묶어 부른 명칭 -->
+	<entry key = "driver">oracle.jdbc.driver.OracleDriver</entry>
+	
+	<!-- 공용계정 -->
+	<entry key="url">jdbc:oracle:thin:@115.90.212.22:9000:xe</entry>
+	<entry key="user">member</entry>
+	
+	<!-- 기본 계정 -->
+	<!-- <entry key = "url">jdbc:oracle:thin:@localhost:1521:xe</entry>
+	<entry key = "user">khg_member</entry> -->
+	
+	<!-- 비밀번호는 둘 모두 같다 -->
+	<entry key = "password">member1234</entry>
+</properties>
