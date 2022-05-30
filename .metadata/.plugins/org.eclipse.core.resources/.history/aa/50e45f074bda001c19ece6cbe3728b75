@@ -1,7 +1,0 @@
-package edu.kh.community.board.controller;
-
-import javax.servlet.http.HttpServlet;
-
-public class BoardListServlet extends HttpServlet{
-
-}

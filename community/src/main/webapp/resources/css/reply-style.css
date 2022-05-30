@@ -78,3 +78,10 @@
     border-radius: 3px;
     border: 2px solid #455ba8;
 }
+
+/* 댓글 수정 textarea 영역 */
+.update-textarea{
+    width: 100%;
+    height: 90px;    
+    resize: none;
+}

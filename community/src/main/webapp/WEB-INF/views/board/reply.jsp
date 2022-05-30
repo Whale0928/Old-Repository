@@ -6,63 +6,40 @@
     <!-- 댓글 목록 -->
     <div class="reply-list-area">
         <ul id="reply-list">
-            <li class="reply-row">
-                    <p class="reply-writer">
-                        <img src="${contextPath}/resources/images/user.png">
-                        <span>댓글 작성자 닉네임</span>
-                        <span class="reply-date">(2022.05.27 11:07:20)</span>
-                    </p>
-                    
-                    <p class="reply-content">
-                        댓글 내용입니다<br>
-                        이런식으로 출력 예정입니다
-                    </p>
 
-                    <div class="reply-btn-area">
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </div>
-            </li>
-            <li class="reply-row">
-                    <p class="reply-writer">
-                        <img src="${contextPath}/resources/images/user.png">
-                        <span>댓글 작성자 닉네임</span>
-                        <span class="reply-date">(2022.05.27 11:07:20)</span>
-                    </p>
-                    
-                    <p class="reply-content">
-                        댓글 내용입니다<br>
-                        이런식으로 출력 예정입니다
-                    </p>
+            
+            <c:forEach var="reply" items="${rList}">
+                  <li class="reply-row">
+                        <p class="reply-writer">
+                            
+                        <c:if test="${empty reply.profileImage}">
+                            <img src="${contextPath}/resources/images/user.png">
+                            </c:if>
+                            <c:if test="${!empty reply.profileImage}">
+                            <img src="${contextPath}${reply.profileImage}">
+                        </c:if> 
 
-                    <div class="reply-btn-area">
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </div>
-            </li>
-            <li class="reply-row">
-                    <p class="reply-writer">
-                        <img src="${contextPath}/resources/images/user.png">
-                        <span>댓글 작성자 닉네임</span>
-                        <span class="reply-date">(2022.05.27 11:07:20)</span>
-                    </p>
-                    
-                    <p class="reply-content">
-                        댓글 내용입니다<br>
-                        이런식으로 출력 예정입니다
-                    </p>
+                            <span>${reply.memberNickname}</span>
+                            <span class="reply-date">(${reply.createDate})</span>
+                        </p>
+                        
+                        <p class="reply-content">${reply.replyContent}</p>
 
-                    <div class="reply-btn-area">
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </div>
-            </li>
+                    <c:if test="${loginMember.memberNo==reply.memberNo}">
+                        <div class="reply-btn-area">
+                            <button onclick="showUpdateReply(${reply.replyNo},this)">수정</button>
+                            <button onclick="deleteReply(${reply.replyNo})">삭제</button>
+                        </div>
+                    </c:if> 
+
+                    </li>
+            </c:forEach>
         </ul>
     </div>
 
     <!-- 댓글 작성 부분 -->
     <div class="reply-write-area">
-        <textarea  id="replyContent" ></textarea>
+        <textarea  id="replyContent"></textarea>
         <button id="addReply">댓글<br>등록</button>
     </div>
 </d>

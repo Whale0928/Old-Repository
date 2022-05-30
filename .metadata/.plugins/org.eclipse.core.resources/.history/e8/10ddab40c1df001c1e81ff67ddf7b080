@@ -1,0 +1,12 @@
+package edu.kh.community.common;
+
+
+
+public class Util {
+	//개행문자-> <br>태그 변경 메서드 메서드
+	
+	public static String newLineHandling() {
+		
+	}
+	
+}

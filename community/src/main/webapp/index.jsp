@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,9 @@
 <!-- 아이콘 추가를 위한 링크 -->
 <script src="https://kit.fontawesome.com/ea629e8085.js"
 	crossorigin="anonymous"></script>
-
+	<script>
+		const loginMember = "${loginMember}";
+	</script>
 
 
 </head>
@@ -69,8 +72,6 @@
 
 
 				<c:choose>
-
-
 					<%-- 로그인이 되어 있지 않는경우 --%>
 					<c:when test="${ empty sessionScope.loginMember}">
 						<!-- 절대경로 : /community/member/login -->

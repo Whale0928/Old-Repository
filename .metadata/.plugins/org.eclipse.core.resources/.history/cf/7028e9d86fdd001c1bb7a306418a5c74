@@ -1,7 +1,0 @@
-package edu.kh.community.board.controller;
-
-import edu.kh.community.board.model.service.ReplyService;
-
-public class ReplyController {
-	ReplyService service = new ReplyService();
-}

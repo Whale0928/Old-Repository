@@ -18,7 +18,6 @@
 
 <body>
 <main>
-    
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <section class="board-detail">
     <h1 class="board-title">${detail.boardTitle} <span>- ${detail.boardName}</span></h1> 
@@ -128,9 +127,7 @@
 <script>
     // 댓글관련  js코드에 필요한 값을 전역변수로 선언.
     //jsp 파일 : html / css / js /el / jstl 사용 가능.
-    //js 파일 : js 
-
-
+    //js 파일 : js k
     // 한줄에 코드 해석 순서 :   EL == JSTL  >  HTML  > JS
 
     //**JS코드에서 EL/JSTL을 작성하게 된다면 반드시 ""을 추가**

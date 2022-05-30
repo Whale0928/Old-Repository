@@ -198,3 +198,36 @@ May 27, 2022 14:30:20.751 [19372:35056:0527/143020.750:ERROR:device_event_log_im
 May 27, 2022 14:31:18.558 [19372:29236:0527/143118.558:ERROR:util.cc(132)] Can't create base directory: C:\Program Files\Microsoft\EdgeUpdater
 May 27, 2022 15:35:59.934 [19372:35056:0527/153559.934:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
 May 27, 2022 15:49:28.421 [19372:35056:0527/154928.421:ERROR:device_event_log_impl.cc(214)] [15:49:28.421] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ¿ä¼Ò°¡ ¾ø½À´Ï´Ù. (0x490)
+
+May 27, 2022 17:47:18.131 NEW SESSION
+May 27, 2022 17:47:18.131 [24516:13852:0527/174718.130:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
+May 27, 2022 17:47:20.682 [24516:13852:0527/174720.682:ERROR:device_event_log_impl.cc(214)] [17:47:20.683] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
+May 27, 2022 17:47:20.685 [24516:13852:0527/174720.685:ERROR:device_event_log_impl.cc(214)] [17:47:20.685] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+May 27, 2022 17:47:20.692 [24516:13852:0527/174720.692:ERROR:device_event_log_impl.cc(214)] [17:47:20.692] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+May 27, 2022 17:48:18.345 [24516:12784:0527/174818.345:ERROR:util.cc(132)] Can't create base directory: C:\Program Files\Microsoft\EdgeUpdater
+
+May 28, 2022 15:16:44.523 NEW SESSION
+May 28, 2022 15:16:44.523 [5636:25328:0528/151644.521:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
+May 28, 2022 15:16:47.674 [5636:25328:0528/151647.672:ERROR:device_event_log_impl.cc(214)] [15:16:47.672] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
+May 28, 2022 15:16:47.674 [5636:25328:0528/151647.674:ERROR:device_event_log_impl.cc(214)] [15:16:47.674] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+
+May 30, 2022 09:03:38.908 NEW SESSION
+May 30, 2022 09:03:38.909 [2720:19736:0530/090338.907:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
+May 30, 2022 09:03:41.594 [2720:19736:0530/090341.593:ERROR:device_event_log_impl.cc(214)] [09:03:41.594] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
+May 30, 2022 09:03:41.596 [2720:19736:0530/090341.596:ERROR:device_event_log_impl.cc(214)] [09:03:41.597] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+May 30, 2022 09:03:41.603 [2720:19736:0530/090341.603:ERROR:device_event_log_impl.cc(214)] [09:03:41.604] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+May 30, 2022 09:04:39.59 [2720:3492:0530/090439.058:ERROR:util.cc(132)] Can't create base directory: C:\Program Files\Microsoft\EdgeUpdater
+May 30, 2022 09:25:40.892 [2720:19736:0530/092540.891:ERROR:CONSOLE(1)] "Uncaught TypeError: Cannot read properties of undefined (reading 'tabElement')", source: devtools://devtools/bundled/ui/legacy/legacy.js (1)
+May 30, 2022 10:13:40.859 [2720:19736:0530/101340.859:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+May 30, 2022 10:13:49.987 [2720:19736:0530/101349.987:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+May 30, 2022 10:14:24.106 [2720:19736:0530/101424.106:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+May 30, 2022 10:16:22.978 [2720:19736:0530/101622.978:ERROR:CONSOLE(1)] "Uncaught TypeError: Cannot read properties of undefined (reading 'tabElement')", source: devtools://devtools/bundled/ui/legacy/legacy.js (1)
+May 30, 2022 10:49:34.45 [2720:19736:0530/104934.045:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+May 30, 2022 11:06:42.271 [24776:27184:0530/110642.270:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
+May 30, 2022 11:06:46.05 [24776:27184:0530/110646.004:ERROR:device_event_log_impl.cc(214)] [11:06:46.004] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
+May 30, 2022 11:06:46.07 [24776:27184:0530/110646.007:ERROR:device_event_log_impl.cc(214)] [11:06:46.007] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+May 30, 2022 11:06:46.15 [24776:27184:0530/110646.015:ERROR:device_event_log_impl.cc(214)] [11:06:46.015] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+May 30, 2022 11:07:42.437 [24776:28472:0530/110742.437:ERROR:util.cc(132)] Can't create base directory: C:\Program Files\Microsoft\EdgeUpdater
+May 30, 2022 11:14:32.622 [24776:27184:0530/111432.621:ERROR:CONSOLE(1)] "Uncaught TypeError: Cannot read properties of undefined (reading 'tabElement')", source: devtools://devtools/bundled/ui/legacy/legacy.js (1)
+May 30, 2022 13:42:50.473 [24776:27184:0530/134250.473:ERROR:device_event_log_impl.cc(214)] [13:42:50.473] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ¿ä¼Ò°¡ ¾ø½À´Ï´Ù. (0x490)
+May 30, 2022 16:07:42.445 [24776:30684:0530/160742.445:ERROR:util.cc(132)] Can't create base directory: C:\Program Files\Microsoft\EdgeUpdater

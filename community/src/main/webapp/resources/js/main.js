@@ -35,18 +35,15 @@ function loginValidate(){ //로그인 유효성 검사 함수.
 }
 
 
+if(loginMember == ""){ //로그인이 되어있지 않을때만 이벤트 실행.
 //아이디 저장 체크박스가 체크 되었을 때 이벤트 처리
 document.getElementById("saveId").addEventListener("change",function(){
     //radio, checkBox에 체크시 change 이벤트 발생
-
     //console.log(this.checked);
-    
     // this  : change 이벤트가 발생한 요소(체크박스
     // this.checked : 체크 여부 반환 (T / F)
-
     // this.checked  = true;  : 체크박스 체크
     // this.checked  = false;  : 체크박스 해제
-
     if(this.checked){ // t / f값만 반환됨으로 비교 필요 X
         
         const str = "개인 정보 보호를 위해 개인 PC에서의 사용을 권장합니다. 개인 PC가 아닌 경우 취소를 눌러주세요.";
@@ -55,10 +52,9 @@ document.getElementById("saveId").addEventListener("change",function(){
         if(!confirm(str)){ //취소를 눌렀을 때.
             this.checked = false; //checked 값에 체크박스 false 상태 대입.
         }
-
     }
-
 })
+}
 
 
 //회원정보 이메일로 조회하는 비동기 통신(AJAX)
