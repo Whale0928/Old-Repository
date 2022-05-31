@@ -272,3 +272,8 @@ May 31, 2022 23:35:30.361 [27016:14456:0531/233530.361:ERROR:device_event_log_im
 May 31, 2022 23:36:11.138 [20456:32144:0531/233611.138:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
 May 31, 2022 23:36:13.303 [20456:32144:0531/233613.302:ERROR:device_event_log_impl.cc(214)] [23:36:13.302] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
 May 31, 2022 23:36:13.303 [20456:32144:0531/233613.303:ERROR:device_event_log_impl.cc(214)] [23:36:13.302] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+
+May 31, 2022 23:57:44.129 NEW SESSION
+May 31, 2022 23:57:44.129 [6360:23900:0531/235744.128:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
+May 31, 2022 23:57:46.602 [6360:23900:0531/235746.601:ERROR:device_event_log_impl.cc(214)] [23:57:46.600] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
+May 31, 2022 23:57:46.603 [6360:23900:0531/235746.601:ERROR:device_event_log_impl.cc(214)] [23:57:46.601] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
