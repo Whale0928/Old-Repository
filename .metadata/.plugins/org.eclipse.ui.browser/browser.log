@@ -264,3 +264,11 @@ May 31, 2022 12:49:25.466 [23584:3284:0531/124925.466:ERROR:device_event_log_imp
 May 31, 2022 12:49:25.473 [23584:3284:0531/124925.473:ERROR:device_event_log_impl.cc(214)] [12:49:25.473] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
 May 31, 2022 12:50:23.508 [23584:25240:0531/125023.508:ERROR:util.cc(132)] Can't create base directory: C:\Program Files\Microsoft\EdgeUpdater
 May 31, 2022 13:45:55.726 [23584:3284:0531/134555.725:ERROR:device_event_log_impl.cc(214)] [13:45:55.726] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ¿ä¼Ò°¡ ¾ø½À´Ï´Ù. (0x490)
+
+May 31, 2022 23:35:27.897 NEW SESSION
+May 31, 2022 23:35:27.897 [27016:14456:0531/233527.895:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
+May 31, 2022 23:35:30.361 [27016:14456:0531/233530.360:ERROR:device_event_log_impl.cc(214)] [23:35:30.360] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
+May 31, 2022 23:35:30.361 [27016:14456:0531/233530.361:ERROR:device_event_log_impl.cc(214)] [23:35:30.361] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
+May 31, 2022 23:36:11.138 [20456:32144:0531/233611.138:ERROR:assistance_home_client.cc(23)] File path C:\Users\rlagu\AppData\Local\Microsoft\Edge\User Data\Default
+May 31, 2022 23:36:13.303 [20456:32144:0531/233613.302:ERROR:device_event_log_impl.cc(214)] [23:36:13.302] USB: usb_service_win.cc:415 Could not read device interface GUIDs: ÁöÁ¤µÈ ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. (0x2)
+May 31, 2022 23:36:13.303 [20456:32144:0531/233613.303:ERROR:device_event_log_impl.cc(214)] [23:36:13.302] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: ½Ã½ºÅÛ¿¡ ºÎÂøµÈ ÀåÄ¡°¡ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. (0x1F)
