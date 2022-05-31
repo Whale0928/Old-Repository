@@ -6,8 +6,6 @@
     <!-- 댓글 목록 -->
     <div class="reply-list-area">
         <ul id="reply-list">
-
-            
             <c:forEach var="reply" items="${rList}">
                   <li class="reply-row">
                         <p class="reply-writer">

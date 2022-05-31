@@ -23,8 +23,8 @@ function selectReplyList(){
             replyWriter.classList.add("reply-writer");
 
             const profilImage = document.createElement("img");
-            if(reply.profilImage != null){
-                profilImage.setAttribute("src",contextPath+ reply.profilImage);
+            if(reply.profileImage != null){
+                profilImage.setAttribute("src",contextPath+ reply.profileImage);
             }else{
                 profilImage.setAttribute("src",contextPath+"/resources/images/user.png");
             }

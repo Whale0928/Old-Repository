@@ -296,4 +296,21 @@ public class MemberDAO {
 		return memberList;
 	}
 
+	public int updateProfileImage(Connection conn, int memberNo, String profileImage)throws Exception{
+		int result = 0;
+		try {
+			String sql = prop.getProperty("updateProfileImage");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,profileImage);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

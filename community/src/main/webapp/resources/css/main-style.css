@@ -215,9 +215,10 @@ nav a:hover{
         }
     
         #member-profile{
-            height: 65px;
-            width: 65px;
+            height: 100%;
             border-radius: 50%;
+            padding: 0;
+            margin: 0;
         }
 
         /* 회원 정보랑 로그아웃 영역*/

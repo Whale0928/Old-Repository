@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="edu.kh.community.member.controller.LoginServlet"/>
-    <fullyQualifiedTypeName name="edu.kh.community.member.model.dao.MemberDAO"/>
-    <fullyQualifiedTypeName name="java.sql.Driver"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
     <fullyQualifiedTypeName name="java.lang.Readable"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequestWrapper"/>
@@ -18,27 +12,21 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="edu.kh.community.member.controller.MyPageChangePwServlet"/>
     <fullyQualifiedTypeName name="javax.naming.Context"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="edu.kh.community.member.controller.MyPageSecessionServlet"/>
     <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
     <fullyQualifiedTypeName name="org.apache.catalina.filters.ExpiresFilter.XServletOutputStream"/>
     <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
     <fullyQualifiedTypeName name="org.apache.tomcat.util.json.JSONParser"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
-    <fullyQualifiedTypeName name="edu.kh.community.member.model.service.MemberService"/>
-    <fullyQualifiedTypeName name="edu.kh.community.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="edu.kh.community.common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="edu.kh.community.board.model.dao.BoardDAO"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="edu.kh.community.board.model.vo.Pagination"/>
     <fullyQualifiedTypeName name="edu.kh.community.board.model.vo.Board"/>
     <fullyQualifiedTypeName name="org.apache.jasper.tagplugins.jstl.core.Out"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="edu.kh.community.board.model.service.BoardService"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="lombok.ToString"/>
@@ -49,8 +37,6 @@
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
     <fullyQualifiedTypeName name="edu.kh.community.board.model.dao.ReplyDAO"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
-    <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.io.Closeable"/>
     <fullyQualifiedTypeName name="com.google.gson.GsonBuilder"/>
@@ -59,5 +45,19 @@
     <fullyQualifiedTypeName name="edu.kh.community.board.model.vo.Reply"/>
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
     <fullyQualifiedTypeName name="edu.kh.community.common.Util"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.FileRenamePolicy"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
+    <fullyQualifiedTypeName name="edu.kh.community.common.MyRenamePolicy"/>
+    <fullyQualifiedTypeName name="edu.kh.community.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="edu.kh.community.member.model.service.MemberService"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="edu.kh.community.member.controller.MyPageProfileServlet"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

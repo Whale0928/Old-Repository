@@ -164,3 +164,65 @@ form[name="myPage-form"]{
     /* 내용이 지정한 사이즈를 초과한 경우에 대한 속성. */
     overflow:auto;/* 초과한 방향을 scroll을 자동 생성!! */
 }
+
+/* 프로필 이미지 */
+
+/* 프로필 이미지 영역 */
+.profile-image-area{
+    width: 150px;
+    height: 150px;
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+/* 프로필 이미지 제거  */
+#delete-image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+#profile-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* 프로필 버튼 영역 */
+.profile-btn-area{
+    width: 230px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* 프로필 버튼 영역의 모든 자식 요소 */
+.profile-btn-area > *{
+    width: 110px;
+    height: 33px;
+    padding: 5px 10px;
+    border:1px solid black;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+#input-image{
+    display: none;
+}
+
+.profile-btn-area >button{
+    background-color: #455ba8;
+    color: white;
+    border: 0;
+}
+.profile-btn-area >button:hover{
+    background-color: white;
+    color: #455ba8;
+    border: 1px solid black;
+}

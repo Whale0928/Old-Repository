@@ -19,7 +19,6 @@ public class Util {
 			content = content.replaceAll(">","&gt;");
 			content = content.replaceAll("\"","&quot;");
 		}
-		
 		return content;
 	}
 }

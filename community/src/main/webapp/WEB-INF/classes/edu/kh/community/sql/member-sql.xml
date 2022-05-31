@@ -75,4 +75,8 @@
 	ORDER BY MEMBER_NO
 	</entry>
 	
+	<entry key="updateProfileImage">
+	UPDATE MEMBER SET PROFILE_IMG=? WHERE MEMBER_NO=?
+	</entry>
+	
 </properties>
