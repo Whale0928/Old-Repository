@@ -36,10 +36,7 @@ public class BoardDetailServlet extends HttpServlet{
 				List<Reply> rList =new ReplyService().selectReplyList(boardNo);
 				req.setAttribute("rList", rList);
 			}
-			
 			req.setAttribute("detail", detail);
-			
-			
 			
 			String path = "/WEB-INF/views/board/boardDetail.jsp";
 			RequestDispatcher dispatcher = req.getRequestDispatcher(path);

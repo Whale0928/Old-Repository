@@ -60,7 +60,6 @@ public class BoardDAO {
 		}
 		return boardName;
 	}
-
 	
 	/** 전체 게시글 수 조회
 	 * @param conn
@@ -118,7 +117,7 @@ public class BoardDAO {
 				board.setMemberNickname(rs.getString("MEMBER_NICK"));
 				board.setCreateDate(rs.getString("CREATE_DT"));
 				board.setReadCount(rs.getInt("READ_COUNT"));	
-				
+				board.setThumbnail(rs.getString("THUMBNAIL"));
 				boardList.add(board);
 			}
 			
@@ -203,6 +202,86 @@ public class BoardDAO {
 		}
 		
 		return imageList;
+	}
+
+	/**다음 게시글 번호 조회
+	 * @param conn
+	 * @return boardNo
+	 * @throws Exception
+	 */
+	public int nextBoardNo(Connection conn)throws Exception{
+		int boardNo = 0;
+		
+		try {
+			String sql = prop.getProperty("nextBoardNo");
+			stmt = conn.createStatement();
+			
+			rs=stmt.executeQuery(sql);
+			
+			if(rs.next()){
+				boardNo=rs.getInt(1);
+			}
+			
+		}finally{
+			close(rs);
+			close(stmt);
+		}
+		return boardNo;
+	}
+
+	/**게시글 작성 삽입
+	 * @param conn
+	 * @param detail
+	 * @param boardCode
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertBoard(Connection conn, BoardDetail detail, int boardCode)throws Exception{
+		int result = 0 ;
+		
+		try {
+			String sql = prop.getProperty("insertBoard");
+			
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setInt(1, detail.getBoardNo());
+			pstmt.setString(2, detail.getBoardTitle());
+			pstmt.setString(3, detail.getBoardContent());
+			pstmt.setInt(4, detail.getMemberNo());
+			pstmt.setInt(5, boardCode);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/**게시글의 이미지 삽입 DAO
+	 * @param conn
+	 * @param image
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertBoardImage(Connection conn, BoardImage image)throws Exception{
+		int result =0;
+		
+		try {
+			String sql = prop.getProperty("insertBoardImage");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, image.getImageReName());
+			pstmt.setString(2, image.getImageOriginal());
+			pstmt.setInt(3, image.getImageLevel());
+			pstmt.setInt(4,image.getBoardNo());
+			
+			result=pstmt.executeUpdate();
+			
+		}finally{
+			close(pstmt);
+		}
+		return result;
 	}
 	
 	

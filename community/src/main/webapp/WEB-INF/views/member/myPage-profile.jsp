@@ -79,7 +79,7 @@
                 
                 <!-- 삭제버튼이 눌린걸 기록하는 숨겨진 input 태그 -->
                 <!-- 0:안눌려짐  1:눌려짐-->
-                <input type="hidden" name="delete" id="delete" value="0">
+                <input type="hidden" name="delete" id="delete" value="0" >
             </form>
         </section>  
 

@@ -53,7 +53,11 @@
                     <c:forEach var="board" items="${boardList}">
                         <tr>
                             <td>${board.boardNo}</td>
-                            <td><a href="detail?no=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}">${board.boardTitle}</a></td>
+                            <td>
+                                <c:if test="${!empty board.thumbnail}">
+                                    <img src="${contextPath}${board.thumbnail}" class="list-thumbnail">
+                                </c:if>
+                                <a href="detail?no=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}">${board.boardTitle}</a></td>
                             <td>${board.memberNickname}</td>
                             <td>${board.createDate}</td>
                             <td>${board.readCount}</td>
@@ -70,7 +74,11 @@
 </div>
 
 <div class="btn-area">
-    <button id="insertBtn">작성하기</button>
+    <c:if test="${!empty loginMember}">
+        <!-- /community / board / list / => list -->
+        <button id="insertBtn" 
+        onclick="location.href='write?mode=insert&type=${param.type}&cp=${param.cp}'">작성하기</button>
+    </c:if>
 </div>
 
 <div class="pagination-area">
@@ -101,22 +109,26 @@
     </ul>
 </div>
 
-<form action="#" method="get" id="boardSearch">
-    <select name="key">
-        <option value="t">제목</option>
-        <option value="c">내용</option>
-        <option value="tc">제목+내용</option>
-        <option value="w">작성자</option>
-    </select>
-    <input type="text" name="query" placeholder="검색어를 입력해주세요">
-    <button>검색</button>
-</form>
-</section>
+        <form action="#" method="get" id="boardSearch">
+            <select name="key">
+                <option value="t">제목</option>
+                <option value="c">내용</option>
+                <option value="tc">제목+내용</option>
+                <option value="w">작성자</option>
+            </select>
+            <input type="text" name="query" placeholder="검색어를 입력해주세요">
+            <button>검색</button>
+        </form>
+    </section>
 </main>
+    <div class="modal">
+        <span id="modal-close" class="fa-solid fa-circle-xmark"></span>
+        <img id="modal-image" src="${contextPath}/resources/images/user.png">
+    </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 <script src="${contextPath}/resources/js/member/myPage.js"></script>
-
+<script src="${contextPath}/resources/js/board/board.js"></script>
 </body>
 </html>

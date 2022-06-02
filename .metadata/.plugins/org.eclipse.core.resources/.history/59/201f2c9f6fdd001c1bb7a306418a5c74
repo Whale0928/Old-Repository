@@ -1,6 +1,0 @@
-package edu.kh.community.board.model.service;
-import static edu.kh.community.common.JDBCTemplate.*;
-
-public class ReplyService {
-
-}

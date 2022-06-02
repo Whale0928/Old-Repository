@@ -101,17 +101,13 @@ function SecessionValidate(){
 const inputImage = document.getElementById("input-image");
 if(inputImage != null){
     //input type = "file" 요소는 파일이 선택 될 때 change 이벤트가 발생한다.
-
     inputImage.addEventListener("change",function(){
-
         // this : 이벤트가 발생한 요소 == <input=file 태그>
         // filse : input type ="file"만 사용 가능한 속성
         //          선택된 파일 목록(배열 형태)을 반환
        
          //파일 목록에서 첫번째 파일객체를 얻어옴
-
          if(this.files[0] !=undefined){//파일이 선택되었을 때.
-
             const reader = new FileReader();
             //자바 스크립트의 FIle Reader 
             // - 웹 애플리케이션이 비동기적으로 데이터를 읽기 위하여 사용하는 객체.
@@ -147,10 +143,8 @@ if(inputImage != null){
 
 /* 이미지 선택을 확인 */
 function profileValidate(){
-
     /* 히든 타입 */
     const del = document.getElementById("delete");
-
     if(inputImage.value == "" && del.value==0){ //빈문자열 == 파일선택이 안된 상태
         //아무것도 안하고 / 프로필 삭제 버튼도 누르지 않은 경우.
         alert("이미지를 선택 후 변경해주세요");
@@ -160,20 +154,17 @@ function profileValidate(){
 }
 
 /* 프로필 이미지 옆 x 버튼 클릭시 */
+if(document.getElementById("delete-image") != null){
 document.getElementById("delete-image").addEventListener("click",function(){
     const del = document.getElementById("delete");
-
     //0: 안눌러짐
     //1: 눌러짐
-
     if(del.value==0){ //눌러지지 않은 경우 수행
-
     //1) 프로필 이미지를 기본 이미지로 변경
     document.getElementById("profile-image").setAttribute("src",contextPath+"/resources/images/user.png")
-    
     //2) input type = " file " 에 저장된 value에 빈문자열을 대입
     inputImage.value="";
-    
     del.value=1; //이제 눌려진걸로 인식.
     }
-})
+})  
+}

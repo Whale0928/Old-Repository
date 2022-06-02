@@ -14,5 +14,6 @@ public class Board {
 	private String boardTitle;
 	private String memberNickname;
 	private String createDate;
-	private int readCount;		
+	private int readCount;
+	private String thumbnail;
 }
