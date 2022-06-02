@@ -28,22 +28,19 @@ public class BoardWriteController extends HttpServlet{
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
 			try {
+				String mode = req.getParameter("mode"); // insert - / update 로 구분
+				//insert는 별로의 추가 처리가 필요없음
 				
-			
-			String mode = req.getParameter("mode"); // insert - / update 로 구분
-			
-			//insert는 별로의 추가 처리가 필요없음
-			
-			//update는 기존 게시글 내용을 조회하는 처리가 필요함
-			if(mode.equals("update")){
-				
-			}
+				//update는 기존 게시글 내용을 조회하는 처리가 필요함
+				if(mode.equals("update")){
+					
+				}
 			 
 			}catch(Exception e){
-				
+				e.printStackTrace();
 			}
 			String path = "/WEB-INF/views/board/boardWriteForm.jsp";
-			req.getRequestDispatcher(path).forward(req, resp);;
+			req.getRequestDispatcher(path).forward(req, resp);
 		}
 		
 		@Override
@@ -135,35 +132,35 @@ public class BoardWriteController extends HttpServlet{
 				//만들면되지만 구지 안만들어도 괜찮아서
 				
 				
-				//---------------------------게시글 작성에 필요한 기본 파라미터 얻어오기 끝-------------------
-				
-				BoardService service = new BoardService();
-			
-				
-				//모드 (insert / update) 에 따라서 추가 파라미터 얻어오기 및 서비스 호출
-				String mode = mpReq.getParameter("mode");
-				
-				if(mode.equals("insert")){ //삽입
-					//게시글 삽입 서비스 호출 후 결과(삽입된 게시글의 번호) 반환
-					//반환된 게시글 번호를 이용해 상세조회 화면으로 redirect해 보여준다
-					int boardNo = service.insertBoard(detail,imageList,boardCode);
-					
-			
-					String path = null;
-					
-					if(boardNo>0) { //성공
-						session.setAttribute("message", "게시글이 등록되었습니다");
-						//detail?no=숫자&type=숫자;
-						path="detail?no="+boardNo+"&type="+boardCode;
+//---------------------------게시글 작성에 필요한 기본 파라미터 얻어오기 끝-------------------
+
+BoardService service = new BoardService();
+
+
+//모드 (insert / update) 에 따라서 추가 파라미터 얻어오기 및 서비스 호출
+String mode = mpReq.getParameter("mode");
+
+if(mode.equals("insert")){ //삽입
+	//게시글 삽입 서비스 호출 후 결과(삽입된 게시글의 번호) 반환
+	//반환된 게시글 번호를 이용해 상세조회 화면으로 redirect해 보여준다
+	int boardNo = service.insertBoard(detail,imageList,boardCode);
+	
+
+	String path = null;
+	
+	if(boardNo>0) { //성공
+		session.setAttribute("message", "게시글이 등록되었습니다");
+		//detail?no=숫자&type=숫자;
+		path="detail?no="+boardNo+"&type="+boardCode;
 //						detail?no=1000&cp=1&type=2
-						
-					}else {//작성 실패
-						session.setAttribute("message", "게시글 등록에 실패하였습니다.");
-						//실패 했을때
-						path="write?mode="+mode+"&type="+boardCode;
-					}
-					resp.sendRedirect(path); //리다이렉트
-				}
+		
+	}else {//작성 실패
+		session.setAttribute("message", "게시글 등록에 실패하였습니다.");
+		//실패 했을때
+		path="write?mode="+mode+"&type="+boardCode;
+	}
+	resp.sendRedirect(path); //리다이렉트
+}
 				
 				
 				if(mode.equals("update")){ //수정
