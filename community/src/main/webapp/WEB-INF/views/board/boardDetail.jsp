@@ -97,16 +97,26 @@
     <div class="board-content">
       ${detail.boardContent}
     </div>
-
     <!-- 버튼 -->
     <div class="board-btn-area">
 
         <c:if test="${loginMember.memberNo==detail.memberNo}">
-            <button id="updateBtn">수정</button>
+                                                <!-- /board/detail?no=1521&cp=1&type=2 -->
+        
+            <c:if test="${empty param.cp}">
+                <c:set var="cp" value="1"/>
+            </c:if>
+            <c:if test="${!empty param.cp}">
+                <c:set var="cp" value="${param.cp}"/>
+            </c:if>
+
+
+            <button id="updateBtn" onclick="location.href='write?mode=update&type=${param.type}&cp=${cp}&no=${detail.boardNo}'">수정</button>
             <button id="deleteBtn">삭제</button>
         </c:if> 
         <button id="goToListBtn">목록으로</button>
 
+        
         <!-- onclick="history.back()   은 뒤로가기를 의미한다." -->
         <!-- onclick="history.go( -2 )   뒤로 가기 2번을 의미한다." -->
         <!-- onclick="history.go( 2 )   앞으로 가기 2번을 의미한다. 없으면 최대 앞쪽까지만?" -->

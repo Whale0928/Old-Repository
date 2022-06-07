@@ -28,12 +28,11 @@
             const type = "type="+params.get("type");//type=1
             
             let cp;
-            if(params.get("cp")!=null){ // 쿼리 스트링에 cp가 있을 경우.
+            if(params.get("cp")!=''){ // 쿼리 스트링에 cp가 있을 경우.
                 cp = "cp="+params.get("cp");//type=1
             }else{
                 cp= "cp=1";
             }
-
             ///community/board/list?type=1
             url+= type+"&"+cp;
 

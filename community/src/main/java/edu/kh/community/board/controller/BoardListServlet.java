@@ -29,7 +29,7 @@ public class BoardListServlet extends HttpServlet{
 			int cp = 1;
 			//페이지네이션의 번호 선택 시 
 			//쿼리스트링에 cp가 있음 --> cp = 쿼리스트링의 cp 값
-			if(req.getParameter("cp") !=null){
+			if(req.getParameter("cp") != null){
 				cp =Integer.parseInt(req.getParameter("cp")); 
 			}			
 			

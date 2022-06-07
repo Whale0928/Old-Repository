@@ -48,4 +48,29 @@
 	<entry key="insertBoard">INSERT INTO BOARD VALUES(?,?,?,DEFAULT,DEFAULT,DEFAULT,DEFAULT,?,?)</entry>
 	<entry key="insertBoardImage">INSERT INTO BOARD_IMG VALUES(SEQ_IMG_NO.NEXTVAL,?,?,?,?)</entry>
 	
+	
+	<!-- 게시글 수정용  -->
+	<entry key="updateBoard">
+		UPDATE BOARD SET 
+		BOARD_TITLE=?,
+		BOARD_CONTENT=?, 
+		UPDATE_DT=SYSDATE 
+		WHERE BOARD_NO=?
+	</entry>
+	
+	
+	
+	<entry key="updateBoardImage">
+	UPDATE BOARD_IMG SET
+	IMG_RENAME =?,
+	IMG_ORIGINAL=?
+	WHERE BOARD_NO=? 
+	AND IMG_LEVEL=?
+	</entry>
+
+	<entry key="deleteBoardImage">
+	DELETE FROM BOARD_IMG 
+	WHERE BOARD_NO=? AND IMG_LEVEL IN(
+	</entry>
+	
 </properties>

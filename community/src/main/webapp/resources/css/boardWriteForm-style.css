@@ -8,17 +8,18 @@
 }
 
 
+/* 게시글 제목 */
 .board-title{
-    margin: 0;
+    margin : 0;
     padding: 20px 0;
-    border-bottom: 3px solid #ccc;
+    border-bottom : 3px solid #ccc;
 }
 
-/* 게시글 제목 h1 태그 안에 입력 창 */
+/* 게시글 제목 input */
 .board-title > input{
     width: 100%;
-    font: 24px;
-    padding:5px 0;
+    font-size: 24px;
+    padding : 5px 0;
     border: 0;
     outline: 0;
 }
