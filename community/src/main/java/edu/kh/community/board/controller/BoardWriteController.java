@@ -49,28 +49,28 @@ public class BoardWriteController extends HttpServlet {
 			// PrintWriter out = resp.getWriter(); // 클라이언트와 연결된 응답용 스트림.
 			// --> 대안책 => JSP(JAVA Server Page): 표기법(HTML) 실제로 컴파일은 Java 다시 Servlet 파일로 변환됨.
 
-			// forward : 요청 위임
-			// [forward]
-			// Servlet은 요청을 받아 벡엔드(Servlet , DB) 처리
-			// -> 처리 결과를 JSP에게 위임해서 응답화면(HTML)으로 만들게 됨
-			// --> Servlet의 req, resp를 그대로 JSP에게 넘겨줘야함.
-			// forwoard 특징 :
-			// 1) req,resp 유지. == 파라미터.req.setAttribute() 으로 추가된 값을 JSP 그대로 사용 가능
-			// 2) Servlet -> JSP 두개의 페이지로 보이지만 실질적으로는 하나의 페이지 (협업같은 느낌 하나의 목적을 위해 같이 수행함)
-			// -> Servlet에서 JSP 요청 위임을 해도 요청주소는 변하지 않는다.
+// forward : 요청 위임
+// [forward]
+// Servlet은 요청을 받아 벡엔드(Servlet , DB) 처리
+// -> 처리 결과를 JSP에게 위임해서 응답화면(HTML)으로 만들게 됨
+// --> Servlet의 req, resp를 그대로 JSP에게 넘겨줘야함.
+// forwoard 특징 :
+// 1) req,resp 유지. == 파라미터.req.setAttribute() 으로 추가된 값을 JSP 그대로 사용 가능
+// 2) Servlet -> JSP 두개의 페이지로 보이지만 실질적으로는 하나의 페이지 (협업같은 느낌 하나의 목적을 위해 같이 수행함)
+// -> Servlet에서 JSP 요청 위임을 해도 요청주소는 변하지 않는다.
 
-			// redirect : 재요청
-			// [redirect]
-			// 요청 처리 후 응답화면을 새롭게 만드는 것이 아닌 ( forward가 아니라 )
-			// 응답 화면을 만들어주는(forward) 요청 주소를 클라이언트에게 전달
-			// ->클라이언트가 해당 주소로 다시 요청하게 됨(Redirect)
+// redirect : 재요청
+// [redirect]
+// 요청 처리 후 응답화면을 새롭게 만드는 것이 아닌 ( forward가 아니라 )
+// 응답 화면을 만들어주는(forward) 요청 주소를 클라이언트에게 전달
+// ->클라이언트가 해당 주소로 다시 요청하게 됨(Redirect)
 
-			// 클라이언트가 원하는 결과를 보여줄 수 있는 주소를 알려주어 이동하게 함
-			// redirect 특징 :
-			// 1) req , resp가 새롭게 생성되서 기본 request scope에 세팅된 값(Parameter ,
-			// req.setAttribute)가 다 사라짐.
-			// 대안책으로 Session Scope 활용
-			// 2) 다시 요청을 하기 때문에 주소가 변함.
+// 클라이언트가 원하는 결과를 보여줄 수 있는 주소를 알려주어 이동하게 함
+// redirect 특징 :
+// 1) req , resp가 새롭게 생성되서 기본 request scope에 세팅된 값(Parameter ,
+// req.setAttribute)가 다 사라짐.
+// 대안책으로 Session Scope 활용
+// 2) 다시 요청을 하기 때문에 주소가 변함.
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -186,7 +186,6 @@ public class BoardWriteController extends HttpServlet {
 					// detail?no=숫자&type=숫자;
 					path = "detail?no=" + boardNo + "&type=" + boardCode;
 					// detail?no=1000&cp=1&type=2
-
 				} else {// 작성 실패
 					session.setAttribute("message", "게시글 등록에 실패하였습니다.");
 					// 실패 했을때
@@ -214,29 +213,27 @@ public class BoardWriteController extends HttpServlet {
 				//imageList , detail,boardNo, deleteList
 				detail.setBoardNo(boardNo);  
 			
-				//detail,imageList,deleteList
-				int result = service.updateBoard(detail,imageList,deleteList);
+			//detail,imageList,deleteList
+			int result = service.updateBoard(detail,imageList,deleteList);
 
-				String path = null;
-				String message = null;
-				
-				if(result>0) { // 게시글 수정에 성공 했을 때.
-					//detail?no , type , cp
-					path = "detail?no="+boardNo+"&type="+boardCode+"&cp="+cp; //수정한 글의 상세주소 페이지
-					message = "게시글이 수정되었습니다";
-				}else{ //수정에 실패했을 때.
-					//수정화면으로 이동
-					//상세조회 -> 수정화면 -> 수정  => (성공)상세조회 || (실패)수정화면
-					path=req.getHeader("referer");
-					//referer : HTTP Referer 요청 흔정( 들어온 요청의 바로 이전 페이지)
-					message = "게시글 수정에 실패하였습니다.";
-				}
-				
-				session.setAttribute("message", message);
-				resp.sendRedirect(path);
-				
+			String path = null;
+			String message = null;
+			
+			if(result>0) { // 게시글 수정에 성공 했을 때.
+				//detail?no , type , cp
+				path = "detail?no="+boardNo+"&type="+boardCode+"&cp="+cp; //수정한 글의 상세주소 페이지
+				message = "게시글이 수정되었습니다";
+			}else{ //수정에 실패했을 때.
+				//수정화면으로 이동
+				//상세조회 -> 수정화면 -> 수정  => (성공)상세조회 || (실패)수정화면
+				path=req.getHeader("referer");
+				//referer : HTTP Referer 요청 흔정( 들어온 요청의 바로 이전 페이지)
+				message = "게시글 수정에 실패하였습니다.";
 			}
-
+			
+			session.setAttribute("message", message);
+			resp.sendRedirect(path);	
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

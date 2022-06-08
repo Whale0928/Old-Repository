@@ -308,7 +308,7 @@ public class BoardDAO {
 		}
 		return result;
 	}
-
+ 
 	/**게시글의 이미지를 수정 DAO
 	 * @param conn
 	 * @param image
@@ -347,7 +347,6 @@ public class BoardDAO {
 		
 		try {
 			String sql = prop.getProperty("deleteBoardImage")+deleteList+")";			
-			
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,boardNo);

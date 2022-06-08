@@ -30,27 +30,26 @@
             </h1>
 
             <%-- imageList에 존재하는 이미지 레벨을 이용해 변수 생성--%>
-            <c:forEach items="${detail.imageList}" var="boardImage">
-                <c:choose>
-                    <c:when test="${boardImage.imageLevel == 0}">
-                        <%-- c:set 변수는 page-Scope가 기본값(이 페이지 내에서 계속 살아있음) --%>
-                            <c:set var="img0" value="${contextPath}${boardImage.imageReName}"/>
-                    </c:when>
-                    <c:when test="${boardImage.imageLevel == 1}">
-                            <c:set var="img1" value="${contextPath}${boardImage.imageReName}"/>
-                    </c:when>
-                    <c:when test="${boardImage.imageLevel == 2}">
-                            <c:set var="img2" value="${contextPath}${boardImage.imageReName}"/>
-                    </c:when>
-                    <c:when test="${boardImage.imageLevel == 3}">
-                            <c:set var="img3" value="${contextPath}${boardImage.imageReName}"/>
-                    </c:when>
-                    <c:when test="${boardImage.imageLevel == 4}">
-                            <c:set var="img4" value="${contextPath}${boardImage.imageReName}"/>
-                    </c:when>
-                </c:choose>    
-
-            </c:forEach>
+<c:forEach items="${detail.imageList}" var="boardImage">
+    <c:choose>
+        <c:when test="${boardImage.imageLevel == 0}">
+            <%-- c:set 변수는 page-Scope가 기본값(이 페이지 내에서 계속 살아있음) --%>
+                <c:set var="img0" value="${contextPath}${boardImage.imageReName}"/>
+        </c:when>
+        <c:when test="${boardImage.imageLevel == 1}">
+                <c:set var="img1" value="${contextPath}${boardImage.imageReName}"/>
+        </c:when>
+        <c:when test="${boardImage.imageLevel == 2}">
+                <c:set var="img2" value="${contextPath}${boardImage.imageReName}"/>
+        </c:when>
+        <c:when test="${boardImage.imageLevel == 3}">
+                <c:set var="img3" value="${contextPath}${boardImage.imageReName}"/>
+        </c:when>
+        <c:when test="${boardImage.imageLevel == 4}">
+                <c:set var="img4" value="${contextPath}${boardImage.imageReName}"/>
+        </c:when>
+    </c:choose>    
+</c:forEach>
             
 
             <!-- 썸네일 등록 -->
