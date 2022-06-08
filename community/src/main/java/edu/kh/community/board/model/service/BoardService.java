@@ -180,5 +180,68 @@ public class BoardService {
 		
 		return result;
 	}
+
+	/**게시글 삭제 Service
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteBoard(int boardNo)throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoard(conn,boardNo);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	/**검색 목록 조회
+	 * @param type
+	 * @param cp
+	 * @param key
+	 * @param query
+	 * @return map
+	 * @throws Exception
+	 */
+	public Map<String, Object> searchBoardList(int type, int cp, String key, String query)throws Exception{
+		Connection conn = getConnection();
+		
+		//기존 목록 조회 Service , DAO , SQL 참고
+		
+		//1. 게시판 이름 조회 DAO 호출
+		String boardName = dao.selectBoardName(conn,type);
+		
+		//2. SQL조건절에 추가될 구문 가공(key,query사용)
+		String condition = null; //조건
+		switch(key) {
+			case "t":condition=" AND BOARD_TITLE LIKE '%"+query+"%' "; break;
+			case "c":condition=" AND BOARD_CONTENT LIKE '%"+query+"%' "; break;
+			case "tc":condition=" AND (BOARD_CONTENT LIKE '%"+query+"%' OR BOARD_TITLE LIKE '%"+query+"%') "; break;
+			case "w":condition=" AND MEMBER_NICK LIKE '%"+query+"%' "; break;
+		}
+		//3-1 조건에 충족하는 게시글 조회
+		int listCount = dao.searchListCount(conn, type, condition);
+		
+		//3-2 listCount를 이용해서 Paginaion객체 생성
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		//4 게시글 목록 조회
+		List<Board> boardList = dao.searchBoardList(conn,pagination,type,condition);
+		
+		//5.map 객체를 생성하여 1 , 2 , 3의 결과 객체를 모두 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("boardName", boardName);
+		map.put("pagination", pagination);
+		map.put("boardList", boardList);
+		
+		close(conn);
+		
+		return map; 
+	}
 	
 }

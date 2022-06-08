@@ -360,6 +360,100 @@ public class BoardDAO {
 		return result;
 	}
 
+	/**게시글 삭제 DAO
+	 * @param conn
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteBoard(Connection conn, int boardNo)throws Exception{
+		int result = 0 ;
+		
+		try {
+			String sql = prop.getProperty("deleteBoard");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+	/**특정 게시판의 조건을 만족하는 게시글들 조회 DAO
+	 * @param conn
+	 * @param type
+	 * @param condition
+	 * @return listCount
+	 * @throws Exception
+	 */
+	public int searchListCount(Connection conn, int type,String condition)throws Exception{
+		int listCount=0;
+		try {
+			String sql =prop.getProperty("searchListCount")+condition;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,type);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+
+
+	/** 특정 게시글의 목록을 조회하는 DAO
+	 * @param conn
+	 * @param pagination
+	 * @param type
+	 * @param condition
+	 * @return list
+	 * @throws Exception
+	 */
+	public List<Board> searchBoardList(Connection conn, Pagination pagination, int type, String condition)throws Exception {
+		List<Board> list = new ArrayList<Board>();
+		
+		try {
+			String sql = prop.getProperty("searchBoardList1")+condition+prop.getProperty("searchBoardList2");
+			
+			int start = (pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int end = start+pagination.getLimit()-1;
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,type);
+			pstmt.setInt(2,start);
+			pstmt.setInt(3,end);
+			
+			rs =pstmt.executeQuery();
+			while(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardNo(rs.getInt("BOARD_NO"));
+				board.setBoardTitle(rs.getString("BOARD_TITLE"));
+				board.setMemberNickname(rs.getString("MEMBER_NICK"));
+				board.setCreateDate(rs.getString("CREATE_DT"));
+				board.setReadCount(rs.getInt("READ_COUNT"));	
+				board.setThumbnail(rs.getString("THUMBNAIL"));
+				list.add(board);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
 	
