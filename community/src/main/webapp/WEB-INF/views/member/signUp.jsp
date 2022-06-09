@@ -51,7 +51,7 @@
                                         <!-- Required : 필수 작성을 의미 -->
 
                     <!-- js으로 코드 추가 예정 -->                                        
-                    <button type="button">인증번호 받기</button>
+                    <button type="button" id="sendBtn">인증번호 받기</button>
                 </div>
 
                 <span class="signUp-message" id="emailMessage">메일을 받을 수 있는 이메일을 입력해주세요.</span>
@@ -63,12 +63,17 @@
                     <span class="required">*</span>  인증번호
                 </label>
                 <div class="signUp-input-area">
-                    <input type="text" id="emailCheck" placeholder="인증번호를 입력하세요" 
-                                       minlength="6" maxlength="6" autocomplete="off"> 
+                    <!-- Certification Number -->
+                    <!-- cNumber : 인증번호 -->
+                    <input type="text" id="cNumber" placeholder="인증번호를 입력하세요" 
+                                 maxlength="6" autocomplete="off"> 
 
-                    <button type="button">인증번호 확인</button>
+                    <button type="button" id="cBtn">인증번호 확인</button>
                 </div>
-                <span class="signUp-message confirm">인증되었습니다..</span>
+                <!-- 5분 타이머  / 
+                    인증 성공시 녹색 문구 추가(인증되었습니다)
+                    인증 실패시 빨간 문구 추가(시간이 초과되었습니다.) -->
+                <span class="signUp-message" id="cMessage"></span>
                 
 
 

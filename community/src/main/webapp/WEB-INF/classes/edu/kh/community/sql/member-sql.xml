@@ -79,4 +79,33 @@
 	UPDATE MEMBER SET PROFILE_IMG=? WHERE MEMBER_NO=?
 	</entry>
 	
+
+	   <!-- 인증번호 수정 -->
+   <entry key="updateCertification">
+      UPDATE CERTIFICATION SET
+      C_NUMBER = ?,
+      ISSUE_DT = SYSDATE
+      WHERE EMAIL = ?
+   </entry>
+   
+   <!-- 인증번호 생성 -->
+   <entry key="insertCertification">
+      INSERT INTO CERTIFICATION VALUES(?, ?, SYSDATE)
+   </entry>
+
+	<!-- 인증번호를 확인 -->
+	<entry key="checkNumber">
+	   SELECT 
+	   CASE WHEN (SELECT '1' FROM CERTIFICATION
+	            WHERE EMAIL = ?
+	            AND C_NUMBER = ?)  = 1
+	   
+	      THEN NVL( (SELECT '1' FROM CERTIFICATION
+	            WHERE EMAIL = ?
+	            AND ISSUE_DT + (INTERVAL '5' MINUTE) >= SYSDATE) , '2') 
+	
+	      ELSE '3'   
+	   END         
+	FROM DUAL
+	</entry>
 </properties>

@@ -7,7 +7,9 @@ const checkObj = {
     "memberPw":false,
     "memberPwConfirm":false,
     "memberNickname":false,
-    "memberTel":false
+    "memberTel":false,
+
+    "sendEmail" :false //인증번호 발송 체크를 위한 
 };
 
 
@@ -258,3 +260,117 @@ function signUpValidate(){
     }
     return true
 }
+
+
+//인증번호 보내기
+const sendBtn = document.getElementById("sendBtn");
+const cMessage =document.getElementById("cMessage");
+
+//타이머에 사용될 변수
+let checkInterval; //setInterval을 저장할 변수
+let min = 4; // 분
+let sec=59; //min이랑 합치면 4분 49초
+
+sendBtn.addEventListener("click",function(){
+    
+    if(checkObj.memberEmail){ //유효한 이메일이 작성되어 있을 경우에만 메일 보내기
+        alert(checkObj.memberEmail);
+        $.ajax({
+            url:"sendEmail",
+            data:{"inputEmail":memberEmail.value},
+            type:"GET",
+            success:function(result){
+                console.log("이메일 발송 성공....");
+
+                //인증버튼이 클릭되어 정상적으로 메일이 보내졌음을 CheckObj에 기록
+                //if(result>0){}
+                checkObj.sendEmail = true;
+                
+                
+            },
+            error:function(req,staus,error){
+                console.log("이메일 발송 실패....");
+            }
+        })
+    }
+    //Mail발송 Ajax는 동작이 느리다.
+    //->메일을 메일대로 보내고 , 타이머는 버튼이 클릭되는 동시에 시작
+    
+    //되는 이유 ajax 코드가 비동기여서 메일이 보내기는걸 기다리지 않고
+    //보내면서 바로 다음 코드가 사용된다.
+    //5분 타이머
+    //setInterval(함수, 지연시간) : 지연시간이 지난 후 함수를 수행(반복)
+    
+    cMessage.innerText="5:00"; //초기값 5분
+    min=4;
+    sec=50; //4:59초 초기화
+
+    
+    cMessage.classList.remove("error");
+    cMessage.classList.remove("confirm");
+
+    checkInterval = setInterval(function(){
+        if(sec < 10) sec = "0" + sec;
+        cMessage.innerText = min + ":" + sec;
+        
+        if(Number(sec) === 0){
+            min--;
+            sec = 59;
+        }else{
+            sec--;
+        }
+
+        if(min === -1){ // 만료
+            cMessage.classList.add("error");
+            cMessage.innerText = "인증번호가 만료되었습니다.";
+            clearInterval(checkInterval);
+        }
+    },1000)//1초 지연 후 수행.
+    alert("인증번호가 발송되었습니다. 이메일을 확인해주세요")
+})
+
+//인증번호 확인 클릭시에 대한 동작
+const cNumber = document.getElementById("cNumber");
+const  cBtn = document.getElementById("cBtn");
+//+ cMessage , memberEmail도 사용
+
+cBtn.addEventListener("click",function(){
+
+    //1. 인증번호 받기 버튼이 클릭되어 이메일이 발송되었을 경우
+    if(checkObj.sendEmail){
+        if(cNumber.value.length==6){ //6자리일 경우
+            $.ajax({
+                url:"checkNumber",
+                data:{"cNumber":cNumber.value,"inputEmail":memberEmail.value},
+                type:"GET",
+                success:function(result){
+                    console.log(result);
+                    //1: 인증번호도 일치하고 O 시간도 만족 O
+                    //2: 인증번호는 일치 O 시간은 만족 X
+                    //3: 인증번호 일치 X
+
+                    if(result==1){  
+                        clearInterval(checkInterval); // 일단 타이머 멈춤
+                        cMessage.innerText="인증되었습니다"
+                        cMessage.classList.add("confirm");
+                        cMessage.classList.remove("error");
+                    }else if(result==2){
+                        alert("만료된 인증번호입니다")
+                    }else{
+                        alert("인증번호가 일치하지 않습니다")
+                    }
+                },
+                error:function(req,staus,error){
+                    console.log("이메일 발송 실패....");
+                }
+            })
+
+        } else{ //6자리가 아닐 경우
+            alert("인증번호를 정확하게 입력해주세요..")
+        }     
+
+    }else{ //인증번호를 안받은 경우
+        alert("[인증번호 받기] 버튼을 먼저 클릭해주세요.")
+    }
+
+})
