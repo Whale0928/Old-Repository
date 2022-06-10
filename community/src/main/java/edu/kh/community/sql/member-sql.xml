@@ -103,7 +103,7 @@
 	      THEN NVL( (SELECT '1' FROM CERTIFICATION
 	            WHERE EMAIL = ?
 	            AND ISSUE_DT + (INTERVAL '5' MINUTE) >= SYSDATE) , '2') 
-	
+
 	      ELSE '3'   
 	   END         
 	FROM DUAL

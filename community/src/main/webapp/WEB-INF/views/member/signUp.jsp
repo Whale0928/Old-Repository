@@ -66,7 +66,7 @@
                     <!-- Certification Number -->
                     <!-- cNumber : 인증번호 -->
                     <input type="text" id="cNumber" placeholder="인증번호를 입력하세요" 
-                                 maxlength="6" autocomplete="off"> 
+                                 maxlength="6" autocomplete="off" CLASS="""> 
 
                     <button type="button" id="cBtn">인증번호 확인</button>
                 </div>
