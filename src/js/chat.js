@@ -10,15 +10,22 @@ const sendBtn = document.querySelector(".sendBtn");
 const displayContainer = document.querySelector(".display-container");
 
 chatInput.addEventListener("keypress",send)
+sendBtn.addEventListener("click",send)
 
 function send(){
+
+    if(nickname.value.trim()==''){
+        alert("닉네임을 입력후 메세지를 전송해주세요")
+        return false;
+    }
+
     const param = {
         name : nickname.value,
         msg  : chatInput.value
     }
     socket.emit("chatting",param);
 }
-sendBtn.addEventListener("click",send)
+
 
 
 //메세지를 강제로 전송
@@ -29,8 +36,6 @@ socket.on("chatting",(data)=>{
     const itme = new LiModel(name,msg,time);
     //li 모델을 인스턴스 화
     itme.makeLi();
-    
-    
     displayContainer.scrollTo(0,displayContainer.scrollHeight);
 })
 
