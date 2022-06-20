@@ -14,6 +14,18 @@ const io = socketIO(server);
 
 const moment = require("moment");
 
+//DB 연결
+const MongoClient = require('mongodb').MongoClient;
+MongoClient.connect('mongodb+srv://admin:qwer1234@cluster0.uztxq.mongodb.net/?retryWrites=true&w=majority',function(에러,client){
+
+    if(에러){console.log(에러);}
+    app.listen(8080,function(){
+        console.log('Listening on 8080');
+    })
+})
+
+
+
 //console.log(__dirname);
 app.use(express.static(path.join(__dirname,"src")))
 
