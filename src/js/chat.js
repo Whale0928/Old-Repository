@@ -2,14 +2,17 @@
 
 //서버 js에서 전달한 socket을 변수에 저장
 const socket = io();
-
 const nickname = document.getElementById("nickname");
 const chatList = document.querySelector(".chatting-list");
 const chatInput = document.querySelector(".chatting-input");
 const sendBtn = document.querySelector(".sendBtn");
 const displayContainer = document.querySelector(".display-container");
 
-chatInput.addEventListener("keypress",send)
+chatInput.addEventListener("keypress",function(event){
+    if(window.event.keyCode==13){/* 만약 눌린 키가 엔터(키코드 13번) 이면 */
+        send();
+    }
+})
 sendBtn.addEventListener("click",send)
 
 function send(){

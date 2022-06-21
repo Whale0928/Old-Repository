@@ -15,16 +15,26 @@ const io = socketIO(server);
 const moment = require("moment");
 
 //DB 연결
+let db;
 const MongoClient = require('mongodb').MongoClient;
-MongoClient.connect('mongodb+srv://admin:qwer1234@cluster0.uztxq.mongodb.net/?retryWrites=true&w=majority',function(에러,client){
+function send(data){
+    MongoClient.connect('mongodb+srv://admin:qwer1234@cluster0.uztxq.mongodb.net/?retryWrites=true&w=majority',function(에러,client){
+        if(에러) return console.log(에러);
+ 
+        console.log(data);
+        //db = client.db("ChatDB");
+    // db.collection('Chat').insertOne({이름:'성대',나이:25},function(에러,결과){
+    //     console.log('저장완료');  });
+    const {name,msg,} = data;
+    db = client.db("ChatDB");
+    db.collection('Chat').insertOne({작성자:name,내용:msg,작성일:moment(new Date()).format("h:ss A")},function(에러,결과){
+        console.log('저장완료');    }); 
+        
 
-    if(에러){console.log(에러);}
-    app.listen(8080,function(){
-        console.log('Listening on 8080');
+        if(에러){console.log(에러);}
+            console.log('Connection on DB');
     })
-})
-
-
+}
 
 //console.log(__dirname);
 app.use(express.static(path.join(__dirname,"src")))
@@ -32,6 +42,10 @@ app.use(express.static(path.join(__dirname,"src")))
 io.on("connection",(socket)=>{
     socket.on("chatting",(data)=>{
         const {name,msg,} = data;
+
+        send(data)
+
+
 
         io.emit("chatting",{
             name,
