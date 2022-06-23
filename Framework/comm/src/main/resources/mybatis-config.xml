@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+		<!-- configuration 태그 내부에서만 Mybatis 관련 설정 작성하기. -->
+		
+		<!-- Spring 연동 모듈을 추가했기 때문에 많이 간단해진다. -->
+		
+		<!-- SqlSessionTemplate 관련 설정 (커넥션을 대체) -->		
+		<settings>
+			
+			<!-- JDBC 수행중 Null 발생시 어떻게 처리할것인가 -->
+			
+			<!-- 
+				 insert/Update 진행 시 Null이 포함되어 있는 경우 
+				 Mybatis는 기본적으로 에러를 발생 시키지만
+				 해당 구문이작성 되면 지정된 Value로 insert /Update 시킨다
+				 
+				 *Null 값이 있으면 NULL을 insert/Update해라.
+				 ** VALUE에 NULL은 무조건 대문자로!! 소문자 작성시 오류 발생
+				 	NOT NULL 제약 조건 컬럼에는 NULL 대입이 불가능
+			-->
+			<setting name="jdbcTypeForNull" value="NULL"/>	
+		
+		</settings>
+	
+		<!-- 별칭 작성 부분 -->
+		<typeAliases>
+			<typeAlias type="edu.kh.comm.member.model.vo.Member" alias="member"/>
+		</typeAliases>
+
+		<!-- SQL이 작성되는 mapper 파일 위치를 등록 -->
+		<mappers>
+			<!-- <mapper resource="Mapper파일 경로"/> 
+				 경로를 작성하는 기준( 시작 지점 ) src/main/resources 폴더)
+				 
+					-->
+			<mapper resource="/mappers/member-mapper.xml"/>		
+					
+		</mappers>
+
+</configuration>

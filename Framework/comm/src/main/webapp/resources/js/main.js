@@ -10,10 +10,10 @@ function loginValidate(){ // 로그인 유효성 검사
     // invalidate : 무효하다    
 
     // 이메일 입력 input 요소 
-    const inputEmail = document.getElementsByName("inputEmail")[0];
+    const inputEmail = document.getElementsByName("memberEmail")[0];
 
     // 비밀번호 입력 input 요소
-    const inputPw = document.getElementsByName("inputPw")[0];
+    const inputPw = document.getElementsByName("memberPw")[0];
 
 
     // 이메일이 입력되지 않은 경우 false를 반환

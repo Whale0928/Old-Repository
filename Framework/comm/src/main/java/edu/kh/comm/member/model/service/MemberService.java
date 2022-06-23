@@ -1,5 +1,6 @@
 package edu.kh.comm.member.model.service;
 
+import edu.kh.comm.member.model.vo.Member;
 
 /*Service Interface를 사용하는 이유
  * 
@@ -12,5 +13,15 @@ package edu.kh.comm.member.model.service;
  * 
  * */
 public interface MemberService {
+
+	//[ 인터페이스 특징 ]
+	// 1. 모든 메서드가 추상 메서드 ( public abstract ) 묵시적
+	// 2. 모든 필드는 상수  (public static final ) 묵시적
+	
+	/**로그인 서비스
+	 * @param member
+	 * @return loginMember
+	 */
+	Member login(Member member);
 
 }

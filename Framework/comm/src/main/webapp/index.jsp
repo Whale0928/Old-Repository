@@ -170,8 +170,7 @@
                             <div class="my-info">
                                 <div>
                                     <a href="${contextPath}/member/myPage/info" id="nickname">${loginMember.memberNickname}</a>
-
-                                    <a href="/community/member/logout" id="logout-btn">로그아웃</a>
+                                    <a href="${contextPath}/member/logout" id="logout-btn">로그아웃</a>
                                 </div>
 
                                 <p>

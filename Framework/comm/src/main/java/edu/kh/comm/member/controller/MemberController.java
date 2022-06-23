@@ -1,18 +1,23 @@
 package edu.kh.comm.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import edu.kh.comm.member.model.service.MemberService;
 import edu.kh.comm.member.model.service.MemberServiceImpl;
@@ -31,6 +36,9 @@ import edu.kh.comm.member.model.vo.Member;
 //@Component //해당 클래스를 Bean으로 등록하라 (WebServlet과 같은 느낌??) (Annotation : 프로그램에게 알려주는 주석)
 @Controller //생성된 클래스가 Bean으로 등록하면서 Controller인것을 명시.
 @RequestMapping("/member") //comm/member이하의 모든 요청을 처리하는 컨트롤러로 명시/등록
+
+@SessionAttributes({"loginMember"}) //Model에 추가된 값의 Key를 작성하면 어노테이션의 작성된 값이 같으면 
+								 	//해당 값을 sessionScope로 이동 시키는 역할 
 public class MemberController {
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -92,11 +100,12 @@ public class MemberController {
 	//네임 속성값과 파라미터를 저장할 변수명을 동일하게 한다
 
 //		@RequestMapping("/login")
-////		public String login(@RequestParam("inputEmail")int id,
-////							@RequestParam("inputPw")String pw,
-////							@RequestParam(value="inputName",required=false)String name,
-////							@RequestParam(value="inputName",required=false,defaultValue="김길동")String defaultVal){
-//			public String login(int inputEmail,String inputPw,@RequestParam(value="inputName",required=false,defaultValue="김길동")String defaultVal){
+//		public String login(@RequestParam("inputEmail")String id,
+//							@RequestParam("inputPw")String pw,
+//							@RequestParam(value="inputName",required=false)String name,
+//							@RequestParam(value="inputName",required=false,defaultValue="김길동")String defaultVal)
+//		{
+//		public String login(int inputEmail,String inputPw,@RequestParam(value="inputName",required=false,defaultValue="김길동")String defaultVal){
 //			
 //			logger.debug("id:"+inputEmail);
 //			logger.debug("pw:"+inputPw);
@@ -144,18 +153,50 @@ public class MemberController {
 	
 	//@RequestMapping(value="/login",method=RequestMethod.POST) 
 	@PostMapping("/login") //위와 동일한 코드
-	public String login(Member member){
-		
+	public String login(Member member 
+									,Model model){
 		// @ModelAttribute 생략 가능
 		// -> 커맨드 객체라고 명칭함 (Model Attrbute가 생략된 상태에서 파라미터가 필드에 세팅된 객체 )
-		// 
-		
 		logger.info("로그인 기능 수행됨");
+		// id+pw가 일치하는 service호출후 결과 반환받기.
+		Member loginMember = service.login(member);
+		
+		/* Model : 데이터를 Map(K:V) 형태로 담아 전달하는 용도의 객체.
+		 * -> request , session을 대체하는 객체.
+		 * 
+		 * -기본 Scope : request 
+		 * 
+		 * -session scope 으로 변환하고 싶은 경우
+		 *  클래스 레벨로 @SessionAttributes를 작성하면 된다
+		 *  
+		 * */
+		
+		//SessionAttribute 미작성시 req scope
+		
+		model.addAttribute("loginMember",loginMember); //req.setAttribute와 동일
+		
+		
+		return "redirect:/";
+	}
+	//${contextPath}/member/logout
+	//로그아웃 기능
+	@GetMapping("/logout")
+	public String logout(HttpSession session,SessionStatus status) {
+		//로그아웃 == 세션을 없애는 것.
+		
+		//@SessionAttributes를 이용해 session Scope에 배치된 데이터는
+		// SessionStatus라는 별도의 객체를 이용해야지 없앨수 있다.  H201603034
+		logger.info("로그아웃 수행됨");
+		//session.invalidate(); 스프링의 세션과 다른 세션이라고 생각해야 한다
+		status.setComplete(); //세션이 할일을 다 했다 그니깐 죽어라
 		
 		return "redirect:/";
 	}
 	
-	
+	//회원가입 페이지로 이동
 	@GetMapping("/signUp")
 	public String signUp() {		return "member/signUp";		}
+	
+
+	
 }
