@@ -24,7 +24,7 @@
 		<result property="memberNickname" column="MEMBER_NICK" />
 		<result property="memberTel" column="MEMBER_TEL" />
 		<result property="memberAddress" column="MEMBER_ADDR" />
-		<result property="profileImage" column="PROJILE_IMG" />
+		<result property="profileImage" column="PROFILE_IMG" />
 		<result property="enrollDate" column="ENROLL_DT" />
 		<result property="secessionFlag" column="SECESSION_FL" />
 	</resultMap>
@@ -81,7 +81,6 @@
 		ENROLL_DT,MEMBER_PW
 		FROM MEMBER_S
 		WHERE MEMBER_EMAIL = #{memberEmail}
-		<!-- AND MEMBER_PW = #{memberPw} -->
 		AND SECESSION_FL = 'N'
 	</select>
 	<!--^^^ 이메일이 일치하는 회원 가져옴 ^^^ -->

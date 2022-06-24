@@ -151,7 +151,6 @@
             	
             		<%-- 로그인이 되어있는 경우 --%>
             		<c:otherwise>
-            			
             			<article class="login-area">
                             <!-- 회원 프로필 이미지 -->
             				<a href="${contextPath}/member/myPage/profile">

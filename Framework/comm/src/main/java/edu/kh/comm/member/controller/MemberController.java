@@ -80,11 +80,13 @@ public class MemberController {
 		//SessionAttribute 미작성시 req scope
 		if(loginMember != null) {
 			model.addAttribute("loginMember",loginMember); //req.setAttribute와 동일
+			
 			//로그인 성공시 무조건 쿠키를 생성하는데
 			// 단, 아이디 저장 체크 여부에 따라서 쿠키의 유지 시간을 조정
 			//수명만 조절
 			
 			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+			
 			
 			if(saveId != null) { //아이디 저장이 체크 되었을 때.
 				cookie.setMaxAge(60*60*24*365); // 얼마나 생존할지 초단위로 저장 (1년) 초 시 하루 년
@@ -179,10 +181,5 @@ public class MemberController {
 	@ResponseBody //Ajax 응답시 사용
 	@GetMapping("/nicknameDupCheck")
 	public int nicknameDupCheck(String memberNickname){		return service.nicknameDupCheck(memberNickname);	}
-
-	//마이페이지-  info
-	public String myPage() {
-		return "myPage";
-	}
 
 }

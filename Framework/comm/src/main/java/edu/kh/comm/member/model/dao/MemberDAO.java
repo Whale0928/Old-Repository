@@ -58,8 +58,6 @@ public class MemberDAO {
 
 	//회원가입
 	public int signUp(Member inputMember) {
-		//insert , update , delete별로 각각의 메서드가 존재
-		//위 3개는 모두 반환값이 int라 resultType을 지정하지 않아도됨
 	return sqlSession.insert("memberMapper.signUp",inputMember);
 	}
 	

@@ -21,134 +21,144 @@
 	<!-- dependencies : Maven 프로젝트는 외부 저장소와 의존 관계를 맺고 있어 프로젝트에 필요한 파일을(라이브러리) 
 		사용자가 직접 받을 필요 없이 해당 태그 내에 지정된 형식으로 작성하면 네트워크를 통해 외부 저장소에서 자동으로 얻어와 세팅함. -->
 	<dependencies>
-	
+
+
+
+
+
 		<!-- ======================================================================================== -->
 		<!-- jackSon 라이브러리 추가 -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		    <version>2.9.0</version>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.9.0</version>
 		</dependency>
-		
-		
-		
-	
-		<!-- ======================================================================================== -->	
+
+		<!-- ======================================================================================== -->
+		<!-- 아파치 파일 업로드 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- ======================================================================================== -->
 		<!-- 롬복[lombok] 라이브러리 추가 -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.24</version>
-		    <scope>provided</scope>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
 		</dependency>
-	
+
 		<!-- ======================================================================================== -->
 		<!-- 스프링 보안 ||spinrg scurity -->
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-core</artifactId>
-		    <version>5.7.1</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.7.1</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-		    <version>5.7.1</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.7.1</version>
 		</dependency>
-						
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-config</artifactId>
-		    <version>5.7.1</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.7.1</version>
 		</dependency>
-									
-	
-	
-	
-	
+
+
+
+
+
 		<!-- ======================================================================================== -->
 		<!-- JDBC , Mybatis , DBCP 관련 라이브러리들 -->
-		
+
 		<!-- JDBC 드라이버 -->
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11 -->
 		<dependency>
-		    <groupId>com.oracle.database.jdbc</groupId>
-		    <artifactId>ojdbc11</artifactId>
-		    <version>21.5.0.0</version>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+			<version>21.5.0.0</version>
 		</dependency>
-		
-		<!-- Spring - JDBC 모듈 (스프링이 JDBC를 사용 가능하게 해주는 모듈) -->		
+
+		<!-- Spring - JDBC 모듈 (스프링이 JDBC를 사용 가능하게 해주는 모듈) -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-jdbc</artifactId>
-		    <version>${org.springframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
-			
+
 		<!-- Mybatis 영속성 프레임워크 추가 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis</artifactId>
-		    <version>3.5.9</version>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.9</version>
 		</dependency>
-		
+
 		<!-- Spring에서 Mybatis 사용하게 해주는 모듈 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis-spring</artifactId>
-		    <version>2.0.6</version>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.6</version>
 		</dependency>
-		
-		<!-- DBCP ( Connection Pool ) 사용을 위한 라이브러리  -->
+
+		<!-- DBCP ( Connection Pool ) 사용을 위한 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-dbcp2</artifactId>
-		    <version>2.9.0</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.9.0</version>
 		</dependency>
-				
 
-		
+
+
 		<!-- ======================================================================================== -->
-		
-		
-		
+
+
+
 		<!-- JSTL 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
 		<dependency>
-		    <groupId>org.apache.taglibs</groupId>
-		    <artifactId>taglibs-standard-impl</artifactId>
-		    <version>1.2.5</version>
-		    <scope>runtime</scope>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-impl</artifactId>
+			<version>1.2.5</version>
+			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-spec -->
 		<dependency>
-		 	<groupId>org.apache.taglibs</groupId>
-		    <artifactId>taglibs-standard-spec</artifactId>
-		    <version>1.2.5</version>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-spec</artifactId>
+			<version>1.2.5</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-jstlel -->
 		<dependency>
-		    <groupId>org.apache.taglibs</groupId>
-		    <artifactId>taglibs-standard-jstlel</artifactId>
-		    <version>1.2.5</version>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-jstlel</artifactId>
+			<version>1.2.5</version>
 		</dependency>
-		
-		
 
 
-		
+
+
+
 		<!-- Spring 모듈 이 모듈을 받아서 기본적인 MVC 프로젝트가 된다 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -189,9 +199,9 @@
 		<!-- Log4j (Logging) -->
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-core</artifactId>
-		    <version>2.17.1</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.17.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -210,8 +220,8 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		
+
+
 
 		<!-- @Inject -->
 		<dependency>
@@ -225,10 +235,10 @@
 		<!-- Servlet 버전을 4.0으로 변경 -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>4.0.1</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -237,30 +247,30 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		 
-		
+
+
 		<!-- 단위 테스트 도구 (JUnit) -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.13.2</version>
-		    <scope>test</scope>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>${org.springframework-version}</version>
-		    <scope>test</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+			<scope>test</scope>
 		</dependency>
-	
+
 		<!-- pom.xml 에러 방지 -->
 		<dependency>
-	        		<groupId>org.apache.maven.plugins</groupId>
-	        		<artifactId>maven-resources-plugin</artifactId>
-         			<version>2.4.3</version>
-        		</dependency> 
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-resources-plugin</artifactId>
+			<version>2.4.3</version>
+		</dependency>
 	</dependencies>
 
 

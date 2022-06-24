@@ -3,4 +3,37 @@
 <mapper namespace="myPageMapper">
 
 
+	<!-- ParameterType이 Map이여도 TypeHandler가 알아서 해줌 -->
+	<update id="updateInfo" parameterType="map">
+		UPDATE MEMBER_S SET
+		MEMBER_NICK = #{updateNickname},
+		MEMBER_TEL=#{updateTel},
+		MEMBER_ADDR=#{memberAddress}
+		WHERE MEMBER_NO =#{memberNo}
+	</update>
+
+<!-- 비밀번호 찾기 -->
+	<select id="selectPw" parameterType="_int" resultType="string">
+		SELECT MEMBER_PW FROM MEMBER_S WHERE MEMBER_NO = #{memberNo}
+	</select>
+
+<!-- 비밀번호 수정 -->
+	<update id="updatePw">
+		UPDATE MEMBER_S SET
+		MEMBER_PW = #{newPw}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+<!-- 회원탈퇴 -->
+	<update id="secession">
+		UPDATE MEMBER_S SET
+		SECESSION_FL= 'Y'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+
+	<update id="updateProfile">
+		UPDATE MEMBER_S SET
+		PROFILE_IMG = #{profileImage}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
 </mapper>
