@@ -125,18 +125,18 @@
                  </label>
                  
                  <div class="signUp-input-area">
-                     <input type="text" id="memberAddress" name="memberAddress"
+                     <input type="text" id="sample4_postcode" name="memberAddress"
                              placeholder="우편번호" maxlength="6">
                      
-                     <button type="button">검색</button>
+                     <button type="button" id="mapOpen" onclick="sample4_execDaumPostcode()">검색</button>
                  </div>
  
                  <div class="signUp-input-area">
-                     <input type="text" name="memberAddress" placeholder="도로명주소">
+                     <input type="text" name="memberAddress" id="sample4_roadAddress" placeholder="도로명주소">
                  </div>
  
                  <div class="signUp-input-area">
-                     <input type="text" name="memberAddress" placeholder="상세주소">
+                     <input type="text" name="memberAddress" id="sample4_detailAddress" placeholder="상세주소">
                  </div>
  
                  <button type="submit" id="signUp-btn">가입하기</button>
@@ -154,7 +154,8 @@
 
     <!-- jQuery 라이브러리 추가(CDN) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+     <!-- 다음 주소 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <!-- signUp.js 연결 -->
     <script src="${contextPath}/resources/js/member/signUp.js"></script>
 

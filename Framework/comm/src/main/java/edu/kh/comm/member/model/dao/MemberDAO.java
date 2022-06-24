@@ -22,6 +22,7 @@ public class MemberDAO {
 	
 	private Logger logger = LoggerFactory.getLogger(MemberDAO.class); 
 	
+	//로그인 DAO
 	public Member login(Member member) {
 		//1행 조회시 (파라미터 X) 방법
 		//int count = sqlSession.selectOne("memberMapper.test1");
@@ -42,6 +43,24 @@ public class MemberDAO {
 		//logger.debug(loginMember.toString());
 		
 		return loginMember;
+	}
+
+	
+	//이메일 중복 검사 DAO
+	public int emailDupCheck(String memberEmail) {
+		return sqlSession.selectOne("memberMapper.emailDupCheck",memberEmail);
+	}
+
+	//닉네임 조회
+	public int nicknameDupCheck(String memberNickname) {
+	return sqlSession.selectOne("memberMapper.nicknameDupCheck",memberNickname);
+	}
+
+	//회원가입
+	public int signUp(Member inputMember) {
+		//insert , update , delete별로 각각의 메서드가 존재
+		//위 3개는 모두 반환값이 int라 resultType을 지정하지 않아도됨
+	return sqlSession.insert("memberMapper.signUp",inputMember);
 	}
 	
 	

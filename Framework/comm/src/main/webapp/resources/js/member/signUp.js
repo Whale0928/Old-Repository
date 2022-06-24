@@ -8,7 +8,7 @@ const checkObj = {
     "memberPwConfirm" : false,
     "memberNickname"  : false,
     "memberTel"       : false,
-    "sendEmail"       : false   // 인증번호 발송 체크
+    //"sendEmail"       : false   // 인증번호 발송 체크 
 };
 
 
@@ -113,9 +113,10 @@ memberEmail.addEventListener("input", function(){
                 }
             },
             
-            error : function(){
+            error : function(error,result){
                 // 비동기 통신(ajax) 중 오류가 발생한 경우
-                console.log("에러 발생");
+                console.log(result);
+                console.log(error);
             }
 
         });
@@ -424,9 +425,6 @@ cBtn.addEventListener("click", function(){
                     console.log("이메일 인증 실패")
                 }
             });
-
-
-
         } else { // 6자리 아님
             alert("인증번호를 정확하게 입력해주세요.");
             cNumber.focus();
@@ -435,5 +433,17 @@ cBtn.addEventListener("click", function(){
     }else{ // 인증번호를 안받은 경우
         alert("인증번호 받기 버튼을 먼저 클릭해주세요.");
     }
-
 });
+
+
+/* ------------------------------------------------------------------------------ */
+function sample4_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var roadAddr = data.roadAddress;
+            document.getElementById('sample4_postcode').value = data.zonecode;
+            document.getElementById("sample4_roadAddress").value = roadAddr;
+        }
+    }).open();
+}
