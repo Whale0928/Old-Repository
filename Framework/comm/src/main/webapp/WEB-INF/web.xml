@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://JAVA.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_4_0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
 
 	<!-- web-app (배포서술자) - WAS (wep apliication server) : 동적웹 ( 요청에 따라 응답 페이지를 
 		생성)에서 사용하는 서버 - WAS가 실행될 때(배포를 시작할 때) 가장 처음으로 읽어들이는 문서. - 서버 실행시 초기 설정 내용 

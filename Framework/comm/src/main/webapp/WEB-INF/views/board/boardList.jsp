@@ -146,7 +146,7 @@
                 <select name="key" id="search-key">
                     <option value="t">제목</option>
                   op  <option value="c">내용</option>
-                    <option value="tc">제목+내용</tion>
+                    <option> value="tc">제목+내용</option>
                     <option value="w">작성자</option>
                 </select>
 

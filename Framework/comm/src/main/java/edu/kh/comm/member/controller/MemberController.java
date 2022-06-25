@@ -63,7 +63,7 @@ public class MemberController {
 						,@RequestParam(value="saveId",required = false)String saveId){ //안넘어올수도 있다라는 것을 명시.
 		// @ModelAttribute 생략 가능
 		// -> 커맨드 객체라고 명칭함 (Model Attrbute가 생략된 상태에서 파라미터가 필드에 세팅된 객체 )
-		logger.info("로그인 기능 수행됨");
+		logger.info("로그인 기능");
 		// id+pw가 일치하는 service호출후 결과 반환받기.
 		Member loginMember = service.login(member);
 		

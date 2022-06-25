@@ -35,6 +35,7 @@ public class InitFilter extends HttpFilter implements Filter {
 		// debug : 개발의 흐름 파악 ( 어느 파라미터가 들어왔는지 )
 		// info  : 메소드 실행 (어느 메소드가 실행되었다)
 		logger.info("초기화 필터 생성");
+		logger.info("test테스트");
 	}
 	
 	//필터가 파괴될 때 실행 (백엔드 코드가 수정되었을때.)
