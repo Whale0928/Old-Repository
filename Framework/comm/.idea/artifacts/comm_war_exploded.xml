@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="comm:war exploded">
-    <output-path>$PROJECT_DIR$/src/main/webapp</output-path>
+    <output-path>$PROJECT_DIR$/classes/artifacts/comm_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -41,6 +41,7 @@
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.25" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.lazyluke:log4jdbc-remix:0.2.7" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: org.apache.maven.plugins:maven-resources-plugin:2.4.3" />
           <element id="library" level="project" name="Maven: org.apache.maven:maven-plugin-api:2.0.6" />
