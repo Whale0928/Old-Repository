@@ -1,5 +1,7 @@
 package edu.kh.comm.member.model.service;
 
+import java.util.List;
+
 import edu.kh.comm.member.model.vo.Member;
 
 /*Service Interface를 사용하는 이유
@@ -45,4 +47,11 @@ public interface MemberService {
 	 */
 	int signUp(Member member);
 
+    Member selectOne(String memberEmail);
+
+
+	/**비동기 회원들 조회
+	 * @return
+	 */
+	List<Member> selectAll();
 }

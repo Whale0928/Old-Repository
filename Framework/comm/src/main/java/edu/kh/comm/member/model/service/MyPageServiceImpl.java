@@ -116,8 +116,12 @@ public class MyPageServiceImpl implements MyPageService {
 
 		// DB수정 성공시 메모리에 임시 저장되어있는 이미지를 서버에 저장
 		if (result > 0 && map.get("profileImage")!= null) {
+			logger.info("이미지 저장됨.");
+			logger.debug(map.get("folderPath") + renameImage);
+
 			file.transferTo(new File(map.get("folderPath") + renameImage));
 			// transferTo : 해당 파일을 지정된 경로 + 이름으로 저장
+
 		}
 
 		return result;

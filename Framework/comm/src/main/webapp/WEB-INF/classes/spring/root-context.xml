@@ -44,8 +44,8 @@
 		*realDataSource 를 이용해서 SQL 수행 내용 , 결과를 출력하는 역할
 		*realDataSource를 대체하는 역할
 	-->
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<!-- realDataSource -->
-		<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="realDataSource" />
 		
 		<property name="logFormatter">
