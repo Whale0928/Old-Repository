@@ -79,7 +79,19 @@
                                                 <img class="list-thumbnail" src="${contextPath}${board.thumbnail}">
                                             </c:if>  
 
-                                            <a href="detail?no=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a>                           
+
+                                            <%--  / board / detail / 1 / 1500 ? cp = 1  --%>
+                                            <%-- /board / list / detail ? no = 1000 & cp= 1 & type = --%>
+ 
+                                            <%-- <a href="detail?no=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a> --%>                               
+
+                                            <a href="../detail/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}">${board.boardTitle}</a>    
+                                                                   
+                                            <%-- /board/detail/2/1001?cp=1 --%>                                                                   
+                                            <%-- 현재 주소      : board / list / 1 ? cp=1 --%>
+                                            <%-- 상세 조회 주소 : board / detail / 1 ? cp=1 --%>
+
+                                          
                                         </td>
                                         <td>${board.memberNickname}</td>
                                         <td>${board.createDate}</td>
@@ -107,7 +119,9 @@
             <div class="pagination-area">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
-                <c:set var="url" value="list?type=${param.type}&cp="/>
+                <%-- <c:set var="url" value="list?type=${param.type}&cp="/> --%>
+                <c:set var="url" value="${boardCode}?cp="/>
+                <%-- http://localhost:8080/comm/board/list/list/1?cp=2 --%>
 
 
                 <ul class="pagination">

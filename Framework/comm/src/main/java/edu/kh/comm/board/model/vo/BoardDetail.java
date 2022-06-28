@@ -18,6 +18,7 @@ public class BoardDetail {
 	private String memberNickname;
 	private String profileImage;
 	private int memberNo;
+	private int boardNo;
 	private String boardName;
 
 	private List<BoardImage> imageList;
