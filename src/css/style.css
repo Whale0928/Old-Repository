@@ -27,6 +27,33 @@ background: #003458;
 border-radius: 10px;
 }
 
+
+
+
+/* ---------------------------------------- */
+/* 채팅방 목록 스타일 */
+#chatList li{
+    list-style: none;
+    display: block;
+    height: 30px;
+    margin: 10px;
+}
+
+.list>a{
+    display: block;
+    
+    border-top: 1px solid white;
+
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+
 /* ---------------------------------------- */
 
 #coverDisplay{
@@ -34,7 +61,7 @@ border-radius: 10px;
     height: 700px;
     display: flex;   
     flex-direction: column;
-    border: 3px solid green;
+    border: 3px solid white;
 }
 
 /* ---------------------------------------- */
