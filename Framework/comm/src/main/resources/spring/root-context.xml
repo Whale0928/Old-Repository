@@ -86,17 +86,6 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	<!-- 
-		트랜잭션 처리시 @Transactional 어노테이션 사용할 예정 
-		
-		@Transactional : 클래스 또는 메서드 수행 후 트랜잭션 처리를 하라고 지시하는 어노테이션
-		-> 이 어노테이션을 인식하기 위한 설정이 필요하다
-		 -> annotation-driven
-		 -> TX annotation-driven
-	-->
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 
 	<!-- ==================================================================================================================================== -->

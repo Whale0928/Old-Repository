@@ -17,4 +17,35 @@ public class Util {
 		return date + str + ext;
 	}
 
+	// 크로스 사이트 스트립트 공격을 방지 하기 위한 메소드
+	public static String XSSHandling(String content) {
+		if (content != null) {
+			content = content.replaceAll("&", "&amp;");
+			content = content.replaceAll("<", "&lt;");
+			content = content.replaceAll(">", "&gt;");
+			content = content.replaceAll("\"", "&quot;");
+		}
+		return content;
+	}
+
+	// 크로스 사이트 스트립트 해제
+	public static String XSSClear(String content) {
+		if (content != null) {
+			content = content.replaceAll("&amp;", "&");
+			content = content.replaceAll("&lt;", "<");
+			content = content.replaceAll("&gt;", ">");
+			content = content.replaceAll("&quot;", "\"");
+		}
+		return content;
+	}
+
+	// 개행문자 처리
+	public static String newLineHandling(String content) {
+		return content.replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
+	}
+
+	// 개행문자 해제
+	public static String newLineClear(String content) {
+		return content.replaceAll("<br>", "\n");
+	}
 }

@@ -1,5 +1,6 @@
 package edu.kh.comm.board.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +18,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.comm.board.model.service.BoardService;
 import edu.kh.comm.board.model.vo.BoardDetail;
@@ -138,5 +142,104 @@ public class BoardController {
 
 		return "board/boardDetail";
 	}
+	
+	//게시글 작성 화면 이동
+	@GetMapping("/write/{boardCode}")
+	public String boardWriteForm(@PathVariable int boardCode,String mode) {
+		
+		if(mode.equals("update")) {
+			//게시글 상세조회 서비스
+		}
+		
+		return "board/boardWriteForm";
+	}
+	
+	//게시글 작성 (삽입 / 수정)
+	@PostMapping("/write/{boardCode}")
+	public String boardWrite(BoardDetail detail // boardTitle,boardContent
+							,@RequestParam(value="images" , required = false)List<MultipartFile> imageList //이미지 5장이 바이트코드 형태로 넘어오게 된다
+							,@PathVariable("boardCode") int boardCode
+							,String mode
+							,@ModelAttribute("loginMember")Member loginMember //작성한 사람의 로그인 번호를 가져오기 위해서 필요함 --클래스레벨에서 SessionAttributes 사용
+							,HttpServletRequest req
+							,RedirectAttributes ra)throws Exception{
+		//매개변수 7종류 ㅎㅎㅎ
+		
+		
+	//1) 로그인한 회원 번호 얻어와서 detail에 세팅
+		detail.setMemberNo(loginMember.getMemberNo());
+		detail.setProfileImage(loginMember.getProfileImage());
+		
+	//2) 이미지 저장 경로 얻어오기 ( WebPath  / FolderPath )  - 웹상에서 접근하는 경로와 실제 저장될 경로
+		String webPath = "/resources/images/board/";
+		//webPath 까지의 실제 경로 *물리적인 서버 저장 장소
+		String folderPath = req.getSession().getServletContext().getRealPath(webPath); 
+		logger.info("저장한 폴더 경로"+folderPath);
+		logger.info("어떻게 제거 못하나? "+req.getSession().getServletContext());
+//		logger.info("웹경로를 제거한 경로"+req.getSession().getServletContext().getRealPath(webPath));
+		
+	//3) 비지니스 로직 수행 
+		if(mode.equals("insert")) { //게시글을 새로 작성 할 때
+			//게시글 부분 삽입 ( 제목 , 내용 , 작성자 번호 , 게시판 코드
+			//삽입된 게시글의 번호(boardNo)이 필요
+			//왜?? 성공하면 상세조회 페이지로 보내버릴려고
+			
+			//게시글에 포함된 이미지 정보를 삽입( 0 ~ 5 , 게시글 번호 필요)
+			//-> DB에 저장되면 메모리에 저장된 이미지를 실제로 서버에 저장 ( transFer() )
 
+			//단 , 두번의 Insert 중 한번이라도 실패하면 전체 rollback (트랜잭션 처리 )  
+			
+			//수행하고 작성된 게시글 번호 반환 받기
+			int boardNo = service.insertBoard(detail,imageList,webPath,folderPath);
+			
+			
+			String path = null;
+			String msg = null;
+			
+			if(boardNo > 0) {
+				// board / write / 1
+				// board / detail /1 /게시글번호
+				path = "../detail/"+boardCode+"/"+boardNo;
+				msg ="게시글이 작성되었습니다";
+			}else {
+				path = req.getHeader("refere");
+				msg="게시글 작성 실패";
+			}
+			
+			ra.addFlashAttribute("message",msg);
+			return "redirect:"+path;
+			
+			
+		}else { //게시글을 수정할 때.
+			
+		}
+		
+		
+		
+		return null;
+	}
+	
+	//게시글 삭제 (상태변경)
+	@GetMapping("/delete/{boardCode}/{boardNo}")
+	public String deleteBoard(@PathVariable("boardCode")int boardCode
+							,@PathVariable("boardNo")int boardNo
+							,RedirectAttributes ra
+							,HttpServletRequest req){
+		String msg = null;
+		String path = null;
+		
+		int r = service.deleteBoard(boardNo);
+		
+		if(r > 0) {
+			path = "redirect:../../list/"+boardCode;
+			msg="정삭적으로 삭제되었습니다";
+		}else {
+			path = "redirect:"+req.getHeader("referer");
+			msg="삭제에 실패하였습니다";			
+		}
+		
+		ra.addFlashAttribute("message",msg);
+		
+		return path;
+	}
 }

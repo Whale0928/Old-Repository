@@ -22,4 +22,6 @@ public class BoardDetail {
 	private String boardName;
 
 	private List<BoardImage> imageList;
+	
+	private int boardCode; // 어느 게시판인지 
 }

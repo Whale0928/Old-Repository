@@ -35,24 +35,15 @@
 		<result property="profileImage" column="PROFILE_IMG" />
 		<result property="boardName" column="BOARD_NM" />
 
-		<collection property="imageList" column="BOARD_NO"	javaType="java.util.ArrayList" ofType="boardImage"
+		<collection property="imageList" column="BOARD_NO"
+			javaType="java.util.ArrayList" ofType="boardImage"
 			select="selectImageList" />
-		<!-- 
-			selectImageList의 조회 결과를
-			BoardDetail VO의 ImageList 필드에 담겟다 
-			
-			-> imageList에 담기 위한 ArrayList<BoardImage> 객체를 생성
-			( javaType="java.util.ArrayList" ofType="boardImage" )
-			
-			-> selectImageList 태그 수행 시 필요한 파라미터는 
-			   현재 resultMap (detail_rm)의 BOARD_NO 컬럼에 저장된 값을 매개변수로 전달하겟다라는 의미
-			 
-			 
-		 한줄 요약 : 게시글 상세 조회 후 detail_rm , resultMap이 호출되었을 때 
-				  상세조회 결과중 BOARD_NO(게시글번호)를 이용해 SelectImageList를 수행하고 결과를 
-				  ImageList 필드에 세팅한다
-		 -->	
-		
+		<!-- selectImageList의 조회 결과를 BoardDetail VO의 ImageList 필드에 담겟다 -> imageList에 
+			담기 위한 ArrayList<BoardImage> 객체를 생성 ( javaType="java.util.ArrayList" ofType="boardImage" 
+			) -> selectImageList 태그 수행 시 필요한 파라미터는 현재 resultMap (detail_rm)의 BOARD_NO 
+			컬럼에 저장된 값을 매개변수로 전달하겟다라는 의미 한줄 요약 : 게시글 상세 조회 후 detail_rm , resultMap이 호출되었을 
+			때 상세조회 결과중 BOARD_NO(게시글번호)를 이용해 SelectImageList를 수행하고 결과를 ImageList 필드에 세팅한다 -->
+
 	</resultMap>
 
 	<!-- 이미지 정보 조회용 resultMap -->
@@ -125,13 +116,65 @@
 		JOIN
 		BOARD_TYPE USING(BOARD_CD)
 		WHERE BOARD_NO = #{boardNo}
-		AND BOARD_ST =	'N'
+		AND BOARD_ST =
+		'N'
 	</select>
 
 	<update id="updateReadCount">
-	UPDATE BOARD SET
-	READ_COUNT = READ_COUNT+1
-	WHERE BOARD_NO = #{boardNo}
+		UPDATE BOARD SET
+		READ_COUNT = READ_COUNT+1
+		WHERE
+		BOARD_NO = #{boardNo}
 	</update>
-	
+
+	<!-- useGeneratedKeys 속성 : DB 내부적으로 생성한 키(시퀀스)를 받는 JDBC 메서드를 사용하도록 설정한다 
+		(default : false) 동적 SQL <SELECT KEY> - 동적 SQL : SQL 수행 되는 중 수행되는 중에 IF/FOR문 
+		등을 이용해 SQL을 변경하는 기능 ( mybatis의 가장 강력한 기능 ) - <selectKey> : Insert / Update에 
+		사용되는 키(ex.시퀀스)를 원하는 변수/필드에 담아서 반환하는 태그 - keyProperty : key를 담을 변수 / 필드를 지정하는 
+		속성 - order : INSERT / UPDATE 작성된 메인 SQL이 수행되기 전(BEFORE) 또는 후(AFTER)에 <selectKey>내부 
+		SQL이 수행되도록 순서를 지정하는 속성 -->
+	<insert id="insertBoard" parameterType="detail"
+		useGeneratedKeys="true">
+
+		<!-- 자동으로 detail 요소에 조회된 시퀀스 값이 boardNo 들어온다. -->
+		<selectKey keyProperty="boardNo" resultType="_int"
+			order="BEFORE">
+			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+		</selectKey>
+
+
+		INSERT INTO BOARD VALUES(
+		#{boardNo},#{boardTitle},#{boardContent},
+		default,default,default,default,
+		#{memberNo},#{boardCode})
+	</insert>
+
+
+	<!-- 게시글 이미지삽입 [ 리스트로 ] -->
+	<!-- boardMapper.insertBoardImageList -->
+
+	<!-- 동적 SQL 중 <foreach>(다소문자) 반복문 - 특정 SQL 구문을 반복할 때 사용 - 반복되는 사이에 구분자 (separator)를 
+		추가할 수있음 collection 반복할 객체의 타입 (list , set , map...등등) item : collection에서 
+		순차적으로 꺼낸 하나의 요소를 저장하는 변수 index : 현재 반복접은 중인 0,1,2,3 반복문에서 i같은거 opne : 반복전에 
+		출력할 sql close : 반복 종료후에 출력할 sql separator : 반복 사이사이 구분자. -->
+
+	<insert id="insertBoardImageList" parameterType="list">
+		INSERT INTO BOARD_IMG
+		SELECT SEQ_IMG_NO.NEXTVAL IMG_NO,A.* FROM(
+		<foreach collection="list" item="img" separator="UNION ALL">
+			SELECT
+			#{img.imageReName} IMG_RENAME,
+			#{img.imageOriginal} IMG_ORIGINAL,
+			#{img.imageLevel} IMG_LEVEL,
+			#{img.boardNo} BOARD_NO
+			FROM DUAL
+		</foreach>
+		)A
+	</insert>
+
+	<update id="deleteBoard">
+		UPDATE BOARD SET
+		BOARD_ST = 'Y'
+		WHERE BOARD_NO = #{boardNo}
+	</update>
 </mapper>

@@ -180,6 +180,7 @@
         // -> 로그인 O  : "10";
         // -> 로그인 X  : "";  (빈문자열)
 
+        const boardCode = "${boardCode}"; //게시판 종류 번호를 전역변수로 생성해서 js파일에서도 쉽게 사용한다.
     </script>
 
     <script src="${contextPath}/resources/js/board/reply.js"></script>
