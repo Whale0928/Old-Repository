@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +56,24 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 
+	/**
+	 * 검색된 게시글 목록 조회
+	 *
+	 */
+	@Override
+	public Map<String, Object> searchBoardList(Map<String, Object> paramMap) {
+		// 검색 조건에 맞는 전체 게시글 개수 조회
+		int listCount = dao.searchListCount(paramMap);
+		Pagination pagination = new Pagination((int) paramMap.get("cp"), listCount);
+		List<Board> boardList = dao.searchBoardList(pagination, paramMap);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("boardList", boardList);
+
+		return map;
+	}
+
 	// 게시글 상세 조회
 	@Override
 	public BoardDetail selectBoardDetail(int boardNo) {
@@ -67,23 +86,24 @@ public class BoardServiceImpl implements BoardService {
 		return dao.updateReadCount(boardNo);
 	}
 
-	// 게시글 작성 + image삽입 구현
-
-	// Spring에서 트랜잭션 처리하는 방법
-
-	// * AOP (관점 지향 프로그래밍)을 이용해 DAO -> Service 또는 Service 코드 수행 반환되는 시점에
-	// 예외가 발생시 rollback을 수행 (관점지향 ~~할 때 , ~~ 할 경우 )
-
-	// 방법 1) <tx:advice> xml을 이용한 방식 -> 패턴을 지정하며 일치하는 메서드 호출 시 자동으로 트랜잭션을 제어
-	// 너무 빡빡해서 느려짐
-
-	// 방법 2) @Transactional 어노테이션 활용 - 선언적 트랜잭션 처리 방법.
-	// RunTimeException (Unchecked Exception) 처리를 기본값으로 같는다
-
-	// Checked Exception : 예외 처리가 필수 ( transFerTo ) == 외부 요소들 , 발생시 충격강도가 강할때 ,
-	// SQL관련 예외 , 파일 업로드 관련 예외
-	// UnChecked Exception : 예외 처리가 선택 ( int a = 10/0; == 산술적 예외 ) == 사용자의 문제들
-
+	/*
+	 * // 게시글 작성 + image삽입 구현
+	 * 
+	 * // Spring에서 트랜잭션 처리하는 방법
+	 * 
+	 * // * AOP (관점 지향 프로그래밍)을 이용해 DAO -> Service 또는 Service 코드 수행 반환되는 시점에 // 예외가
+	 * 발생시 rollback을 수행 (관점지향 ~~할 때 , ~~ 할 경우 )
+	 * 
+	 * // 방법 1) <tx:advice> xml을 이용한 방식 -> 패턴을 지정하며 일치하는 메서드 호출 시 자동으로 트랜잭션을 제어 //
+	 * 너무 빡빡해서 느려짐
+	 * 
+	 * // 방법 2) @Transactional 어노테이션 활용 - 선언적 트랜잭션 처리 방법. // RunTimeException
+	 * (Unchecked Exception) 처리를 기본값으로 같는다
+	 * 
+	 * // Checked Exception : 예외 처리가 필수 ( transFerTo ) == 외부 요소들 , 발생시 충격강도가 강할때 ,
+	 * // SQL관련 예외 , 파일 업로드 관련 예외 // UnChecked Exception : 예외 처리가 선택 ( int a = 10/0;
+	 * == 산술적 예외 ) == 사용자의 문제들
+	 */
 	// rollbackFor : rollback을 수행하기 위한 예외의 종류를 작성한다.
 	@Transactional(rollbackFor = { Exception.class })
 	@Override
@@ -154,12 +174,79 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return boardNo;
 	}
-	
-	//게시글 삭제
+
+	// 게시글 삭제
 	@Override
 	public int deleteBoard(int boardNo) {
 		return dao.deleteBoard(boardNo);
 	}
 
-	
+	// 게시글 수정
+	@Transactional(rollbackFor = { Exception.class }) // 모든종류의 예외 발생 시 현재 서비스 모든 내용 rollback 수행
+	@Override
+	public int updateBoard(BoardDetail detail, List<MultipartFile> imageList, String webPath, String folderPath,
+			String deleteList) throws IOException {
+
+		// XSS , 개행문자
+		detail.setBoardTitle(Util.XSSHandling(detail.getBoardTitle()));
+		detail.setBoardContent(Util.newLineHandling(Util.XSSHandling(detail.getBoardContent())));
+
+		// 2. 게시글만 수정하는 DAO 호출 (제목,내용,마지막 수정일)만 수정하는 DAO 호출
+		int result = dao.updateBoard(detail);
+
+		if (result > 0) { // 성공한 경우
+			// 3. 업로드된 이미지만 분류
+			List<BoardImage> boardImageList = new ArrayList<BoardImage>();
+			List<String> reNameList = new ArrayList<String>();
+
+			for (int i = 0; i < imageList.size(); i++) {
+				if (imageList.get(i).getSize() > 0) {
+					String rename = Util.fileRename(imageList.get(i).getOriginalFilename());
+					reNameList.add(rename);
+					BoardImage img = new BoardImage();
+					img.setBoardNo(detail.getBoardNo());
+					img.setImageLevel(i); // 이미지 순서
+					img.setImageOriginal(imageList.get(i).getOriginalFilename());
+					img.setImageReName(webPath + rename);
+					boardImageList.add(img);
+				}
+			} // FOR문 종료
+
+			// 4) deleteList를 이용해 이미지 삭제
+			if (!deleteList.equals("")) {// 빈칸이 아니라면
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("boardNo", detail.getBoardNo());
+				map.put("deleteList", deleteList);
+				result = dao.deleteBoardImage(map);
+			}
+
+			if (result > 0) {// 삭제한 이미지가 있을경우 우선
+				// 5) boardImageList 순차 접근
+
+				for (BoardImage img : boardImageList) { // 해당 컬렉션에 값이 없다면 자동으로 진행되지 않는다.
+					result = dao.updateBoardImage(img); // 변경명 , 원복명 , 게시글번호 ,레벨
+
+					// 1 : 수정 성공 (기존 이미지가 있엇다)
+					// 2 : 원본 이미지가 없기 때문에 0이 온다
+
+					// 6) update를 실패하면 INSERT로 수행
+					if (result == 0) {
+						result = dao.insertBoardImage(img);
+						// 값을 직접 대입해서 삽입하는 경우 결과가 0이 나올 수가 없다
+						// 단, 예외(제약조건 위베 , sql 문법 오류) 등은 발생가능
+					}
+				} // fOR문 끝
+
+				if (!boardImageList.isEmpty() && result != 0) {
+					for (int i = 0; i < boardImageList.size(); i++) {
+						// i번째 진짜 입력된 이미지의 레벨을 얻어오기
+						int index = boardImageList.get(i).getImageLevel();
+						imageList.get(index).transferTo(new File(folderPath + reNameList.get(i)));
+					}
+				}
+			} // if문 끝
+		}
+		return result;
+	}
+
 }

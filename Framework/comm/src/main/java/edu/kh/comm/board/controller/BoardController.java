@@ -2,6 +2,7 @@ package edu.kh.comm.board.controller;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.comm.board.model.service.BoardService;
 import edu.kh.comm.board.model.vo.BoardDetail;
+import edu.kh.comm.common.Util;
 import edu.kh.comm.member.model.vo.Member;
 
 @Controller // controller여야지 dispatcherServlet에서 요청은 전달해줌
@@ -50,15 +52,27 @@ public class BoardController {
 
 	// 게시글 목록 조회
 	@GetMapping("/list/{boardCode}")
-	public String boardList(@PathVariable("boardCode") int boardCode
-	// 없어되 하지만 없으면 기본값을 1으로 세팅해라
-			, @RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model) {
-
+	public String boardList(@PathVariable("boardCode") int boardCode,
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model,
+			@RequestParam Map<String, Object> paramMap) {
+		// 검색 요청인 경우 : key, query가 담겨있다. 또 CP가 있을~수도 있다
 		// 게시글 목록 조회 서비스
 		// 1.게시판 이름 조회 -> Intetcepor로 올려둔 BoardTypeList 사용 해도 될듯?
 		// 2.페이지네이션 객체 생성 (listCount)
 		// 3.게시글 목록 조
-		Map<String, Object> map = service.selectBoardList(cp, boardCode);
+		Map<String, Object> map = null;
+
+		if (paramMap.get("key") == null) { // 검색이 아는경우
+			map = service.selectBoardList(cp, boardCode);
+		} else { // 검색인 경우 검색용 service 호출
+			// 검색에 필요한 데이터를 paramMAP에 모두 담아서 서비스 호출
+			// -> key, query ,cp , boardCode
+			paramMap.put("cp", cp);
+			paramMap.put("boardCode", boardCode);
+
+			map = service.searchBoardList(paramMap);
+		}
+
 		model.addAttribute("map", map);
 		return "board/boardList";
 	}
@@ -142,104 +156,119 @@ public class BoardController {
 
 		return "board/boardDetail";
 	}
-	
-	//게시글 작성 화면 이동
+
+	// 게시글 작성 화면 이동
 	@GetMapping("/write/{boardCode}")
-	public String boardWriteForm(@PathVariable int boardCode,String mode) {
-		
-		if(mode.equals("update")) {
-			//게시글 상세조회 서비스
+	public String boardWriteForm(@PathVariable int boardCode, String mode,
+			@RequestParam(value = "boardNo", required = false, defaultValue = "0") int boardNo, Model model) {
+
+		if (mode.equals("update")) {
+			BoardDetail detail = service.selectBoardDetail(boardNo);
+			// --> 개행 처리 되어있는 상태
+			detail.setBoardContent(Util.newLineClear(detail.getBoardContent()));
+			model.addAttribute("detail", detail);
 		}
-		
+
 		return "board/boardWriteForm";
 	}
-	
-	//게시글 작성 (삽입 / 수정)
+
+	// 게시글 작성 (삽입 / 수정)
 	@PostMapping("/write/{boardCode}")
 	public String boardWrite(BoardDetail detail // boardTitle,boardContent
-							,@RequestParam(value="images" , required = false)List<MultipartFile> imageList //이미지 5장이 바이트코드 형태로 넘어오게 된다
-							,@PathVariable("boardCode") int boardCode
-							,String mode
-							,@ModelAttribute("loginMember")Member loginMember //작성한 사람의 로그인 번호를 가져오기 위해서 필요함 --클래스레벨에서 SessionAttributes 사용
-							,HttpServletRequest req
-							,RedirectAttributes ra)throws Exception{
-		//매개변수 7종류 ㅎㅎㅎ
-		
-		
-	//1) 로그인한 회원 번호 얻어와서 detail에 세팅
+			, @RequestParam(value = "images", required = false) List<MultipartFile> imageList // 이미지 5장이 바이트코드 형태로 넘어오게
+																								// 된다
+			, @PathVariable("boardCode") int boardCode, String mode, @ModelAttribute("loginMember") Member loginMember,
+			HttpServletRequest req, RedirectAttributes ra,
+			@RequestParam(value = "deleteList", required = false) String deleteList,
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp) throws Exception {
+		// 매개변수 7종류 ㅎㅎㅎ
+
+		// 1) 로그인한 회원 번호 얻어와서 detail에 세팅
 		detail.setMemberNo(loginMember.getMemberNo());
 		detail.setProfileImage(loginMember.getProfileImage());
-		
-	//2) 이미지 저장 경로 얻어오기 ( WebPath  / FolderPath )  - 웹상에서 접근하는 경로와 실제 저장될 경로
-		String webPath = "/resources/images/board/";
-		//webPath 까지의 실제 경로 *물리적인 서버 저장 장소
-		String folderPath = req.getSession().getServletContext().getRealPath(webPath); 
-		logger.info("저장한 폴더 경로"+folderPath);
-		logger.info("어떻게 제거 못하나? "+req.getSession().getServletContext());
-//		logger.info("웹경로를 제거한 경로"+req.getSession().getServletContext().getRealPath(webPath));
-		
-	//3) 비지니스 로직 수행 
-		if(mode.equals("insert")) { //게시글을 새로 작성 할 때
-			//게시글 부분 삽입 ( 제목 , 내용 , 작성자 번호 , 게시판 코드
-			//삽입된 게시글의 번호(boardNo)이 필요
-			//왜?? 성공하면 상세조회 페이지로 보내버릴려고
-			
-			//게시글에 포함된 이미지 정보를 삽입( 0 ~ 5 , 게시글 번호 필요)
-			//-> DB에 저장되면 메모리에 저장된 이미지를 실제로 서버에 저장 ( transFer() )
 
-			//단 , 두번의 Insert 중 한번이라도 실패하면 전체 rollback (트랜잭션 처리 )  
-			
-			//수행하고 작성된 게시글 번호 반환 받기
-			int boardNo = service.insertBoard(detail,imageList,webPath,folderPath);
-			
-			
+		// 2) 이미지 저장 경로 얻어오기 ( WebPath / FolderPath ) - 웹상에서 접근하는 경로와 실제 저장될 경로
+		String webPath = "/resources/images/board/";
+		// webPath 까지의 실제 경로 *물리적인 서버 저장 장소
+		String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+		logger.info("저장한 폴더 경로" + folderPath);
+		logger.info("어떻게 제거 못하나? " + req.getSession().getServletContext());
+//		logger.info("웹경로를 제거한 경로"+req.getSession().getServletContext().getRealPath(webPath));
+
+		// 3) 비지니스 로직 수행
+		if (mode.equals("insert")) { // 게시글을 새로 작성 할 때
+			// 게시글 부분 삽입 ( 제목 , 내용 , 작성자 번호 , 게시판 코드
+			// 삽입된 게시글의 번호(boardNo)이 필요
+			// 왜?? 성공하면 상세조회 페이지로 보내버릴려고
+
+			// 게시글에 포함된 이미지 정보를 삽입( 0 ~ 5 , 게시글 번호 필요)
+			// -> DB에 저장되면 메모리에 저장된 이미지를 실제로 서버에 저장 ( transFer() )
+
+			// 단 , 두번의 Insert 중 한번이라도 실패하면 전체 rollback (트랜잭션 처리 )
+
+			// 수행하고 작성된 게시글 번호 반환 받기
+			int boardNo = service.insertBoard(detail, imageList, webPath, folderPath);
+
 			String path = null;
 			String msg = null;
-			
-			if(boardNo > 0) {
+
+			if (boardNo > 0) {
 				// board / write / 1
 				// board / detail /1 /게시글번호
-				path = "../detail/"+boardCode+"/"+boardNo;
-				msg ="게시글이 작성되었습니다";
-			}else {
+				path = "../detail/" + boardCode + "/" + boardNo;
+				msg = "게시글이 작성되었습니다";
+			} else {
 				path = req.getHeader("refere");
-				msg="게시글 작성 실패";
+				msg = "게시글 작성 실패";
 			}
-			
-			ra.addFlashAttribute("message",msg);
-			return "redirect:"+path;
-			
-			
-		}else { //게시글을 수정할 때.
-			
+
+			ra.addFlashAttribute("message", msg);
+			return "redirect:" + path;
+
+		} else { // 게시글을 수정할 때. mode = update
+
+			// 게시글수정 서비스 호출
+			// 게시글 번호를 알고 있기 때문에 수정한 결과만 반환 받으면 된다.
+			int result = service.updateBoard(detail, imageList, webPath, folderPath, deleteList);
+			String path = null;
+			String msg = null;
+
+			if (result > 0) {
+
+				path = "../detail/" + boardCode + "/" + detail.getBoardNo() + "?cp=" + cp;
+				msg = "게시글 수정 성공";
+
+			} else {
+				path = req.getHeader("refere");
+				msg = "게시글 수정 실패!!";
+			}
+
+			ra.addFlashAttribute("message", msg);
+
+			return "redirect:" + path;
 		}
-		
-		
-		
-		return null;
+
 	}
-	
-	//게시글 삭제 (상태변경)
+
+	// 게시글 삭제 (상태변경)
 	@GetMapping("/delete/{boardCode}/{boardNo}")
-	public String deleteBoard(@PathVariable("boardCode")int boardCode
-							,@PathVariable("boardNo")int boardNo
-							,RedirectAttributes ra
-							,HttpServletRequest req){
+	public String deleteBoard(@PathVariable("boardCode") int boardCode, @PathVariable("boardNo") int boardNo,
+			RedirectAttributes ra, HttpServletRequest req) {
 		String msg = null;
 		String path = null;
-		
+
 		int r = service.deleteBoard(boardNo);
-		
-		if(r > 0) {
-			path = "redirect:../../list/"+boardCode;
-			msg="정삭적으로 삭제되었습니다";
-		}else {
-			path = "redirect:"+req.getHeader("referer");
-			msg="삭제에 실패하였습니다";			
+
+		if (r > 0) {
+			path = "redirect:../../list/" + boardCode;
+			msg = "정삭적으로 삭제되었습니다";
+		} else {
+			path = "redirect:" + req.getHeader("referer");
+			msg = "삭제에 실패하였습니다";
 		}
-		
-		ra.addFlashAttribute("message",msg);
-		
+
+		ra.addFlashAttribute("message", msg);
+
 		return path;
 	}
 }

@@ -125,7 +125,6 @@
             // 주소에 작성된 쿼리스트링에서 필요한 파라미터만 얻어와서 사용
             // 1) 쿼리스트링에 존재하는 파라미터 모두 얻어오기
             //const params = new URL(location.href).searchParams;
-            
             // 2) 원하는 파라미터만 얻어와 변수에 저장
             //const no = "?no=" + params.get("no");   // ?no=1508
             //const type = "&type=" + params.get("type"); // &type=1

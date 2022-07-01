@@ -100,7 +100,7 @@
 		ORDER BY BOARD_NO DESC
 	</select>
 
-	<!-- 게시글 하나 상새 조회 -->
+	<!-- 게시글 하나 상세 조회 -->
 	<select id="selectBoardDetail" resultMap="detail_rm">
 		SELECT BOARD_NO,
 		BOARD_TITLE, BOARD_CONTENT,
@@ -175,6 +175,115 @@
 	<update id="deleteBoard">
 		UPDATE BOARD SET
 		BOARD_ST = 'Y'
-		WHERE BOARD_NO = #{boardNo}
+		WHERE BOARD_NO =
+		#{boardNo}
 	</update>
+
+	<update id="updateBoard">
+		UPDATE BOARD SET
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent},
+		UPDATE_DT = SYSDATE
+		WHERE BOARD_NO =
+		#{boardNo}
+	</update>
+
+
+	<!-- 게시글 이미지 삭제 IN 구문 작성시 삭제되는 파일 레벨의 '' 홑따옴표가 없도로 주의해야 한다. -->
+	<delete id="deleteBoardImage">
+		DELETE FROM BOARD_IMG
+		WHERE BOARD_NO = ${boardNo}
+		AND
+		IMG_LEVEL IN (${deleteList})
+	</delete>
+
+	<!-- 게시글 하나 수정 -->
+	<update id="updateBoardImage">
+		UPDATE BOARD_IMG SET
+		IMG_RENAME =#{imageReName},
+		IMG_ORIGINAL=#{imageOriginal}
+
+		WHERE BOARD_NO=#{boardNo}
+		AND IMG_LEVEL = #{imageLevel}
+	</update>
+
+	<!-- 게시글 하나 삽입 -->
+	<insert id="insertBoardImage">
+		INSERT INTO BOARD_IMG VALUES(
+		SEQ_IMG_NO.NEXTVAL
+		,#{imageReName}
+		,#{imageOriginal}
+		,#{imageLevel}
+		,#{boardNo}
+		)
+	</insert>
+
+	<!-- 검색된 게시글의 전체 개수를 조회 -->
+	<select id="searchListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		JOIN MEMBER_S USING(MEMBER_NO)
+		WHERE BOARD_CD =#{boardCode}
+		AND
+		BOARD_ST = 'N'
+
+		<if test='query != null and  query != "" '>
+			AND
+
+			<choose>
+				<when test='key =="t"'>
+					BOARD_TITLE LIKE '%${query}%'
+				</when>
+				<when test='key =="c"'>
+					BOARD_CONTENT LIKE '%${query}%'
+				</when>
+				<when test='key =="tc"'>
+					( BOARD_CONTENT LIKE '%${query}%' OR  BOARD_TITLE LIKE '%${query}%')
+				</when>
+				<when test='key =="w"'>
+					MEMBER_NICK LIKE '%${query}%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="searchBoardList" resultMap="board_rm">
+      SELECT BOARD_NO,
+      BOARD_TITLE, MEMBER_NICK, READ_COUNT,
+      CASE WHEN SYSDATE - CREATE_DT &lt; 1
+      THEN TO_CHAR(CREATE_DT, 'HH:MI')
+      ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
+      END CREATE_DT,
+
+      (SELECT IMG_RENAME FROM BOARD_IMG
+      WHERE BOARD.BOARD_NO = BOARD_IMG.BOARD_NO
+      AND IMG_LEVEL = 0) THUMBNAIL
+
+      FROM BOARD
+      JOIN BOARD_TYPE USING(BOARD_CD)
+      JOIN MEMBER_S USING(MEMBER_NO)
+      WHERE BOARD_ST = 'N'
+      AND BOARD_CD = ${boardCode}
+      
+      <if test='query != null and  query != "" '>
+			AND
+			<choose>
+				<when test='key =="t"'>
+					BOARD_TITLE LIKE '%${query}%'
+				</when>
+				<when test='key =="c"'>
+					BOARD_CONTENT LIKE '%${query}%'
+				</when>
+				<when test='key =="tc"'>
+					( BOARD_CONTENT LIKE '%${query}%' OR  BOARD_TITLE LIKE '%${query}%')
+				</when>
+				<when test='key =="w"'>
+					MEMBER_NICK LIKE '%${query}%'
+				</when>
+			</choose>
+		</if>
+      
+      ORDER BY BOARD_NO DESC
+	</select>
+
 </mapper>

@@ -1,6 +1,7 @@
 package edu.kh.comm.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -108,6 +109,56 @@ public class BoardDAO {
 	 */
 	public int deleteBoard(int boardNo) {
 		return sqlSession.update("boardMapper.deleteBoard",boardNo);
+	}
+
+	
+	//게시글'만' 수정
+	public int updateBoard(BoardDetail detail) {
+		return sqlSession.update("boardMapper.updateBoard",detail);
+	}
+
+	//게시글의 이미지들 삭제
+	public int deleteBoardImage(Map<String, Object> map) {
+		return sqlSession.delete("boardMapper.deleteBoardImage",map);
+	}
+
+	/**게시글 이미지 1장 수정
+	 * @param img
+	 * @return
+	 */
+	public int updateBoardImage(BoardImage img) {
+		return sqlSession.update("boardMapper.updateBoardImage",img);
+	}
+
+	/**게시글 한장 삽입이 안될 경우 새로 insert
+	 * @param img
+	 */
+	public int insertBoardImage(BoardImage img) {
+		return sqlSession.insert("boardMapper.insertBoardImage",img);
+	}
+
+	/**검색 조건에 맞는 전체 게시글 목록 조회
+	 * @param paramMap
+	 * @return
+	 */
+	public int searchListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("boardMapper.searchListCount",paramMap);
+	}
+
+	/**검색조건에 맞는 게시글 목록을 조회 (페이지 처리 적용)
+	 * @param pagination
+	 * @param paramMap
+	 * @return list
+	 */
+	public List<Board> searchBoardList(Pagination pagination, Map<String, Object> paramMap) {
+			
+		
+		//offset : 몇개의 행을 건너 뛸 것인가
+		//limit : 건너뛴 후 몇개의 행을 조회할 것인가
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset,pagination.getLimit());
+		return sqlSession.selectList("boardMapper.searchBoardList",paramMap,rowBounds);
+		
 	}
 
 }

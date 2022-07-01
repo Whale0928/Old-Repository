@@ -133,8 +133,13 @@
                         <c:set var="cp" value="${param.cp}" />
                     </c:if>
 
+                    <%-- 원래 주소 --%>
+                    <%-- /detail/3/write?mode=update&type=&cp=1&no=1538 --%>
 
-                    <button id="updateBtn" onclick="location.href='write?mode=update&type=${param.type}&cp=${cp}&no=${detail.boardNo}'">수정</button>                       
+                    <%-- 이제 보낼 --%>
+                    <%-- board/write/3/1538?cp=1 --%>
+
+                    <button id="updateBtn" onclick="location.href='../../write/${boardCode}?mode=update&cp=${cp}&boardNo=${detail.boardNo}'">수정</button>                       
                     <button id="deleteBtn">삭제</button>
                 </c:if>
 
@@ -153,10 +158,7 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 
-    <!-- jQuery 추가 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <script src="${contextPath}/resources/js/board/board.js"></script>
 
 
     <script>
@@ -182,7 +184,10 @@
 
         const boardCode = "${boardCode}"; //게시판 종류 번호를 전역변수로 생성해서 js파일에서도 쉽게 사용한다.
     </script>
+    <!-- jQuery 추가 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script src="${contextPath}/resources/js/board/board.js"></script>
     <script src="${contextPath}/resources/js/board/reply.js"></script>
 
 
