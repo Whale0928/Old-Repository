@@ -42,8 +42,6 @@ socket.on("chatting",(data)=>{
     displayContainer.scrollTo(0,displayContainer.scrollHeight);
 })
 
-
-
 function LiModel(name,msg,time){
     this.name=name;
     this.msg = msg;

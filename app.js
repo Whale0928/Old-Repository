@@ -36,8 +36,6 @@ function send(data) {
     })
 }
 
-//console.log(__dirname);
-app.use(express.static(path.join(__dirname, "src")))
 
 io.on("connection", (socket) => {
     socket.on("chatting", (data) => {
@@ -54,4 +52,6 @@ io.on("connection", (socket) => {
 //프로세스에 설정된 기본 포드 혹은 5000번
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Run on server${PORT}`));
+//console.log(__dirname);
+//app.use(express.static(path.join(__dirname, "src")))
 
