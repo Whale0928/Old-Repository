@@ -16,6 +16,10 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+//EJS등록을 위한 코드
+app.set('view engine', 'ejs');
+
+
 //Mongo DB 연결용 객체
 const MongoClient = require('mongodb').MongoClient;
 
@@ -61,6 +65,7 @@ app.get("/write", function (요청, 응답) {
     응답.sendFile(__dirname + '/write.html')
 })
 
+//할일 작성 시 수행
 app.post("/add", function (req, resp) {
     resp.send("전송 완료");
     let todo = req.body.title;
@@ -69,7 +74,10 @@ app.post("/add", function (req, resp) {
     db.collection('post').insertOne({_id:time,제목:todo,날짜:day},function(){
         console.log('저장완료');
     });
+});
 
 
-})
-
+//DB 조회시 수행
+app.get("/list",function(req,resp){
+    resp.render('list.ejs')
+});
