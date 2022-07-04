@@ -27,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.comm.board.model.service.BoardService;
+import edu.kh.comm.board.model.service.ReplyService;
 import edu.kh.comm.board.model.vo.BoardDetail;
+import edu.kh.comm.board.model.vo.Reply;
 import edu.kh.comm.common.Util;
 import edu.kh.comm.member.model.vo.Member;
 
@@ -38,6 +40,9 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	
+	@Autowired
+	private ReplyService replyService;
 	// @Autowired
 	private Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -93,6 +98,13 @@ public class BoardController {
 		// 세션에 올라가있는 LoginMember가 없으면 예외 발생
 
 		if (detail != null) {
+			
+			
+			//댓글 목록을 조회해 Request Scope에 추가
+			List<Reply> rList = replyService.selectReplyList(boardNo);
+			model.addAttribute("rList",rList);
+			
+			
 			Member loginMember = (Member) session.getAttribute("loginMember");
 
 			int memberNo = 0;

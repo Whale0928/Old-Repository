@@ -101,3 +101,14 @@
     height: 90px;
     resize: none;
 }
+
+/* 답글 영역 스타일 */
+.child-reply{
+    padding-left: 100px;
+    background-color: rgba(241, 56, 41, 0.2);
+}
+
+.grandson-reply{
+    padding-left: 150px;
+    background-color: rgba(179, 94, 86, 0.2);
+}

@@ -170,7 +170,7 @@
                                 <div>
                                     <a href="${contextPath}/member/myPage/info" id="nickname">${loginMember.memberNickname}</a>
                                     <a href="${contextPath}/member/logout" id="logout-btn">로그아웃</a>
-                                    <a href="http://localhost:5000/" id="logout-btn" onclick="open(this.href,'_black','width:300px','height:500px'); return false">채팅</a>
+                                    <a href="http://localhost:5000/chatList?loginMemberNo=${loginMember.memberNo}" id="logout-btn"  onclick="open(this.href,'_black','width:400px','height:700px'); return false">채팅</a>
 
                                 </div>
                                 <p>
