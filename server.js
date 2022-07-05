@@ -25,23 +25,37 @@ app.set('view engine', 'ejs');
 app.use('/resource/css/', express.static(__dirname+"/resource/css/"));
 app.use('/resource/js/', express.static(__dirname+"/resource/js/"));
 
+//환경변수 저장용  env 파일
+require('dotenv').config();
+
+//로그인용
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+
+//나는 '미들웨어'를 쓰겟습니다
+//요청 <-> 미들웨어 <-> 
+app.use(session({secret:'비밀코드',resave:true,saveUninitialized:false}));
+app.use(passport.initialize());
+app.use(passport.session())
+
+
+
+
 //Mongo DB 연결용 객체
 const MongoClient = require('mongodb').MongoClient;
 
 //어떤 DB에 저장할건지
 let db;
 
-MongoClient.connect('mongodb+srv://admin:qwer1234@cluster0.uztxq.mongodb.net/?retryWrites=true&w=majority', function (에러, client) {
+MongoClient.connect(process.env.COMMON_DB_URL, function (에러, client) {
     if (에러) { return console.log(에러); }
     //todoapp에 접근하겟다라는 의미
     db = client.db('todoapp');
     // 서버 구동
-    app.listen(5000, function () {
+    app.listen(process.env.PORT, function () {
         console.log("Run on Server 5000");
         console.log("DB연결 완료");
-
-            
-
     });
 })
 
@@ -71,11 +85,20 @@ app.post("/add", function (req, resp) {
     db.collection('counter').findOne({name:'게시물 갯수'},function(에러,결과){
         if(에러)return console.log(에러);
         console.log(결과.totalPost);
-        let count = 결과.totalPost
+        let 총게시물갯수 = 결과.totalPost
 
-        db.collection('post').insertOne({_id:count+1,제목: todo, 날짜: day }, function () {
+        db.collection('post').insertOne({_id:총게시물갯수,제목: todo, 날짜: day }, function () {
             console.log('저장완료');
-            db.collection('counter').insertOne({name:총개시물})
+            db.collection('counter').insertOne({name:'게시물 갯수'})
+
+            //db.collection("counter").updateOne({어떤 데이터를 수정할 지},{수정 할 값},function(){});
+            db.collection("counter").updateOne({name:'게시물 갯수'},{$inc:{totalPost:1}},function(에러,결과){
+                                                                    //연산자 {$set:{totalPost: 바꿀 값}}
+                                                                    //연산자 {$inc:{totalPost: 기존 값에 누적해줄 값}}
+                //데이터 증가 후 수행
+                if(에러){return console.log(에러);}
+            });
+            //게시글을 작성 하고 카운트를 증가 시킨다.
         });
     });
 
@@ -96,12 +119,38 @@ app.get("/list", function (req, resp) {
     });
 });
 
+app.get('/detail/:id', function(요청, 응답){
+    db.collection('post').findOne({_id:parseInt(요청.params.id)},function(에러,결과){
+        console.log(결과);
+        응답.render('detail.ejs', {data:결과} );
+    })
 
+  });
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------
 //채팅방 접속 URL
 app.get("/chatList",function(req,resp){
-    console.log('로그인한 회원의 번호 :'+req.query.loginMemberNo);
-    /* console.log('채팅방 회원의 번호 :'+req.query.chatMemberNo); */
+    console.log("Get요청입니다.");
+    return false;
+});
 
-    resp.sendFile(__dirname+'/views/chatList.html');
-    //응답.sendFile(__dirname + '/write.html')
+
+//채팅방 목록 조회
+app.post("/chatList",function(req,resp){
+    MongoClient.connect(process.env.COMMON_DB_URL, function (에러, client) {
+        if (에러) { return console.log(에러); }
+        db = client.db('ChatDB');
+    })
+    const member = JSON.parse(req.body.chatMember);
+    console.log(member);
+    if(member != null){
+        db.collection('Chat').find({name:member.memberNo}).toArray(function(에러,결과){
+            //  console.log(JSON.parse(req.body.chatMember));
+            //  console.log(결과);
+            resp.render('chatList.ejs',{member:member,chatList:결과});
+        });
+    }
 });
