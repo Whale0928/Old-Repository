@@ -42,7 +42,11 @@
 	<!-- 게시글 작성 -->
 	<insert id="insertReply">
 		INSERT INTO REPLY_S VALUES(SEQ_REPLY_NO_S.NEXTVAL,#{replyContent}, DEFAULT,
-		DEFAULT, #{memberNo},#{boardNo},DEFAULT)
+		DEFAULT, #{memberNo},#{boardNo},  
+		
+		<if test="parentReplyNo == 0">NULL</if> 
+		<if test="parentReplyNo != 0">#{parentReplyNo}</if>   
+		)
 	</insert>
 
 	<!-- 게시글 삭제 -->

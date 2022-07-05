@@ -25,14 +25,26 @@
 
 
 
-
-
-
+	<!-- 날짜별 로그 파일 생성용 appender -->
+	<appender name="dailyRollingFile"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"
+			value="C:\\WorkSpace\\Sts\\Framework\\comm\\logs\\runtime-log.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<!-- 어떤 모양으로 출력할 지. -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss} [%p] %m%n" />
+		</layout>
+	</appender>
 
 	<!-- Application Loggers -->
 	<logger name="edu.kh.comm">
 		<!-- trace < debug < info < warn -->
 		<level value="debug" />
+		<appender-ref ref="dailyRollingFile" />
 	</logger>
 
 	<!-- 3rdparty Loggers -->
@@ -54,7 +66,7 @@
 
 	<!-- ========================================================================= -->
 	<!-- sql 로그 출력용 -->
-	<!--  -->
+	<!-- -->
 
 	<logger name="java.sql.Connection">
 		<level value="debug" />

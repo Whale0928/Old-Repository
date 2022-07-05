@@ -161,4 +161,12 @@ public class BoardDAO {
 		
 	}
 
+	/**이미지 목록들 조회
+	 * @return
+	 */
+	public List<String> selectDbList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("boardMapper.selectDbList");
+	}
+
 }

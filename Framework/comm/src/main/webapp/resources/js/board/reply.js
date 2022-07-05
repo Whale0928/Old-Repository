@@ -344,4 +344,105 @@ function updateReply(replyNo, btn) {
 }
 
 
-////
+
+
+// -----------------------------------------------------------------------------------
+// 답글 작성 화면 추가
+// -> 답글 작성 화면은 전체 화면에 1개만 존재해야 한다.
+
+//이전 모습을 기록하는 변수
+let beforeReplyInsert; 
+
+function showInsertReply(parentReplyNo,btn){
+    
+    const temp = document.getElementsByClassName("replyInsertContent");
+
+    if(temp.length > 0){ //답글 작성 텍스트영역이 존재하는 경우
+        if (confirm("다른 답글을 작성중입니다, 현재 댓글에 답글을 작성 하시겠습니까?")) {
+            temp[0].nextElementSibling.remove();//형제 요소부터 삭제
+            temp[0].remove();                   //기준점은 마지막에 삭제해야 한다.
+        }else{
+            return; //함수를 종료 시켜 답글이 생성되지 않게 한다.
+        }
+    }
+    
+    
+    //답글을 작성할 영역
+    const textarea = document.createElement("textarea");
+    textarea.classList.add("replyInsertContent");
+
+    // 답글 버튼의 부모요소의 뒤쪽에 textarea 추가
+    // after
+    btn.parentElement.after(textarea);
+    
+
+    //답글 버튼 영역 + 등록/취소 버튼 생성+추가
+    const replyBtnArea=document.createElement("div");
+    replyBtnArea.classList.add("reply-btn-area");
+
+    //등록버튼
+    const insertBtn = document.createElement("button");
+    insertBtn.innerText="등록";
+    insertBtn.setAttribute("onclick","insertChildReply("+parentReplyNo+",this)");
+
+    //취소
+    const cancelBtn = document.createElement("button");
+    cancelBtn.innerText="취소";
+    cancelBtn.setAttribute("onclick","insertCancel(this)");
+
+    //답글 버튼 영역에 자식으로 등록 취소 버튼을 추가
+    replyBtnArea.append(insertBtn,cancelBtn);
+
+    //답글 버튼 영역을 화면에 추가된 textarea 영역의 다음에다가 추가
+    textarea.after(replyBtnArea);
+}
+
+//답글 취소 버튼 
+function insertCancel(cBtn){
+    cBtn.parentElement.previousElementSibling.remove() //취소의 부모의 이전 요소 == textarea
+    cBtn.parentElement.remove();          //취소의 부모요소 (reply-btn-area) 제거
+}
+
+//답글 작성 버튼
+function insertChildReply(parentReplyNo,btn){
+
+// 누가      ? memberNo  => loginMemberNo
+// 어떤 내용 ?  textarea 에 작성된 내용  => boardNo
+// 몇번 게시글 ? 현재 게시글의 boardNo;  
+// 부모댓글의 번호 ? parentReplyNo    => 매개변수로 전달된
+
+const replyContent=btn.parentElement.previousElementSibling.value;
+
+if(replyContent.trim().length==0){
+    alert("작성 후 등록해주세요");
+    btn.parentElement.previousElementSibling.value="";
+    btn.parentElement.previousElementSibling.focus();
+    return;
+}
+
+//위의 if문이 수행 안되면 정상적인 작성이라는 의미.
+
+    $.ajax({
+        url:contextPath+'/reply/insert',
+        data:{"memberNo":loginMemberNo,
+              "boardNo":boardNo,
+              "parentReplyNo":parentReplyNo,
+              "replyContent":replyContent
+            },
+        type:"POST",
+        success:function(r){
+            if(r>0){ //작성 성공
+                alert("답글이 등록되었습니다");
+                selectReplyList();
+            }else{ //작성 실패
+                alert("답글 등록이 실패하였습니다");
+            }
+        },
+        error:function(){
+
+        }
+        
+    })
+
+
+}

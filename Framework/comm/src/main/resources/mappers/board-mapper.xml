@@ -285,5 +285,9 @@
       
       ORDER BY BOARD_NO DESC
 	</select>
+	
+	<select id="selectDbList" resultType="string">
+	SELECT IMG_RENAME FROM BOARD_IMG
+	</select>
 
 </mapper>

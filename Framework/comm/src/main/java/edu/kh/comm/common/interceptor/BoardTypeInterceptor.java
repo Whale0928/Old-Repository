@@ -52,7 +52,6 @@ public class BoardTypeInterceptor implements HandlerInterceptor {
 		if (application.getAttribute("boardTypeList") == null) {
 			List<BoardType> boardTypeList = boardService.selectBoardType();
 			application.setAttribute("boardTypeList", boardTypeList);
-			logger.debug(boardTypeList.toString());
 		}
 
 		return HandlerInterceptor.super.preHandle(request, response, handler);

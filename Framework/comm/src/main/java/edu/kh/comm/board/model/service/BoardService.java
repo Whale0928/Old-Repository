@@ -62,7 +62,16 @@ public interface BoardService {
 	int updateBoard(BoardDetail detail, List<MultipartFile> imageList, String webPath, String folderPath,
 			String deleteList)throws IOException;
 
+	/**게시글 검색
+	 * @param paramMap
+	 * @return
+	 */
 	Map<String, Object> searchBoardList(Map<String, Object> paramMap);
+
+	/**이미지 목록들 조회
+	 * @return
+	 */
+	List<String> selectDbList();
 	
 	
 }

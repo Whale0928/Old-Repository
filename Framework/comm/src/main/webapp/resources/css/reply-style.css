@@ -112,3 +112,16 @@
     padding-left: 150px;
     background-color: rgba(179, 94, 86, 0.2);
 }
+
+
+
+
+
+/* 답글 작성 영역 */
+.replyInsertContent{
+    width: 100%;
+    height: 90px;
+    resize: none;
+    margin-top: 20px;
+    
+}

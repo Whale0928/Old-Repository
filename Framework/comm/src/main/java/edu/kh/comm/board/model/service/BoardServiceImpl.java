@@ -249,4 +249,15 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+
+	/**게시판 이미지 목록들 조회
+	 *
+	 */
+	@Override
+	public List<String> selectDbList() {
+		return dao.selectDbList();
+	}
+	
+	
+	
 }
