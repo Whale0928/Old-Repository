@@ -2,16 +2,13 @@ const express = require('express');
 const app = express();
 const path = require("path");// 서버 경로를 저장한 변수
 
-const http = require("http");  //서버의 정보
-const server = http.createServer(app);
-const socketIO = require("socket.io");
-const io = socketIO(server);
-
 const moment = require("moment");
 time = moment();
 time.format("HH:mm:ss");	// 2021.10.09 00:09:45
 
-let url = require('url');
+const http = require('http').createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(http);
 
 //  Request 객체 해석용 
 const bodyParser = require('body-parser');
@@ -53,7 +50,7 @@ MongoClient.connect(process.env.COMMON_DB_URL, function (에러, client) {
     //todoapp에 접근하겟다라는 의미
     db = client.db('todoapp');
     // 서버 구동
-    app.listen(process.env.PORT, function () {
+    http.listen(process.env.PORT, function () {
         console.log("Run on Server 5000");
         console.log("DB연결 완료");
     });
@@ -284,22 +281,52 @@ app.get("/message/:id", 로그인했니, function (요청, 응답) {
         "Cache-Control": "no-cache",
     });
 
-    
     db.collection('message').find({parent:요청.params.id}).toArray().
     then((결과)=>{
 
         응답.write('event: test\n');
         응답.write(`data:${JSON.stringify(결과)}\n\n`);
     })
+
+
+    const 찾을문서 = [
+        { $match: { 'fullDocument.parent': 요청.params.id } }
+      ];
+
+   
+    const changeStream = db.collection('message').watch(찾을문서);
+  changeStream.on('change', result => {
+    console.log(result.fullDocument);
+    var 추가된문서 = [result.fullDocument];
+    응답.write('event: test\n');
+    응답.write(`data: ${JSON.stringify(추가된문서)}\n\n`);
+  });
+
+
+});
+
+
+
+
+
+
+app.get('/socket',function(요청,응답){
+    응답.render('socket.ejs');
 })
 
+io.on('connection',function(socket){
+    console.log('소켓 접속');
+    
+    /* 어떤 유저가 user-send라는 이벤트를 보내면 함수 발생 */
+    socket.on('user-send',function(data){
+        console.log(" 소켓 아이디  "+socket.id);
+        console.log(data);
+        io.emit('broadcast',data);
+    })
 
 
 
-
-
-
-
+})
 
 
 
