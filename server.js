@@ -234,8 +234,8 @@ app.delete('/delete', function (요청, 응답) {
 //채팅 연결
 const { ObjectId } = require('mongodb');
 
-app.post('/chatroom',로그인했니, function (요청, 응답) {
- 
+app.post('/chatroom', 로그인했니, function (요청, 응답) {
+
     console.log(요청.body);
     var 저장할거 = {
         title: '무슨무슨채팅방',
@@ -250,21 +250,48 @@ app.post('/chatroom',로그인했니, function (요청, 응답) {
 
 //채팅 페이지로 이동
 app.get('/chat', 로그인했니, function (요청, 응답) {
-                                    // 배열로 저장되어 있어도 하나만 찾아도 됨
+    // 배열로 저장되어 있어도 하나만 찾아도 됨
+    console.log("채팅방 접속 : " + 요청.user._id);
     db.collection('chatroom').find({ member: 요청.user._id }).toArray().then((결과) => {
-        console.log(결과);
+
         응답.render('chat.ejs', { data: 결과 })
     })
 });
 
+app.post('/message', 로그인했니, function (요청, 응답) {
+    let 저장할거 = {
+        parent: 요청.body.parent,
+        userid: 요청.user._id,
+        content: 요청.body.content,
+        date: new Date(),
+    }
+
+    db.collection('message').insertOne(저장할거).then((결과) => {
+        console.log('DB 저장 성공');
+        응답.send(결과);
+
+    })
+})
 
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------
+app.get("/message/:id", 로그인했니, function (요청, 응답) {
+    응답.writeHead(200, {
+        "Connection": "keep-alive",
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+    });
 
+    
+    db.collection('message').find({parent:요청.params.id}).toArray().
+    then((결과)=>{
 
-
-
+        응답.write('event: test\n');
+        응답.write(`data:${JSON.stringify(결과)}\n\n`);
+    })
+})
 
 
 
