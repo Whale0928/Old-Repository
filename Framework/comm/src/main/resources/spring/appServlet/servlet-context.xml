@@ -71,7 +71,24 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!-- aop auto proxy -->
-	<aop:aspectj-autoproxy/>	
+	<aop:aspectj-autoproxy proxy-target-class="false"/> <!-- 프록시 타겟 클래스 :   -->
+	<!-- 
+	proxy-target-class : 프록시가 적용될 클래스
+	
+		인터페이스면 : false    -> Spring AOP 기본적으로 인터페이스를 상속받은 프록시가 생성되어 코드를 수행한다
+		
+		일반 클래스면 true     -> cg lib 라이브러리를 이용해서 일반 클래스를 상속받아 프록시 생성한다. 
+		
+		
+						   (HandlerMapping )
+		요청  ->[Filter] -> DispatcherServlet ->[Interceptor]-> Controller ->[AOP]-> Service  -> DAO 	-> DB	
+															
+		응답	<-[Filter] <-  DispatcherServlet <-[Interceptor]<- Controller <-[AOP]<- Service  <- DAO <- DB																		
+						   ( View Resolver)
+		
+		원하면 다른 지점에도 AOP를 껴둘 수 있다.
+		
+	 -->	
 	
 	
 	
