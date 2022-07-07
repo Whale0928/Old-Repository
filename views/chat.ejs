@@ -81,6 +81,8 @@
     <div class="container p-4 detail">
       <div class="row">
         <div class="col-3">
+            <input type="hidden" name="loginUser" id="loginUser" value="<%=loginUserID%>">
+                      
           <ul class="list-group chat-list">
 
             <% for(i=0; i<data.length; i++){ %>
@@ -113,6 +115,13 @@
 
 
     <script>
+      //로그인한 유저 정보 저장하기
+
+
+      (function(){
+        console.log("로그인 유저 아이디 번호  :  "+$('#loginUser').val());
+      })()
+      
       let 지금누른채팅방 = '';
       let eventSource;
       $(".list-group-item").click(function(){
@@ -123,35 +132,21 @@
             eventSource.close();
           }
 
-
+        const chatBox=$('.chat-content');
         eventSource = new EventSource('/message/'+지금누른채팅방); // 여기 채널로 입장.
         eventSource.addEventListener('test',function(e){
           //   <li><span class="chat-box mine">채팅방1 내용</span></li>
           let 가져온거 = JSON.parse(e.data);
           가져온거.forEach(function(i){
             
-            $('.chat-content').append(`<li><span class="chat-box mine">${i.content}</span></li>`)
-
+            //console.log(i);
+            if(i.userid == loginUser.value){
+              chatBox.append(`<li><span class="chat-box mine">${i.content}</span></li>`)
+            }else{
+              chatBox.append(`<li><span class="chat-box">${i.content}</span></li>`)
+            }
           })
-
-          /*  
-          chatList = JSON.parse(e.data);
-          
-          const chatBox = document.getElementById('chatBox');
-          chatBox.innerHTML = "";
-          
-          for(let i of chatList){
-            const li = document.createElement("li");
-            
-            const span = document.createElement("span");
-            span.classList.add('chat-box');
-            span.classList.add('mine');
-            span.innerText=i.content;
-
-            li.append(span);
-            chatBox.append(li);
-          } */
-         
+          chatBox[0].scrollTop = chatBox[0].scrollHeight
         });
       });
 
@@ -177,6 +172,22 @@
             console.log('전송 성공');
         })
       })
+
+
+      function currentTime(){
+      const now = new Date();
+
+      const time = now.getFullYear() + "년 " 
+                + addZero( now.getMonth() + 1 ) + "월 "
+                + addZero( now.getDate() ) + "일 "
+                + addZero( now.getHours()  ) + ":" 
+                + addZero( now.getMinutes() ) + ":" 
+                + addZero( now.getSeconds() ) + " "; 
+
+      return time;
+    }
+
+
     </script>
 
     <script

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    
+    <!-- 제이쿼리 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    
+    <style>
+      .chat-content {
+        height: 450px;
+        overflow-y: scroll;
+        padding: 10px;
+      }
+      *::-webkit-scrollbar-thumb {
+      height: 30%; 
+      background: #003458; 
+      border-radius: 10px;
+      }
+      .chat-list{
+        overflow: auto;
+      }
+
+      .chat-content li {
+        margin-top: 10px;
+        list-style: none;
+      }
+      .text-small {
+        font-size: 12px;
+        color: gray;
+        margin-bottom: 0;
+      }
+      .chat-box {
+        background: #eee;
+        padding: 5px;
+        border-radius: 5px;
+        float: left;
+      }
+      .mine {
+        float: right;
+      }
+      .chat-room{
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-left: 10px;
+        width: 580px;
+      }
+
+      li{        cursor: pointer;      }
+      li:hover{      background-color: #ddd;    }
+
+    </style>
+    <title><%= member.memberNickname%>님의 채팅방</title>
+       <!-- 제이쿼리 -->
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ 
+  </head>
+  <body>
+   
+    <div class="container detail" style="margin:10px;">
+      <div class="row" >
+        <div class="col-3" style="padding:0;">
+          
+          <div style="width: 100%; height:50px; background-color: gray; border-radius: 4px; margin-bottom: 3px;">
+            <span style="color:white;text-align: center;"><%=member.memberNickname%></span><br>
+            <span style="color:#ddd;text-align: center;"><%=member.memberEmail%></span>
+          </div>
+
+            <ul class="list-group chat-list">
+             
+
+            <% for(i=0; i<data.length; i++){ %>
+              <li class="list-group-item" data-id="<%=data[i]._id %>">
+
+                  <% if(member.memberNickname!=data[i].memberNickname[0]){%><h6><%=data[i].memberNickname[0]%></h6> <% } %>
+                  <% if(member.memberNickname!=data[i].memberNickname[1]){%><h6><%=data[i].memberNickname[1]%></h6> <% } %>
+                 
+                 
+                  <% if(member.memberEmail != data[i].memberEmail[0]){%><h6 class="text-small"><%=data[i].memberEmail[0]%></h6> <% } %>
+                  <% if(member.memberEmail!=data[i].memberEmail[1]){%><h6 class="text-small"><%=data[i].memberEmail[1]%></h6> <% } %>
+          
+              </li>
+            <%}%>
+
+          </ul>
+        </div>
+
+        <div class="col-9 p-0">
+          <div class="chat-room" >
+
+            <ul class="list-group chat-content" id="chatBox">
+              <li><span class="chat-box">채팅방1 내용</span></li>
+              <li><span class="chat-box">채팅방1 내용</span></li>
+              <li><span class="chat-box mine"> <%=member.memberEmail%></span></li>
+            </ul>
+
+            <div class="input-group">
+
+              <input class="form-control" id="chat-input" />
+              <button class="btn btn-secondary" id="send">전송</button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- DB에 채팅 전송을 위한 JS -->
+    <script>
+      const sendBtn = document.getElementById('send');
+      
+
+    </script>
+    <script      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"       integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"      crossorigin="anonymous"    />
+  </body>
+</html>
