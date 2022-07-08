@@ -47,12 +47,9 @@ let db;
 
 MongoClient.connect(process.env.COMMON_DB_URL, function (에러, client) {
     if (에러) { return console.log(에러); }
-    //todoapp에 접근하겟다라는 의미
-    //db = client.db('todoapp');
     db = client.db('ChatDB');
-    // 서버 구동
     http.listen(process.env.PORT, function () {
-        console.log("Run on Server 5000");
+        console.log("Run on Server 8080");
         console.log("DB연결 완료");
     });
 })
@@ -70,6 +67,11 @@ app.listen(5000, function () {
 app.get("/", function (요청, 응답) {
     응답.sendFile(__dirname + '/index.html')
 })
+
+app.get("/wealladopt-chat.du.r.appspot.com/", function (요청, 응답) {
+    응답.sendFile(__dirname + '/index.html')
+})
+
 app.get("/write", function (요청, 응답) {
     응답.sendFile(__dirname + '/write.html')
 })
@@ -257,26 +259,30 @@ app.get('/chat', 로그인했니, function (요청, 응답) {
 });
 //${JSON.stringify(요청.user)}
 
-app.post('/message', 로그인했니, function (요청, 응답) {
+
+
+//-------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------
+
+
+app.post('/message', function (요청, 응답) {
+    
     let 저장할거 = {
         parent: 요청.body.parent,
-        userid: 요청.user._id,
+        memberEmail: 요청.body.memberEmail,
         content: 요청.body.content,
         date: new Date(),
     }
-
     db.collection('message').insertOne(저장할거).then((결과) => {
-        console.log('DB 저장 성공');
+        console.log('채팅 메세지 DB 저장 성공');
         응답.send(결과);
-
     })
 })
 
 
 
-
-//-------------------------------------------------------------------------------------------------------------------------
-app.get("/message/:id", 로그인했니, function (요청, 응답) {
+app.get("/message/:id", function (요청, 응답) {
     응답.writeHead(200, {
         "Connection": "keep-alive",
         "Content-Type": "text/event-stream",
@@ -285,33 +291,30 @@ app.get("/message/:id", 로그인했니, function (요청, 응답) {
 
     db.collection('message').find({ parent: 요청.params.id }).toArray().
         then((결과) => {
-
-            응답.write('event: test\n');
+            console.log('채팅LIST 조회 성공 성공');
+            응답.write('event: chatting\n');
             응답.write(`data:${JSON.stringify(결과)}\n\n`);
         })
-
 
     const 찾을문서 = [
         { $match: { 'fullDocument.parent': 요청.params.id } }
     ];
 
-
     const changeStream = db.collection('message').watch(찾을문서);
+    //실시간 감시
     changeStream.on('change', result => {
         console.log(result.fullDocument);
+
         var 추가된문서 = [result.fullDocument];
-        console.log("추가된 채팅들\n" + 추가된문서);
-        응답.write('event: test\n');
+        console.log(추가된문서);
+        응답.write('event: chatting\n');
         응답.write(`data: ${JSON.stringify(추가된문서)}\n\n`);
     });
 
-
 });
 
-
-
-
-
+//-------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------
 
 app.get('/socket', function (요청, 응답) {
     응답.render('socket.ejs');
@@ -332,20 +335,6 @@ io.on('connection', function (socket) {
         io.to().emit('msg', data);
     })
 })
-
-
-
-
-
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------
 
@@ -356,50 +345,43 @@ app.get("/weChat", function (req, resp) {
     return false;
 });
 app.post("/weChat/list", function (req, resp) {
-    MongoClient.connect(process.env.COMMON_DB_URL, function (에러, client) {
-        if (에러) { return console.log(에러); }
-        db = client.db('ChatDB');
+
         const member = JSON.parse(req.body.member);
-        console.log(member.memberNo);
-        console.log(member.memberEmail);
+
         //나중에 프로필 이미지 연결할거. 
         //console.log('http://localhost:8080/comm'+member.profileImage); 
 
         if (member != null) {//{ memberNo: member.memberNo }
             db.collection('chatroom').find({ memberEmail: member.memberEmail }).toArray().then((결과) => {
-                console.log(결과);
-                resp.render('weChat.ejs', { data: 결과, member: member });
+                console.log('DB 조회 ');
+                resp.render('weChat.ejs', { data: 결과, member: member ,targetMemberEmail:'',parent:''});
             })
         }
-    }) //DB 연결
+   
 });
 
 app.post("/weChat/add", function (req, resp) {
-    MongoClient.connect(process.env.COMMON_DB_URL, function (에러, client) {
-        if (에러) { return console.log(에러); }
-
 
         const member = JSON.parse(req.body.member);
         const targetMember = JSON.parse(req.body.targetMember);
-
-
-        const findEmails = [
-            member.memberEmail,
-            targetMember.memberEmail
-        ]
-        console.log(member);
-        console.log(targetMember);
+        let targetMemberEmail =  targetMember.memberEmail;
+        
+        
+        console.log('----------------------------------------');
+        console.log('기본 방식 채팅 목록 조회');
+        console.log('----------------------------------------');
 
         //채팅방에 대상과의 채팅이 있는지 먼저 확인        
-        db.collection('chatroom').findOne({ memberEmail: findEmails }, function (에러, 결과) {
-            console.log(결과);
+        // db.collection('chatroom').findOne({ memberEmail: member.memberEmail,memberEmail: targetMember.memberEmail  }, 
+        db.collection('chatroom').findOne({ $and:[{memberEmail: member.memberEmail},{memberEmail: targetMember.memberEmail}]  },function (에러, 결과) {
+            
+        console.log('----------------------------------------');
+        console.log('채팅방 탐색');
+        console.log('----------------------------------------');
+            
             
             if (결과 == null) {
                 console.log('채팅방 생성');
-                //DB에 삽입
-
-
-
                 const 집어넣을값 = {
                     memberEmail: [member.memberEmail, targetMember.memberEmail],
                     memberNickname: [member.memberNickname, targetMember.memberNickname],
@@ -408,23 +390,32 @@ app.post("/weChat/add", function (req, resp) {
                 //채팅방 없으면 채팅방 개설해줌
             db.collection('chatroom').insertOne(집어넣을값, function (에러, 결과) {
                 console.log('DB저장 완료');
-                console.log(결과);
             });
 
-            } else {
-               
-            }
-
+            } 
 
             db.collection('chatroom').find({ memberEmail: member.memberEmail }).toArray().then((결과) => {
-                console.log(결과);
-                resp.render('weChat.ejs', { data: 결과, member: member });
+
+                let parent='';
+                
+                let 보낼값들= { 
+                    data: 결과, 
+                    member: member,
+                    targetMemberEmail:targetMemberEmail,
+                };
+
+
+                //DB에서 둘이 있는 채팅방을 다시 조회 아이디 값만 보낼값에 추가해서 보내기
+                db.collection('chatroom').findOne({ $and:[{memberEmail: member.memberEmail},{memberEmail: targetMember.memberEmail}]  },function (에러, 결과){
+                    보낼값들.parent = 결과._id;
+                    resp.render('weChat.ejs',보낼값들);
+                })      
+                    
             })
 
 
         })
-
-
-
-    }) //DB 연결
 });
+
+// --------------------------------------------------------------
+//1대1 채팅 신청시 둘의 DB으 
