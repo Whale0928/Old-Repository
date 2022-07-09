@@ -54,16 +54,6 @@ MongoClient.connect(process.env.COMMON_DB_URL, function (에러, client) {
     });
 })
 
-//어떤 사람이 add로 경로를 요청하면 데이터 2개를 보내주는데 (날짜 제목) , 
-// 이때 'post'라는 이름을 가진 colleection에 두개의데이터 저장하기.
-
-/* // 서버 구동
-app.listen(5000, function () {
-    console.log("Run on Server 5000");
-}); */
-/* app.get(" 경로 " , function(){}); */
-//app.use(express.static(path.join(__dirname, "src")))
-
 app.get("/", function (요청, 응답) {
     응답.sendFile(__dirname + '/index.html')
 })
