@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>ServletProject1</display-name>
+  
+  
+  <!--메인 페이지 목록.
+  		웰컴 페이지를 순서대로 조회해서 첫 화면으로 출력해준다 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <!-- ServletEx1 클래스 Servlet으로 등록(자격부여) -->
+  <servlet>
+  	 <!-- 등록된 Servlet 클래스의 이름을 지정하는 역할 -->
+  	 <servlet-name>example1</servlet-name>
+  	 <!-- Servlet으로 등록하고자 하는 클래스 파일의 [패키지명 + 클래스명] -->
+  	 <servlet-class>edu.kh.servlet.ServletEx1</servlet-class>
+  </servlet>
+  
+  
+  <!-- 요청 주소를 처리한 Servlet 과 연결을 지정 -->
+  <servlet-mapping>
+	<!-- 이 이름을 가진 서블릿이 처리 -->
+	<servlet-name>example1</servlet-name>
+	
+	<!-- 이 주소로 요청이 들어오면 -->
+	<!-- 요청 주소 앞에 '/'가 들어와야 한다. -->
+	<url-pattern>/example1.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- ===================================================== -->
+  <!-- 클래스를 Servlet으로 등록하고 servlet이름 지정 -->
+ 	<servlet>
+ 		<servlet-name>example2</servlet-name>
+ 		<servlet-class>edu.kh.servlet.ServletEx2</servlet-class>
+ 	</servlet>
+ 	
+ 	<servlet-mapping>
+ 		<servlet-name>example2</servlet-name>
+ 		<url-pattern>/example2.do</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	
+  <!-- ===================================================== -->
+  	<servlet-mapping>
+  		<servlet-name>example3</servlet-name>
+  		<url-pattern>/example3.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>example3</servlet-name>
+  		<servlet-class>edu.kh.servlet.ServletEx3</servlet-class>
+  	</servlet>
+  	
+  
+ 	
+</web-app>

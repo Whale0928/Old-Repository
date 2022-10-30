@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 목록 조회 / 로그인</title>
+</head>
+<body>
+            <!-- 가상의 경로 -->
+    <h1><a href="member/selectAll">회원 목록 조회</a></h1>
+
+    <fieldset style="display: inline-block;">
+        <legend>이름으로 검색</legend>
+        <form action="member/selectName" method="get">
+            이름 : <input type="text" name="userName">
+            <button>조회</button>
+        </form>
+    </fieldset>
+
+    <hr>
+
+    <h1>로그인</h1>
+    <form action="" method="post">
+        ID: <input type="text" name="memberId"><br>
+        PW : <input type="password" name="memberPw"> <br>
+        <button>로그인</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>게시글 상세보기</title>
+<link rel="stylesheet" href="../resources/css/main-style.css">
+<link rel="stylesheet" href="../resources/css/boardDetail-style.css">
+<script src="https://kit.fontawesome.com/ea629e8085.js"	crossorigin="anonymous"></script>
+</head>
+
+<body>
+<main>
+<header>
+    <section>
+        <a href=""> <img src="../resources/images/logo.jpg" alt="logo" id="home-logo">
+        </a>
+    </section>
+    <section>
+        <article class="search-area">
+            <form action="#" name="search-form">
+                <fieldset>
+                    <input type="search" id="query" name="query" autocomplete="off"
+                        placeholder="검색어를 입력해주세요">
+
+                    <button type="submit" id="search-bth"
+                        class="fa-solid fa-magnifying-glass"></button>
+                </fieldset>
+            </form>
+        </article>
+    </section>
+    <section></section>
+</header>
+    	<!-- 네비게이터 -->
+		<nav>
+			<ul>
+				<li><a href="#">공지</a></li>
+				<li><a href="#">자유 게시판</a></li>
+				<li><a href="#">질문 게시판</a></li>
+				<li><a href="#">FAQ</a></li>
+				<li><a href="#">1:1 문의</a></li>
+			</ul>
+		</nav>
+
+
+<section class="board-detail">
+    <h1 class="board-title">제목</h1> 
+
+    <!-- 프로필 + 닉네임 + 작성일 + 조회수 -->
+    <div class="board-header">
+        <div class="board-writer">
+            <img src="../resources/images/user.png">
+            <span>닉네임</span>
+        </div>
+        <div class="board-info">
+            <!--작성일 + 조회수 -->
+            <p><span>작성일</span> 2020년 05월 26일 10:23:50</p>
+            <p><span>마지막 수정일</span> 2020년 05월 26일 10:23:50</p>
+            <p><span>조회수</span> 23 </p>
+        </div>
+    </div>
+
+    <!-- 섬네일 -->
+    <h5>썸네일</h5>
+    <div class="img-box">
+        <div class="boardImg thumbnail">
+            <img src="../resources/images/logo.jpg">
+            <a href="#">다운로드</a>
+        </div>
+    </div>
+    <!-- 업로드 이미지. -->
+    <h5>업로드 이미지</h5>
+    <div class="img-box">
+      
+
+        <div class="boardImg">
+            <img src="../resources/images/logo.jpg">
+            <a href="#">다운로드</a>
+        </div>
+        <div class="boardImg">
+            <img src="../resources/images/logo.jpg">
+            <a href="#">다운로드</a>
+        </div>
+        <div class="boardImg">
+            <img src="../resources/images/logo.jpg">
+            <a href="#">다운로드</a>
+        </div>
+        <div class="boardImg">
+            <img src="../resources/images/logo.jpg">
+            <a href="#">다운로드</a>
+        </div>
+
+    </div>
+    
+    <!-- 내용 -->
+    <div class="board-content">
+        내용입니다<br>
+        내용입니다<br>
+        내용입니다<br>
+        내용입니다<br>
+        내용입니다<br>
+        내용입니다<br>
+    </div>
+
+    <!-- 버튼 -->
+    <div class="board-btn-area">
+        <button id="updateBtn">수정</button>
+        <button id="deleteBtn">삭제</button>
+        <button id="goToListBtn">목록으로</button>
+    </div>
+</section>
+
+</main>
+<footer>
+    <p>Copyright &copy; KH Information Educational Institute A-Class</p>
+    <div>
+        <article id="foot-link">
+            <a href="#">프로젝트 소개</a> <span>|</span> <a href="#">이용약관</a> <span>|</span>
+            <a href="#">개인정보 처리 방침</a> <span>|</span> <a href="#">고객센터</a>
+        </article>
+    </div>
+</footer>
+
+</body>
+</html>
