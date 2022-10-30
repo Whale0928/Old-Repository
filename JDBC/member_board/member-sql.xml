@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+
+<properties>
+
+	<comment>Member Service SQL</comment>
+	<!-- 회원가입 -->
+	<entry key = "signUp">
+		INSERT INTO MEMBER 
+		VALUES(SEQ_MEMBER_NO.NEXTVAL, ? , ? , ? , ? , DEFAULT,DEFAULT)
+	</entry>
+	
+	<entry key = "login">
+		SELECT MEMBER_NO,MEMBER_ID,MEMBER_NM,MEMBER_GENDER,ENROLL_DATE FROM MEMBER
+		WHERE 
+		MEMBER_ID = ? AND
+		MEMBER_PW = ? AND
+		SECESSION_FL = 'N'	
+	</entry>	
+	
+	
+	<entry key="selectAll">
+	 SELECT MEMBER_ID,MEMBER_NM,ENROLL_DATE FROM MEMBER 
+	 WHERE SECESSION_FL = 'N' 
+	 ORDER BY MEMBER_ID
+	</entry>
+	
+	<entry key="updateMyInfo">
+	 UPDATE MEMBER SET MEMBER_NM = ? , MEMBER_GENDER=?
+ 	 WHERE MEMBER_NO=?
+ 	</entry>
+ 	
+
+	<entry key="updatePw">
+	 UPDATE MEMBER 
+	 SET MEMBER_PW =?
+	 WHERE MEMBER_NO=?
+	 AND MEMBER_PW =? 	
+ 	</entry>
+
+	<entry key="secession">
+	 UPDATE MEMBER	
+	 SET SECESSION_FL ='Y'
+	 WHERE MEMBER_NO=?
+	 AND MEMBER_PW=?
+  	</entry>
+ 	
+</properties>
