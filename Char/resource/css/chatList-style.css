@@ -1,0 +1,45 @@
+*{
+border: none;
+margin: 0;
+padding: 0;
+}
+html{
+
+width: 400px;
+height: 700px;
+display: flex;
+}
+.list-wrapper{
+
+    width: 400px;
+    height: 700px;
+    overflow: auto;
+}
+
+/* 스크롤 */
+.list-wrapper::-webkit-scrollbar {
+width: 3px;
+margin: 0;
+}
+
+.list-wrapper::-webkit-scrollbar-thumb {
+height: 30%; 
+background: #003458; 
+border-radius: 10px;
+}
+
+
+#chat-nav-area{
+margin-bottom: 20px;
+height: 70px;
+background-color: #373737;
+display: flex;
+align-items: center;
+}
+#chat-nav-area>p{
+display: flex;
+margin-left: 20px;
+font-size: 20px;
+color: ivory;
+font-family: d2coidng;
+}

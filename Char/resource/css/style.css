@@ -1,0 +1,175 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+html,body{
+    height: 100%;
+}
+
+.wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #454545;
+}
+/* 스크롤 */
+.display-container::-webkit-scrollbar {
+width: 8px;  /* 스크롤바의 너비 */
+}
+
+.display-container::-webkit-scrollbar-thumb {
+height: 30%; 
+background: #003458; 
+border-radius: 10px;
+}
+
+
+
+
+/* ---------------------------------------- */
+/* 채팅방 목록 스타일 */
+#chatList li{
+    list-style: none;
+    display: block;
+    height: 30px;
+    margin: 10px;
+}
+
+.list>a{
+    display: block;
+    
+    border-top: 1px solid white;
+
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+/* ---------------------------------------- */
+
+#coverDisplay{
+    width: 500px;
+    height: 700px;
+    display: flex;   
+    flex-direction: column;
+    border: 3px solid white;
+}
+
+/* ---------------------------------------- */
+
+.user-container>label{
+    font-size: 14px;
+    margin-right: 1rem;
+}
+.user-container input{
+    margin: 3px;
+    border: none;
+    height: 100%;
+    width: 70%;
+}
+
+.user-container{
+    background-color: #a9bdce;
+    flex:1;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding: 0.5rem;
+    
+}
+
+.display-container{
+    background-color: #b2c7d9;
+    flex: 12;
+    overflow: auto;
+}
+
+.input-container{
+    flex: 1;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+
+    padding: 0.3rem;
+}
+.input-container span{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.chatting-input{
+    font-size: 12px;
+    height: 100%;
+    flex: 8;
+    border: none;
+}
+.sendBtn{
+    flex: 1;
+    border: none;
+    background-color: gray;
+    height: 100%;
+    border-radius: 5px;
+    border: none;
+}
+
+.chatting-list li{
+    width: 90%;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 0.3rem;
+    list-style: none;
+}
+
+.porfile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+.porfile .user{
+    font-size: 10px;
+    margin-bottom: 0.3rem;
+}
+.porfile .imgs{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+.messge{
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+    margin: 0 5px;
+    flex: 7;
+}
+.time{
+    font-size: 10px;
+    margin: 0 5px;
+}
+.sent{
+    flex-direction: row-reverse;
+}
+
+.sent .messge{
+    background-color: #ffeb33;
+}
+.received .messge{
+    background-color: gray;
+}
