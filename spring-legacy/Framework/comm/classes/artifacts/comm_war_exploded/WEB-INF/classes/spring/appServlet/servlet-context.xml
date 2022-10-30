@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+	<!-- Servlet-context.xml 파일 -Dispatcher Servlet ( 모든 요청에 대한 Controller 찾고 
+		응답에 맞는 View로 연결) 의 설정 파일 == Servlet-context.xml *HandlerMapping : 요청 받은 주소와 
+		해당 주소를 처리할 Controller를 연결하는 역할 -> 기존에는 XML 방식을 사용하다가 @RequestMapping / GETMapping 
+		, PostMapping Mapping 은 다 형제같은 놈들 -->
+
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+
+	<!-- View Resolver : Controller에서 반환된 문자열 앞 뒤의 Prefxi : 접두사 , Suffix: 후미사 
+		그 이후 만들어진 경로의 JSP로 요청 위임을 수행한다 (forward) 단 , 반환된 요청의 문자열 시작이 Redirect일 경우 
+		재요청을 진행한다(redirect) -->
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<context:component-scan
+		base-package="edu.kh.comm" />
+
+	<!-- interceptors : 인터셉터들을 모아둔 태그 -->
+	<interceptors>
+		<!-- intercepot : 요청이 Dispatcher Servlet에서 Controller에 도달 전 또는 후에   
+							요청/응답 객체(req.resp) 를 가로채서 사용할 수 있는 객체-->
+		<interceptor>
+			<!-- 가로챌 요청의 uri 패턴들을 지정 -->
+			<mapping path="/**"/>
+			
+			<!-- 인터셉터 역할을 수행할 클래스를 찾아 Bean으로 등록 -->
+			<beans:bean id="boardTypeInterceptor" class="edu.kh.comm.common.interceptor.BoardTypeInterceptor"/>
+			<!-- BoardTypeInterceptor -->
+			
+		</interceptor>
+	</interceptors>
+
+</beans:beans>
