@@ -1,0 +1,35 @@
+.flex-container{
+    height: 70vh;/* viewPort(보고있는 브라우저 혹은 기기의 화면 ) Height : 현재 화면의 높이(가변) */
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap-reverse; */
+    text-align: center;
+    
+    /* ------------- */
+    /* align-content */
+    /* ------------- */
+    /* cross axis 방향으로
+        item이 포장된 (wrap)라인을 정렬하는 방법. 
+        
+        <<조건 : flex-wrap 속성이 wrap 또는 wrap-reverse 일때만 사용 가능>>
+        
+    속성 값은 justify-contnent의  속성값을 전부 사용할 수 있다.*/
+
+    /* cross-axis 방향 시작 지점으로 포장된 item들을 정리.*/
+    /* align-content: flex-start;  */
+
+    /* cross-axis 방향 끝 지점으로 포장된 item들을 정리.*/
+    /* align-content: flex-end;*/
+
+    /* cross-axis 방향 가운데 포장된 item들을 정리.*/
+    /* align-content: center; */
+
+    /* cross-axis 방향으로 포장된 item들을 양쪽으로 일정한 공간을 나눠주어 정렬*/
+    /* align-content: space-around; */
+
+    /* cross-axis 방향으로 포장된 item들을 동일한 공간을 나눠주어 정렬*/
+    /* align-content: space-evenly; */
+
+    /* cross-axis 방향으로 포장된 item들을 동일한 공간을 나눠주어 정렬 단 , 처음과 끝은 flex-container에 붙어있게 함.*/
+   /*  align-content: space-between; */
+}

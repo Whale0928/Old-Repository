@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_윈도우 내장객체</title>
+    <style>
+        #clock{
+            border: 5px solid black;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 60px;
+            font-weight: bold;
+
+        }
+        #stop{
+            width: 120px;
+            height: 50px;
+            margin-left: 90px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>window 객체</h1>
+    <pre>
+        - 브라우저 창 자체를 나타내는 객체
+
+        - window 객체는 자바스크립트의 최상위 객체이며
+          DOM, BOM으로 분류된다.
+
+          DOM(Document Object Model) : document
+          BOM(Browser Object Model) : location, history, screen, navigator
+
+        * window 객체는 창 자체를 나타내고 있으므로
+          어디서든 접근이 가능하다.
+          그래서 window라는 객체 호출부를 생략할 수 있다.
+          ex) window.alert()  == alert()
+
+    </pre>
+    
+    <hr>
+
+    <h2>window.setTimeout ( 함수, 지연시간(ms) ) </h2>
+    <p>지연 시간 후 함수가 '1회'실행하는 것</p>
+    
+    <button id="btn1">SetTimeOut 확인</button>
+    
+    <hr>
+    
+    <h2>window.setInterval(함수,지연시간)</h2>
+    <p>지연 시간 마다 함수가 실행하는 것</p>
+
+    <!-- <button id="btn2">확인</button> -->
+    <div id="clock">16:49:50</div>
+
+    <h2>window.clearInterVal(setInterval이 저장된 변수)</h2>
+
+    <button id="stop">stop</button>
+
+    <script src="js/10_Window내장객체.js"></script>
+</body>
+</html>

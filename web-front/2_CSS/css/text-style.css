@@ -1,0 +1,108 @@
+#color-ul>li{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#color-ul>li:nth-child(1){color: red;}
+#color-ul>li:nth-child(2){color:#f00;}
+#color-ul>li:nth-child(3){color:rgb(23, 120, 110);}
+#color-ul>li:nth-child(4){color:rgba(255, 0, 0,0.5);}/* 투명도 */
+#color-ul>li:nth-child(5){color:hsl(360, 100%,100%);}
+#color-ul>li:nth-child(6){color:hsla(250, 50%,50%,0.5);}
+
+
+/* text-decoration */
+#deco-ul>li:nth-child(1){text-decoration:underline ;}
+#deco-ul>li:nth-child(2){text-decoration: line-through;}
+#deco-ul>li:nth-child(3){text-decoration: overline;}
+#deco-ul>li:nth-child(4)>a{text-decoration:none;}
+
+/* text-align */
+#align-test{
+    width : 350px;
+    border:2px solid black;
+}
+
+#align-test>p:nth-child(1){text-align:left;}
+#align-test>p:nth-child(2){text-align:right;}
+#align-test>p:nth-child(3){text-align:center;}
+
+#align-test>p:nth-child(4){text-align:justify;}
+/* flex의 space-between과 같은 효과 (양쪽 끝은 붙임) */
+
+/* inline-block도 적용 가능!! */
+#div1{text-align: center;}
+
+#div1>div{
+    width: 50px;
+    height: 50px;
+    background-color: yellow;
+    display: inline-block;
+}
+
+
+
+/* line-height */
+#line-test>p:last-child{
+    line-height: 30px;/* 글자 크기도 포함해서 30px이 지정된다. */
+}
+
+
+#center-test{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 200px;
+}
+
+#center-test>span{
+    background-color: steelblue;
+}
+
+#letter-test{
+    font-size: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;/* 줄이는 경우도 더 자주 씀. */
+}
+
+#letter-test2{
+    letter-spacing: 10;
+}
+
+#shdow-test{
+    background-color: black;
+    padding: 30px;
+}
+
+#shdow-test>p{
+    font-size: 75px;
+    font-weight: bold;
+}
+
+#shdow-test>p:nth-child(1){
+    color: indianred;
+    text-shadow: 5px 10px white;
+            /*   가로 세로 색상 순으로 지정 */
+}
+#shdow-test>p:nth-child(2){
+    color: white;
+    text-shadow:5px 5px 80px #bbb;
+            /*   가로 세로 번짐 색상 순으로 지정 */
+}
+
+#shdow-test>p:nth-child(3){
+    color: rgba(255, 255, 255,0.7);
+    text-shadow:0px 0px 10px greenyellow;
+            /*   가로 세로 번짐 색상 순으로 지정 */
+}
+
+#shdow-test>p:nth-child(4){
+ text-shadow: 0px 0px 4px #ccc,  
+                 0px -5px 4px #ff3,
+                 2px -10px 6px #fd3,
+                 -2px -15px 11px #f80,
+                 2px -20px 18px #f20 ;
+
+}
+

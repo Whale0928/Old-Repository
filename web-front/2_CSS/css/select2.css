@@ -1,0 +1,110 @@
+/* css 확장자 파일은 css의 개념으로 통일
+    파일 전체가 <style> 태그 내부라고 생각하면 됨.
+*/
+
+/* 기본 속성 선택자 */
+div[name='name-1']{background-color: orangered;}
+[name="name-2"]{background-color:lightblue;}
+p[name="name-1"]{background-color: green;}
+
+/* 자식선택자 */
+#parent-ul > li{background-color: orange;    }
+#parent-ul > li >span{background-color:rebeccapurple;    }
+
+/* 후손 선택자 */
+#test-div{ border : 2px solid black;}
+
+#test-div p{background-color: yellowgreen;}
+
+.div-cls{
+    /* block 형식 요소만 크기 조정 가능 */
+    width: 200px;
+    height: 200px;
+    border:1px solid black;
+    background-color: #ddd;
+
+    /* 아래쪽 요소와 간격 */
+    margin-bottom : 30px;
+
+    /*  마우스 커서가 요소 위로 올라오면 손가락모양으로 번경*/
+    cursor : pointer;
+}
+
+/* 클릭하고 있을 때만 반응하는  */
+#active-test:active{
+    background-color: yellowgreen;
+}
+
+/* 커서가 올라가 있을 때만 반응하는 */
+#hover-test:hover{
+    background-color: violet;
+    width: 230px;
+    height: 230px;
+
+    /* 변화 시간 지정 */
+    /* transition-duration: 1s; */
+
+}
+/* 마우스 오버라는 조건이 사라졌기 때문에 */
+#hover-test{transition-duration: 5s;}
+
+/* 상태 선택자 */
+
+/* 요소에 초점이 맞쳐졌을 떄(focus) */
+#focus-test:focus{background-color: springgreen;}
+
+/* 요소가 체크 되었을때 (:checked) */
+input[name="fruits"]:checked{
+    width:30px;
+    height:30px;
+
+    background-color: red;
+    /* radio check 박스는 
+        크기를 제외한 스타일이 적용되지 않는다 
+        */
+}
+
+/* 사용 가능 불가능(:enabled / :disabled) */
+#test-div2>input:enabled{
+    background-color: azure;
+}
+#test-div2>input:disabled{
+    background-color:darkturquoise;
+}
+
+/* 동위 선택자 */
+
+/* A 바로 뒤에 있는 B요소를 선택(+) */
+#div1 + div{background-color: olive;}
+
+/* A 뒤에 있는 모든 요소를 선택(~) */
+#div1 ~ div{background-color: chocolate;}
+
+
+/* ********************check box 모양 바꾸기*********************** */
+/* label 태그 스타일 지정 */
+#check1 + label{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+
+    /* 수평 분할 + 크기조절  */
+    display: inline-block;
+
+    cursor : pointer; /* 마우스 손가락 모양으로 변경. */
+
+    /* 모서리 라운딩 처리 */
+    border-radius:12%;   
+}
+
+/* 체크가 된 #check 뒤에 있는 라벨 태그*/
+#check1:checked + label{
+    background-image:url(../../images/check.png) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* #check1을 존재는 하지만 화면에 보이지 않게 하기 */
+#check1{
+    display : none;
+}

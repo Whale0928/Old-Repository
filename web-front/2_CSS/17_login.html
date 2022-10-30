@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        *{box-sizing: border-box;}
+        .content-2{
+            width: 340px;
+            height: 798px;
+        }
+
+        /* login 스타일 */
+
+        form[name="login-form"]{
+            height: 140px;
+            padding: 10px;
+
+            display: flex;
+
+            /* flex의 기본 축인 왼쪽에서 오른쪽으로 이동하는 것을 세로로 변경한다. */
+            flex-direction: column;
+        
+            /* 중심 축에 대한 정령 (세로 가운데 정렬) */
+            justify-content: center;
+        }
+
+        #id-pw-area{
+            margin: 0px;
+            padding: 0px;
+            border:1px solid #ddd;
+
+            display: flex;
+            flex-basis: 60%;
+        }
+        /* id/ pw input 영역 */
+        #id-pw-area > div:first-child{
+            flex-basis: 75%;
+            display: flex;
+            flex-direction: column;
+        }
+        #id-pw-area > div:last-child{
+            flex-basis: 25%;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        #id-pw-area input{
+            border: none;
+            border-right: 1px solid #ddd;
+
+            flex-basis: 50%;
+            outline:0;
+            margin: 0;
+            padding: 5px;
+        }
+        #id-pw-area input:first-child{
+            border-bottom: 1px solid #ddd;
+        }
+        #id-pw-area input:focus{
+            border: 2px solid #455ba8;
+        }
+
+        /* 로그인  버튼 */
+        #id-pw-area button{
+            width: 100%;
+            border: 0;
+            background-color: white;
+            cursor: pointer;
+        }      
+        #id-pw-area button:hover{
+            background-color: #455ba8;
+            color: white;
+        }  
+
+
+        /* 회원가입 , id/pw찾기 영역 */
+        #signup-find-area{
+            margin-top: 10px;
+            padding-left: 5px;
+        }
+
+        #signup-find-area>a{
+            color: black;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        #signup-find-area>span{
+            padding: 0 10px;
+                /* 상하, 좌우*/
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content-2">
+        <form action="#" name="login-form">
+            <!--아이디/ 비밀번호 / 로그인 버튼 영역 -->
+            <fieldset id="id-pw-area">
+                
+                <div>
+                    <input type="text" name="inputId" placeholder="아이디">
+                    <input type="password" name="inputPw" placeholder="비밀번호">
+                </div>
+
+                <!-- button의 기본값은 submit이라 생략 가능 -->
+              <div>  <button>로그인</button> </div>
+            </fieldset>
+            <!-- 회원가입/ ID,PW 찾기 영역. -->
+            <div id="signup-find-area">
+                <a href="#">회원 가입</a>
+                <span>|</span>
+                <a href="#">ID/PW 찾기</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

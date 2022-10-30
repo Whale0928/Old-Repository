@@ -1,0 +1,75 @@
+div{
+    border:1px solid black;
+    box-sizing: border-box;
+    /* width / height 값이 content + padding + border 값에 맞게 알아서 비율 조정 */
+}
+.container-1{
+    border:2px dashed red;
+    position: relative;
+    /* 내부에 작성되는 요소에 
+        상대적인 위치(top,bottom,left,right)를 지정할 수 있음 */
+}
+.first{
+    width:300px;
+    height: 300px;
+    background-color: yellowgreen;
+}
+.second{
+    width:200px;
+    height: 200px;
+    background-color:green;
+
+    position: absolute;/* 요소 기존 배치 무시 가능 */
+    /* + 상위요소가 relatvice -> 내부에 아무 위치 배치 가능 */
+
+    top:50px ;/* top : 위에서 얼마나 멀어지겟다 */
+    left: 50px;
+}
+.third{
+    width:100px;
+    height:100px;
+    background-color: red;
+
+    position:absolute;
+    top:  35%;
+    left: 7%;
+}
+/* 정가운데 배치하기 */
+.container-2{
+    width: 400px;
+    height: 400px;
+
+    position: relative;/* 내부 요소 상대 위치 지정하기 */
+}
+#center{
+    width: 50px;
+    height: 50px;
+    background-color: pink;
+    /* relative 내부 요소중 
+        position이 absolute(4방향) , relative(좌우) 만 top / bottom을 사용할 수 있다. */
+    top: -10px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    margin:auto;
+}
+
+/* fixed */
+.fixed-area{
+
+    text-align:center;
+
+    position: fixed;
+    
+    /* fixed 요소는 화면( 뷰포드 , 브라우저 ) 기준으로 배치됨 
+    +  다른 요소와 겹쳐질 수 있음.
+       별도로 화면을 강제로 차지하려 하지 않음.*/
+    bottom: 50px;
+    right: 50px;
+}
+#img{
+    width: 50px;
+    height: 50px;
+    border: none;
+}

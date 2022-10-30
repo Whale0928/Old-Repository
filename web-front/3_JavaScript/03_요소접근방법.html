@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소접근 방법</title>
+    <style>
+        .area{
+            width: 300px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        /* 카카오톡 채팅 만들기 */
+        #chatting-bg{
+            width: 360px;
+            height: 400px;
+            border: 1px solid black;
+            background-color: rgb(178,199,217);
+            overflow:auto;/* 스크롤 자동으로 생기게 하는. */
+            
+        }
+
+        /* 채팅 내용 */
+        #chatting-bg > p > span{
+            background-color: rgb(254,234,51);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* 채팅 출력 라인 */
+        #chatting-bg > p{
+            margin: 20px 10px;
+            text-align: right;
+        }
+    </style>
+    <script src="js/03_요소접근방법.js"></script>
+</head>
+<body>
+    <h1>DOM(Document Object Model)</h1>
+    <pre>
+        웹문서(HTML)의 모든 요소를 객체형식으로 표현하는 것.
+
+        -> 문서 내 특정 요소에 접근 하는 방법을 제공.
+    </pre>
+
+    <hr>
+
+    <h1>DOM을 이용한 요소 접근하기.</h1>
+    <pre>
+        1.id로 접근하기. :  document.getElementById("아이디 속성값")
+        
+        <!-- 같은 class는 여러 요소가  가질 수 있음으로 복수형태로 (Elements) 로 작성-->
+        2.class로 접근하기 : document.getElementsByClassName("class속성값")
+
+        <!-- name도 여러개일 수 있음으로 복수형태로 작성! (Elements) -->
+        3. name으로 접근하기 : document.getElementsByName("name속성값")
+
+        <!-- 복수형태로 작성(Elements) -->
+        4. tag로 접근하기 : document.getElementsByTagName("tag이름")
+
+        
+        5.CSS선택자로 접근하기.
+         1) document.querySelector("CSS선택자");
+             -> 선택된 요소가 여러개일 경우 첫 번째 요소만 접근한다.
+         2) documnet.querySelectorAll("CSS선택자");
+             -> 선택된 요소에 모두 접근
+    </pre>
+
+
+
+    <h3>id로 접근하기.</h3>
+    <button onclick="accessId()">클릭할 때 마다 배경색 변경</button>
+    <div id="div1" class="area"></div>
+
+    <hr>
+    <h3>class로 접근하기</h3>
+
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    
+    <button onclick="accessClass()">배경색 변경하기.</button>
+
+
+    <hr>
+    <h3>태그명으로 접근하기.</h3>
+    <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+        <li>04</li>
+        <li>05</li>
+    </ul>
+
+    <button onclick="accessTagName()">배경색 변경</button>
+
+    <hr>
+    <h1 style="color:red"> input태그의 값 (value)얻어오기/변경하기. </h1>
+    <input type="text" id="input-test">
+    <button onclick="inputTest()">입력하기</button>
+
+     <br><br>
+    <hr>
+    <h3>name으로 접근하기</h3>
+    <table>
+        <tr>
+            <td>
+                <input type="checkbox" name="hobby" id="game" value="게임">
+                <label for="game">게임</label>
+            </td>
+            <td>
+                <input type="checkbox" name="hobby" id="music" value="음악감상">
+                <label for="music">음악감상</label>
+            </td>
+            <td>
+                <input type="checkbox" name="hobby" id="movie" value="영화감상">
+                <label for="movie">영화감상</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="checkbox" name="hobby" id="coding" value="코딩">
+                <label for="coding">코딩</label>
+            </td>
+            <td>
+                <input type="checkbox" name="hobby" id="exercise" value="운동">
+                <label for="exercise">운동</label>
+            </td>
+            <td>
+                <input type="checkbox" name="hobby" id="book" value="독서">
+                <label for="book">독서</label>
+            </td>
+        </tr>
+    </table>
+
+    <div class="area" id="name-div"></div>
+
+    <button onclick="accessName()">출력하기</button>
+
+    <br><br>
+    <hr>
+    <h3>CSS 선택자로 접근하기.</h3>
+
+    <div id="css-div">
+        <div class="area">test1</div>
+        <div class="area">test2</div>
+    </div>
+    <button onclick="accessCss()">확인하기.</button>
+
+    <hr>
+
+    <h3>카카오톡 채팅 화면 만들기(ver.1).</h3>
+    <div id="chatting-bg">
+        <p><span>입력되는 채팅 출력</span></p>
+        <p><span>입력되는 채팅 출력</span></p>
+        <p><span>입력되는 채팅 출력</span></p>
+        <p><span>입력되는 채팅 출력</span></p>
+    </div>
+    
+    <!-- onkeydown : 눌러졌을 때 -->
+    <!-- onkeydown :  눌러지고 있을 때-->
+    <!-- 눌러지고 있는 상태에서 계속해서 호출이 발생함. -->
+    
+    <!-- onkeydown :  키가 올라올때 (눌러진 후 딱 한번만 이벤트 발생)-->
+    <input type="text" id="chatting-Input" size="50" onkeyup="inputEnter()">
+    <button onclick="readValue()">입력</button>
+    
+
+</body>
+</html>

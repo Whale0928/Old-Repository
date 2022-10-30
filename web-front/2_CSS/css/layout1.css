@@ -1,0 +1,107 @@
+.area1{background-color: red;}
+.area2{background-color: orangered;}
+.area3{background-color: green;}
+.area4{background-color: lime;}
+.area5{background-color: khaki;}
+
+.block{
+    border: 2px solid black;
+    width: 150px;
+    height: 150px;
+    color: white;
+
+    display: block;/* 요소 형식을 block으로 바꿈 */
+}
+.inline{
+    display:inline; /* 요소 형식을 inline으로 변경 */
+}
+
+.inline-block{
+    display:inline-block
+}
+
+/* 감싸는 영역 요소 */
+#container-1{
+    border:3px solid black;
+    width: 300px;
+    height: 500px;
+}
+/* 내부에 영역을 분할할 요소 */
+.div-1{
+    /* 고정 크기 단위
+    -  > 감싸는 영역으 ㅣ크기가 변하면 다시 계산
+    width:300px;
+    height:250px;
+     */
+    width: 100%;
+    height: 50%;
+}
+
+#container-1 > .div-1:first-of-type{
+    background-color: ivory;
+    height: 30%;
+}
+#container-1 > .div-1:last-of-type{
+    background-color: grey;
+    height: 70%;
+}
+
+
+#container-2{
+    border: 1px solid black;
+    width: 300px;
+    height: 410px;
+}
+.div-2{
+    width:100%;
+}
+#container-2> .div-2:nth-of-type(1){
+    height:20%;
+    background-color: antiquewhite;
+}
+#container-2> .div-2:nth-of-type(2){
+    height:30%;
+    background-color: black;
+}
+#container-2> .div-2:nth-of-type(3){
+    height:50%;
+    background-color: blueviolet;
+}
+
+
+/* 좌우 2분할 */
+#container-3{
+    border:5px solid red;
+    width: 400px;
+    height: 200px;
+}
+.div-3{
+    width: 49%;
+    height: 99%;
+    display:inline-block;
+    border:2px solid black;
+}
+#container-3>.div-3:first-of-type{
+    background-color: red;
+}
+#container-3>.div-3:last-of-type{
+    background-color: slateblue;
+}
+
+/* display : none ;  / visibility : hidden ; */
+.div-4{
+    border:3px solid black;
+    height:100px
+}
+
+
+/* 주로 버튼이나 무언가를 누르면 보이게 하는 방법도 있다*/
+#test4{
+    
+    background-color: olive;
+
+    /* 요소가 투명한 색으로 변했다. 
+    visibility: hidden;*/
+
+    display: inline-block;
+}
